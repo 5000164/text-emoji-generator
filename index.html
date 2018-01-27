@@ -5,6 +5,12 @@
     <title>Slack Emoji Generator</title>
 </head>
 <body>
+<script>
+    window.nodeRequire = require;
+    delete window.require;
+    delete window.exports;
+    delete window.module;
+</script>
 <script src="./target/scala-2.12/slack-emoji-generator-jsdeps.js"></script>
 <script src="./target/scala-2.12/slack-emoji-generator-fastopt.js"></script>
 </body>
