@@ -7,7 +7,7 @@ import scala.scalajs.js.annotation.JSExportTopLevel
 object Application extends App {
   def setupUI(): Unit = {
     jQuery("body").append("<p>Hello World</p>")
-    jQuery("body").append("<p>test</p>").attr("id", "click-me-button")
+    jQuery("body").append("<p id=\"click-me-button\">test</p>")
     jQuery("#click-me-button").click(() => addClickedMessage())
   }
 
