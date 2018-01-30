@@ -1,4 +1,5 @@
 enablePlugins(ScalaJSPlugin)
+enablePlugins(ScalaJSBundlerPlugin)
 
 name := "slack-emoji-generator"
 
@@ -10,9 +11,8 @@ scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked", "-Xlint")
 
 scalaJSUseMainModuleInitializer := true
 
-libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "0.9.1"
-libraryDependencies += "be.doeraene" %%% "scalajs-jquery" % "0.9.1"
+libraryDependencies += "com.github.japgolly.scalajs-react" %%% "core" % "1.1.1"
 
-skip in packageJSDependencies := false
-
-jsDependencies += "org.webjars" % "jquery" % "2.1.4" / "2.1.4/jquery.js"
+npmDependencies in Compile ++= Seq(
+  "react" -> "15.6.1",
+  "react-dom" -> "15.6.1")
