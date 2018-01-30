@@ -1,20 +1,13 @@
 package jp._5000164.slack_emoji_generator.interfaces
 
-import org.scalajs.jquery.jQuery
-
-import scala.scalajs.js.annotation.JSExportTopLevel
+import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.html_<^._
+import org.scalajs.dom.document
 
 object Application extends App {
-  def setupUI(): Unit = {
-    jQuery("body").append("<p>Hello World</p>")
-    jQuery("body").append("<p id=\"click-me-button\">test</p>")
-    jQuery("#click-me-button").click(() => addClickedMessage())
-  }
+  val hello = ScalaComponent.builder[String]("HelloMessage")
+    .render($ => <.div("Hello ", $.props))
+    .build
 
-  @JSExportTopLevel("addClickedMessage")
-  def addClickedMessage(): Unit = {
-    jQuery("body").append("<p>clicked</p>")
-  }
-
-  jQuery(() => setupUI())
+  hello("World").renderIntoDOM(document.body)
 }
