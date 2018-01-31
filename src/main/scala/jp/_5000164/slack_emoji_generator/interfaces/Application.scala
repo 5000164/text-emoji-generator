@@ -5,8 +5,8 @@ import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom.document
 
 object Application extends App {
-  val hello = ScalaComponent.builder[String]("HelloMessage")
-    .render($ => <.div("Hello ", $.props))
+  val hello = ScalaComponent.builder[String]("Hello")
+    .render($ => <.div(^.className := "hello", "Hello ", $.props))
     .build
 
   hello("World").renderIntoDOM(document.getElementById("app"))
