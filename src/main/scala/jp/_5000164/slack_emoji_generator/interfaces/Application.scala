@@ -9,5 +9,5 @@ object Application extends App {
     .render($ => <.div("Hello ", $.props))
     .build
 
-  hello("World").renderIntoDOM(document.body)
+  hello("World").renderIntoDOM(document.getElementById("app"))
 }
