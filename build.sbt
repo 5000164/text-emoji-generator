@@ -12,6 +12,8 @@ scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked", "-Xlint")
 scalaJSUseMainModuleInitializer := true
 
 libraryDependencies += "com.github.japgolly.scalajs-react" %%% "core" % "1.1.1"
+libraryDependencies += "com.github.japgolly.scalacss" %%% "core" % "0.5.3"
+libraryDependencies += "com.github.japgolly.scalacss" %%% "ext-react" % "0.5.3"
 
 npmDependencies in Compile ++= Seq(
   "react" -> "15.6.1",
