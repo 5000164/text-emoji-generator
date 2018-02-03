@@ -9,10 +9,10 @@ import org.scalajs.dom.document
 import scalacss.ScalaCssReact._
 
 object Application extends App {
-  val hello = ScalaComponent.builder[String]("Hello")
-    .render($ => <.div(Styles.content, "Hello ", $.props))
+  val canvas = ScalaComponent.builder[Unit]("Canvas")
+    .renderStatic(<.canvas(Styles.canvas, ^.id := "canvas"))
     .build
 
   Styles.addToDocument()
-  hello("World").renderIntoDOM(document.getElementById("root"))
+  canvas().renderIntoDOM(document.getElementById("root"))
 }
