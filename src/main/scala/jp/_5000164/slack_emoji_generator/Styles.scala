@@ -8,8 +8,8 @@ object Styles extends StyleSheet.Inline {
 
   import dsl._
 
-  val content = style(
-    width(100 px),
-    margin(auto)
+  val canvas = style(
+    width(128 px),
+    height(128 px)
   )
 }
