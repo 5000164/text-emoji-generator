@@ -10,6 +10,7 @@ import org.scalajs.dom.html.Canvas
 
 import scala.scalajs.js
 import scala.scalajs.js.DynamicImplicits._
+import scala.util.Random
 import scalacss.ScalaCssReact._
 
 object Application extends App {
@@ -25,6 +26,28 @@ object Application extends App {
 case class State(text: String)
 
 class Backend($: BackendScope[Unit, State]) {
+  val colorList = Map(
+    "Red" -> "F44336",
+    "Pink" -> "E91E63",
+    "Purple" -> "9C27B0",
+    "Deep Purple" -> "673AB7",
+    "Indigo" -> "3F51B5",
+    "Blue" -> "2196F3",
+    "Light Blue" -> "03A9F4",
+    "Cyan" -> "00BCD4",
+    "Teal" -> "009688",
+    "Green" -> "4CAF50",
+    "Light Green" -> "8BC34A",
+    "Lime" -> "CDDC39",
+    "Yellow" -> "FFEB3B",
+    "Amber" -> "FFC107",
+    "Orange" -> "FF9800",
+    "Deep Orange" -> "FF5722",
+    "Brown" -> "795548",
+    "Grey" -> "9E9E9E",
+    "Blue Grey" -> "607D8B"
+  )
+
   def render(state: State) = <.div(
     <.div(
       <.canvas(^.id := "canvas", Styles.canvas)
@@ -52,6 +75,9 @@ class Backend($: BackendScope[Unit, State]) {
     ctx.font = "bold 64px 'Hiragino Kaku Gothic Pro'"
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
+
+    val color = Random.shuffle(colorList.values).head
+    ctx.fillStyle = s"#$color"
 
     ctx.fillText(text.charAt(0).toString, 32, 32)
     ctx.fillText(text.charAt(1).toString, 96, 32)
