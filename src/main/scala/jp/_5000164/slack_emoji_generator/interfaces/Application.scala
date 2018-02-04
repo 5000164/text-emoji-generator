@@ -57,7 +57,7 @@ class Backend($: BackendScope[Unit, State]) {
       <.button(^.onClick --> generate(state.text), "生成")
     ),
     <.div(
-      <.button(^.onClick --> save, "保存")
+      <.button(^.onClick --> save(state.text), "保存")
     )
   )
 
@@ -85,10 +85,10 @@ class Backend($: BackendScope[Unit, State]) {
     ctx.fillText(text.charAt(3).toString, 96, 96)
   }
 
-  def save = Callback {
+  def save(text: String) = Callback {
     val c = document.getElementById("canvas").asInstanceOf[Canvas]
     val dialog = js.Dynamic.global.require("electron").remote.dialog
-    val option = js.Dynamic.literal("defaultPath" -> "emoji.png")
+    val option = js.Dynamic.literal("defaultPath" -> s"$text.png")
     val callback = (x: String) => {
       val image = c.toDataURL("image/png").drop("data:image/png;base64,".length)
       val fs = js.Dynamic.global.require("fs")
