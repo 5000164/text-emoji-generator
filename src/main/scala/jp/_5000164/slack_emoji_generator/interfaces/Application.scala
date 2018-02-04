@@ -3,7 +3,6 @@ package jp._5000164.slack_emoji_generator.interfaces
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 import jp._5000164.slack_emoji_generator.CssSettings._
-import jp._5000164.slack_emoji_generator.Styles
 import org.scalajs.dom
 import org.scalajs.dom.document
 import org.scalajs.dom.html.Canvas
