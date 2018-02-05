@@ -9,7 +9,7 @@ import scalacss.ScalaCssReact._
 
 object Application extends App {
   val content = ScalaComponent.builder[Unit]("content")
-    .initialState(State(""))
+    .initialState(State(None, ""))
     .renderBackend[Backend]
     .build
 

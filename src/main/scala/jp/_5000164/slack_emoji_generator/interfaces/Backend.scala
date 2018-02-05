@@ -7,18 +7,21 @@ import jp._5000164.slack_emoji_generator.domain.State
 import scalacss.ScalaCssReact._
 
 class Backend($: BackendScope[Unit, State]) {
-  def render(state: State): VdomElement = <.div(
+  def render(state: State): VdomElement = {
+    val f = $.zoomState(_.canvas)(value => _.copy(canvas = value))
     <.div(
-      <.canvas(^.id := "canvas", Styles.canvas)
-    ),
-    <.div(
-      <.input(^.value := state.text, ^.onChange ==> onChange),
-      <.button(^.onClick --> Text.generate(state.text), "生成")
-    ),
-    <.div(
-      <.button(^.onClick --> Text.save(state.text), "保存")
+      <.div(
+        <.canvas(^.id := "canvas", Styles.canvas)
+      ),
+      <.div(
+        <.input(^.value := state.text, ^.onChange ==> onChange),
+        <.button(^.onClick --> Text.generate(state, f), "生成")
+      ),
+      <.div(
+        <.button(^.onClick --> Text.save(state), "保存")
+      )
     )
-  )
+  }
 
   def onChange(e: ReactEventFromInput): CallbackTo[Unit] = {
     val newValue = e.target.value
