@@ -1,6 +1,7 @@
 package jp._5000164.slack_emoji_generator.interfaces
 
-import japgolly.scalajs.react.Callback
+import japgolly.scalajs.react.{Callback, StateAccessPure}
+import jp._5000164.slack_emoji_generator.domain.State
 import org.scalajs.dom
 import org.scalajs.dom.document
 import org.scalajs.dom.html.Canvas
@@ -10,12 +11,15 @@ import scala.scalajs.js.DynamicImplicits._
 import scala.util.Random
 
 object Text {
-  def generate(text: String) = Callback {
-    val c = document.getElementById("canvas").asInstanceOf[Canvas]
-    c.width = 128
-    c.height = 128
+  def generate(state: State, s: StateAccessPure[Option[Canvas]]): Callback = Callback {
+    val canvas = state.canvas match {
+      case Some(c) => c
+      case None => document.getElementById("canvas").asInstanceOf[Canvas]
+    }
+    canvas.width = 128
+    canvas.height = 128
     type Ctx2D = dom.CanvasRenderingContext2D
-    val ctx = c.getContext("2d").asInstanceOf[Ctx2D]
+    val ctx = canvas.getContext("2d").asInstanceOf[Ctx2D]
     ctx.font = "bold 64px 'Hiragino Kaku Gothic Pro'"
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
@@ -23,18 +27,23 @@ object Text {
     val color = Random.shuffle(colorList.values).head
     ctx.fillStyle = s"#$color"
 
+    val text = state.text
     ctx.fillText(text.charAt(0).toString, 32, 32)
     ctx.fillText(text.charAt(1).toString, 96, 32)
     ctx.fillText(text.charAt(2).toString, 32, 96)
     ctx.fillText(text.charAt(3).toString, 96, 96)
+  } >> {
+    val canvas = document.getElementById("canvas").asInstanceOf[Canvas]
+    s.setState(Some(canvas))
   }
 
-  def save(text: String) = Callback {
-    val c = document.getElementById("canvas").asInstanceOf[Canvas]
+  def save(state: State) = Callback {
+    val canvas = state.canvas.get
+    val text = state.text
     val dialog = js.Dynamic.global.require("electron").remote.dialog
     val option = js.Dynamic.literal("defaultPath" -> s"$text.png")
     val callback = (x: String) => {
-      val image = c.toDataURL("image/png").drop("data:image/png;base64,".length)
+      val image = canvas.toDataURL("image/png").drop("data:image/png;base64,".length)
       val fs = js.Dynamic.global.require("fs")
       fs.writeFile(x, image, js.Dynamic.literal("encoding" -> "base64"), { (err: js.Dynamic) =>
         if (err) println(err)
