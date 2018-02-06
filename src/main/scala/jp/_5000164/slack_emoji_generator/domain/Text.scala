@@ -1,6 +1,12 @@
 package jp._5000164.slack_emoji_generator.domain
 
 object Text {
+  def calculateFontSize(lines: List[String]): Int = {
+    val side = 128
+    val maxRow = lines.size
+    side / maxRow
+  }
+
   def calculatePosition(lines: List[String]): List[PrintChar] = {
     val side = 128
     val maxLength = lines.reduceLeft((a, b) => if (a.length > b.length) a else b).length

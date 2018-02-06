@@ -20,7 +20,6 @@ object Text {
     canvas.height = 128
     type Ctx2D = dom.CanvasRenderingContext2D
     val ctx = canvas.getContext("2d").asInstanceOf[Ctx2D]
-    ctx.font = "bold 64px 'Hiragino Kaku Gothic Pro'"
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
 
@@ -29,6 +28,10 @@ object Text {
 
     val text = state.text
     val lines = text.split("\n").toList
+
+    val fontSize = DomainText.calculateFontSize(lines)
+    ctx.font = s"bold ${fontSize}px 'Hiragino Kaku Gothic Pro'"
+
     DomainText.calculatePosition(lines).foreach(c => ctx.fillText(c.content, c.x, c.y, c.maxWidth))
   } >> {
     val canvas = document.getElementById("canvas").asInstanceOf[Canvas]
