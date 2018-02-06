@@ -1,4 +1,4 @@
-package jp._5000164.slack_emoji_generator
+package jp._5000164.slack_emoji_generator.interfaces
 
 import jp._5000164.slack_emoji_generator.CssSettings._
 

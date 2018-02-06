@@ -8,3 +8,6 @@ bundler
 scalacss
 Hiragino
 Kaku
+japgolly
+scalactic
+scalatest
