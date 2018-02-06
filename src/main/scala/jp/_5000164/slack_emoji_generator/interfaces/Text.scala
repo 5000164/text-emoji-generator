@@ -1,7 +1,7 @@
 package jp._5000164.slack_emoji_generator.interfaces
 
 import japgolly.scalajs.react.{Callback, StateAccessPure}
-import jp._5000164.slack_emoji_generator.domain.State
+import jp._5000164.slack_emoji_generator.domain.{State, Text => DomainText}
 import org.scalajs.dom
 import org.scalajs.dom.document
 import org.scalajs.dom.html.Canvas
@@ -28,10 +28,8 @@ object Text {
     ctx.fillStyle = s"#$color"
 
     val text = state.text
-    ctx.fillText(text.charAt(0).toString, 32, 32)
-    ctx.fillText(text.charAt(1).toString, 96, 32)
-    ctx.fillText(text.charAt(2).toString, 32, 96)
-    ctx.fillText(text.charAt(3).toString, 96, 96)
+    val lines = text.split("\n").toList
+    DomainText.calculatePosition(lines).foreach(c => ctx.fillText(c.content, c.x, c.y, c.maxWidth))
   } >> {
     val canvas = document.getElementById("canvas").asInstanceOf[Canvas]
     s.setState(Some(canvas))

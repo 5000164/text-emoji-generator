@@ -14,7 +14,7 @@ class Backend($: BackendScope[Unit, State]) {
         <.canvas(^.id := "canvas", Styles.canvas)
       ),
       <.div(
-        <.input(^.value := state.text, ^.onChange ==> onChange),
+        <.textarea(^.value := state.text, ^.onChange ==> onChange),
         <.button(^.onClick --> Text.generate(state, f), "生成")
       ),
       <.div(
