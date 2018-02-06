@@ -21,4 +21,16 @@ class TextTest extends FreeSpec {
       PrintChar("字", 105.0, 96.0, 42.0)
     ))
   }
+
+  "2 行の時フォントサイズは 64" in {
+    assert(Text.calculateFontSize(List("２", "行")) == 64)
+  }
+
+  "1 行の時フォントサイズは 128" in {
+    assert(Text.calculateFontSize(List("１行")) == 128)
+  }
+
+  "3 行の時フォントサイズは 42" in {
+    assert(Text.calculateFontSize(List("さ", "ん", "行")) == 42)
+  }
 }
