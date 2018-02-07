@@ -11,11 +11,7 @@ import scala.scalajs.js.DynamicImplicits._
 import scala.util.Random
 
 object Text {
-  def generate(state: State, s: StateAccessPure[Option[Canvas]]): Callback = Callback {
-    val canvas = state.canvas match {
-      case Some(c) => c
-      case None => document.getElementById("canvas").asInstanceOf[Canvas]
-    }
+  def generate(canvas: Canvas, text: String, s: StateAccessPure[Option[Canvas]]): Callback = Callback {
     canvas.width = 128
     canvas.height = 128
     type Ctx2D = dom.CanvasRenderingContext2D
@@ -26,7 +22,6 @@ object Text {
     val color = Random.shuffle(colorList.values).head
     ctx.fillStyle = s"#$color"
 
-    val text = state.text
     val lines = text.split("\n").toList
 
     val fontSize = DomainText.calculateFontSize(lines)
