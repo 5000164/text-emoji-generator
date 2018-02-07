@@ -15,9 +15,6 @@ class Backend($: BackendScope[Unit, State]) {
       ),
       <.div(
         <.textarea(^.value := state.text, ^.onChange ==> onChange),
-        <.button(^.onClick --> Text.generate(state, f), "生成")
-      ),
-      <.div(
         <.button(^.onClick --> Text.save(state), "保存")
       )
     )
