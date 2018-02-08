@@ -6,6 +6,7 @@ import jp._5000164.slack_emoji_generator.domain.State
 import org.scalajs.dom.document
 import org.scalajs.dom.html.Canvas
 
+import scala.scalajs.js
 import scalacss.ScalaCssReact._
 
 class Backend($: BackendScope[Unit, State]) {
@@ -16,8 +17,18 @@ class Backend($: BackendScope[Unit, State]) {
         <.canvas(^.id := "canvas", Styles.canvas)
       ),
       <.div(
-        <.textarea(^.value := state.text, ^.onChange ==> onChange(state.canvas, f)),
+        <.textarea(^.value := state.text, ^.onChange ==> onChange(state.canvas, f))
+      ),
+      <.div(
         <.button(^.onClick --> Text.save(state), "保存")
+      ),
+      <.div(
+        <.ul(Text.colorList.toVdomArray({
+          case (key, value) => <.li(
+            <.span(key),
+            <.span(^.style := js.Dictionary("display" -> "inline-block", "width" -> "20px", "height" -> "20px", "backgroundColor" -> s"#$value").asInstanceOf[js.Object])
+          )
+        }))
       )
     )
   }
