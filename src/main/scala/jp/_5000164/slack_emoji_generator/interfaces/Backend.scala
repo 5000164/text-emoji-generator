@@ -25,6 +25,7 @@ class Backend($: BackendScope[Unit, State]) {
       <.div(
         <.ul(Text.colorList.toVdomArray({
           case (key, value) => <.li(
+            ^.onClick --> Text.generateWithColor(state.canvas.getOrElse(document.getElementById("canvas").asInstanceOf[Canvas]), state.text, value, f),
             ^.key := key,
             <.span(key),
             <.span(^.style := js.Dictionary("display" -> "inline-block", "width" -> "20px", "height" -> "20px", "backgroundColor" -> s"#$value").asInstanceOf[js.Object])
