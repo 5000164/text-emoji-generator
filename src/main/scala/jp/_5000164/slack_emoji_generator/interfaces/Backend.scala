@@ -25,6 +25,7 @@ class Backend($: BackendScope[Unit, State]) {
       <.div(
         <.ul(Text.colorList.toVdomArray({
           case (key, value) => <.li(
+            ^.key := key,
             <.span(key),
             <.span(^.style := js.Dictionary("display" -> "inline-block", "width" -> "20px", "height" -> "20px", "backgroundColor" -> s"#$value").asInstanceOf[js.Object])
           )
