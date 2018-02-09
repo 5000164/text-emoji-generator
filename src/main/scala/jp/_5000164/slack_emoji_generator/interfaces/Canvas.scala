@@ -10,7 +10,7 @@ import scala.scalajs.js
 import scala.scalajs.js.DynamicImplicits._
 import scala.util.Random
 
-object Text {
+object Canvas {
   def generate(canvas: Canvas, text: String, s: StateAccessPure[Option[Canvas]]): Callback = Callback {
     canvas.width = 128
     canvas.height = 128
