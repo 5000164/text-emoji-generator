@@ -31,7 +31,14 @@ class Backend($: BackendScope[Unit, State]) {
             ^.style := js.Dictionary("backgroundColor" -> s"#$value").asInstanceOf[js.Object],
             Styles.colorItem
           )
-        }))
+        }),
+          <.li(
+            ^.key := "Random",
+            ^.onClick --> onClickRandomColor(state.text, f),
+            Styles.colorItem,
+            "?"
+          )
+        )
       )
     )
   }
@@ -61,5 +68,15 @@ class Backend($: BackendScope[Unit, State]) {
     Canvas.generate(text, color)
   } >> {
     s.setState(color)
+  }
+
+  def onClickRandomColor(text: String, s: StateAccessPure[String]): Callback = {
+    val color = Random.shuffle(colorList).head._2
+
+    {
+      Canvas.generate(text, color)
+    } >> {
+      s.setState(color)
+    }
   }
 }
