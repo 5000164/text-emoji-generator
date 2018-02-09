@@ -7,7 +7,6 @@ import org.scalajs.dom.document
 import org.scalajs.dom.html.Canvas
 
 import scala.scalajs.js
-import scala.scalajs.js.DynamicImplicits._
 
 object Canvas {
   def get: Canvas = document.getElementById("canvas").asInstanceOf[Canvas]
@@ -33,15 +32,13 @@ object Canvas {
 
   def save(text: String) = Callback {
     val canvas = get
+    val fileName = text.replace("\n", "")
     val dialog = js.Dynamic.global.require("electron").remote.dialog
-    val option = js.Dynamic.literal("defaultPath" -> s"$text.png")
+    val option = js.Dynamic.literal("defaultPath" -> s"$fileName.png")
     val callback = (x: String) => {
       val image = canvas.toDataURL("image/png").drop("data:image/png;base64,".length)
       val fs = js.Dynamic.global.require("fs")
-      fs.writeFile(x, image, js.Dynamic.literal("encoding" -> "base64"), { (err: js.Dynamic) =>
-        if (err) println(err)
-        else println("saved")
-      })
+      fs.writeFile(x, image, js.Dynamic.literal("encoding" -> "base64"))
     }
     dialog.showSaveDialog(null, option, callback)
   }
