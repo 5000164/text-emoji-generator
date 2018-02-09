@@ -17,6 +17,7 @@ object Styles extends StyleSheet.Inline {
     display.inlineBlock,
     width(20 px),
     height(20 px),
-    cursor.pointer
+    cursor.pointer,
+    userSelect := "none"
   )
 }
