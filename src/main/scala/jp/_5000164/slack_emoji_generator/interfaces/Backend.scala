@@ -20,13 +20,13 @@ class Backend($: BackendScope[Unit, State]) {
         <.textarea(^.value := state.text, ^.onChange ==> onChange(state.canvas, f))
       ),
       <.div(
-        <.button(^.onClick --> Text.save(state), "保存")
+        <.button(^.onClick --> Canvas.save(state), "保存")
       ),
       <.div(
-        <.ul(Text.colorList.toVdomArray({
+        <.ul(Canvas.colorList.toVdomArray({
           case (key, value) => <.li(
             ^.key := key,
-            ^.onClick --> Text.generateWithColor(state.canvas.getOrElse(document.getElementById("canvas").asInstanceOf[Canvas]), state.text, value, f),
+            ^.onClick --> Canvas.generateWithColor(state.canvas.getOrElse(document.getElementById("canvas").asInstanceOf[Canvas]), state.text, value, f),
             ^.style := js.Dictionary("backgroundColor" -> s"#$value").asInstanceOf[js.Object],
             Styles.colorItem
           )
@@ -40,6 +40,6 @@ class Backend($: BackendScope[Unit, State]) {
     $.modState(_.copy(text = updatedText))
   } >> {
     val updatedText = e.target.value
-    Text.generate(canvas.getOrElse(document.getElementById("canvas").asInstanceOf[Canvas]), updatedText, s)
+    Canvas.generate(canvas.getOrElse(document.getElementById("canvas").asInstanceOf[Canvas]), updatedText, s)
   }
 }
