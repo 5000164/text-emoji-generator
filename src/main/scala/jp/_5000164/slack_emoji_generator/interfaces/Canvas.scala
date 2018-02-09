@@ -65,6 +65,7 @@ object Canvas {
     "Deep Orange" -> "FF5722",
     "Brown" -> "795548",
     "Grey" -> "9E9E9E",
-    "Blue Grey" -> "607D8B"
+    "Blue Grey" -> "607D8B",
+    "Black" -> "000000"
   )
 }
