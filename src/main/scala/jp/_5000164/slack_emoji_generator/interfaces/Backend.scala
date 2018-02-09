@@ -1,32 +1,29 @@
 package jp._5000164.slack_emoji_generator.interfaces
 
 import japgolly.scalajs.react.vdom.html_<^._
-import japgolly.scalajs.react.{BackendScope, Callback, ReactEventFromInput, StateAccessPure}
+import japgolly.scalajs.react.{BackendScope, Callback, ReactEventFromInput}
 import jp._5000164.slack_emoji_generator.domain.State
-import org.scalajs.dom.document
-import org.scalajs.dom.html.Canvas
 
 import scala.scalajs.js
 import scalacss.ScalaCssReact._
 
 class Backend($: BackendScope[Unit, State]) {
   def render(state: State): VdomElement = {
-    val f = $.zoomState(_.canvas)(value => _.copy(canvas = value))
     <.div(
       <.div(
         <.canvas(^.id := "canvas", Styles.canvas)
       ),
       <.div(
-        <.textarea(^.value := state.text, ^.onChange ==> onChange(state.canvas, f))
+        <.textarea(^.value := state.text, ^.onChange ==> onChange)
       ),
       <.div(
-        <.button(^.onClick --> Canvas.save(state), "保存")
+        <.button(^.onClick --> Canvas.save(state.text), "保存")
       ),
       <.div(
         <.ul(Canvas.colorList.toVdomArray({
           case (key, value) => <.li(
             ^.key := key,
-            ^.onClick --> Canvas.generateWithColor(state.canvas.getOrElse(document.getElementById("canvas").asInstanceOf[Canvas]), state.text, value, f),
+            ^.onClick --> Canvas.generateWithColor(state.text, value),
             ^.style := js.Dictionary("backgroundColor" -> s"#$value").asInstanceOf[js.Object],
             Styles.colorItem
           )
@@ -35,11 +32,11 @@ class Backend($: BackendScope[Unit, State]) {
     )
   }
 
-  def onChange(canvas: Option[Canvas], s: StateAccessPure[Option[Canvas]])(e: ReactEventFromInput): Callback = {
+  def onChange(e: ReactEventFromInput): Callback = {
     val updatedText = e.target.value
     $.modState(_.copy(text = updatedText))
   } >> {
     val updatedText = e.target.value
-    Canvas.generate(canvas.getOrElse(document.getElementById("canvas").asInstanceOf[Canvas]), updatedText, s)
+    Canvas.generate(updatedText)
   }
 }

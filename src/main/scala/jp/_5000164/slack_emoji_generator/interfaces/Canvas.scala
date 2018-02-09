@@ -1,7 +1,7 @@
 package jp._5000164.slack_emoji_generator.interfaces
 
-import japgolly.scalajs.react.{Callback, StateAccessPure}
-import jp._5000164.slack_emoji_generator.domain.{State, Text => DomainText}
+import japgolly.scalajs.react.Callback
+import jp._5000164.slack_emoji_generator.domain.{Text => DomainText}
 import org.scalajs.dom
 import org.scalajs.dom.document
 import org.scalajs.dom.html.Canvas
@@ -11,29 +11,15 @@ import scala.scalajs.js.DynamicImplicits._
 import scala.util.Random
 
 object Canvas {
-  def generate(canvas: Canvas, text: String, s: StateAccessPure[Option[Canvas]]): Callback = Callback {
-    canvas.width = 128
-    canvas.height = 128
-    type Ctx2D = dom.CanvasRenderingContext2D
-    val ctx = canvas.getContext("2d").asInstanceOf[Ctx2D]
-    ctx.textAlign = "center"
-    ctx.textBaseline = "middle"
+  def get: Canvas = document.getElementById("canvas").asInstanceOf[Canvas]
 
+  def generate(text: String): Callback = {
     val color = Random.shuffle(colorList.values).head
-    ctx.fillStyle = s"#$color"
-
-    val lines = text.split("\n").toList
-
-    val fontSize = DomainText.calculateFontSize(lines)
-    ctx.font = s"bold ${fontSize}px 'Hiragino Kaku Gothic Pro'"
-
-    DomainText.calculatePosition(lines).foreach(c => ctx.fillText(c.content, c.x, c.y, c.maxWidth))
-  } >> {
-    val canvas = document.getElementById("canvas").asInstanceOf[Canvas]
-    s.setState(Some(canvas))
+    generateWithColor(text, color)
   }
 
-  def generateWithColor(canvas: Canvas, text: String, color: String, s: StateAccessPure[Option[Canvas]]): Callback = Callback {
+  def generateWithColor(text: String, color: String): Callback = Callback {
+    val canvas = get
     canvas.width = 128
     canvas.height = 128
     type Ctx2D = dom.CanvasRenderingContext2D
@@ -49,14 +35,10 @@ object Canvas {
     ctx.font = s"bold ${fontSize}px 'Hiragino Kaku Gothic Pro'"
 
     DomainText.calculatePosition(lines).foreach(c => ctx.fillText(c.content, c.x, c.y, c.maxWidth))
-  } >> {
-    val canvas = document.getElementById("canvas").asInstanceOf[Canvas]
-    s.setState(Some(canvas))
   }
 
-  def save(state: State) = Callback {
-    val canvas = state.canvas.get
-    val text = state.text
+  def save(text: String) = Callback {
+    val canvas = get
     val dialog = js.Dynamic.global.require("electron").remote.dialog
     val option = js.Dynamic.literal("defaultPath" -> s"$text.png")
     val callback = (x: String) => {
