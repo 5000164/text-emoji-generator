@@ -8,17 +8,11 @@ import org.scalajs.dom.html.Canvas
 
 import scala.scalajs.js
 import scala.scalajs.js.DynamicImplicits._
-import scala.util.Random
 
 object Canvas {
   def get: Canvas = document.getElementById("canvas").asInstanceOf[Canvas]
 
-  def generate(text: String): Callback = {
-    val color = Random.shuffle(colorList.values).head
-    generateWithColor(text, color)
-  }
-
-  def generateWithColor(text: String, color: String): Callback = Callback {
+  def generate(text: String, color: String): Callback = Callback {
     val canvas = get
     canvas.width = 128
     canvas.height = 128
