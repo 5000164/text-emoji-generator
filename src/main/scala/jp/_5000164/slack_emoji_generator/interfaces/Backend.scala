@@ -38,7 +38,7 @@ class Backend($: BackendScope[Unit, State]) {
 
   def onChangeText(s: StateAccessPure[String])(e: ReactEventFromInput): Callback = {
     val updatedText = e.target.value
-    val color = Random.shuffle(colorList.values).head
+    val color = Random.shuffle(colorList).head._2
 
     {
       $.modState(_.copy(text = updatedText))
