@@ -8,6 +8,9 @@ import org.scalajs.dom.document
 import scalacss.ScalaCssReact._
 
 object Application extends App {
+  document.body.style.margin = "0"
+  document.body.style.padding = "0"
+
   val content = ScalaComponent.builder[Unit]("content")
     .initialState(State("", "000000"))
     .renderBackend[Backend]
