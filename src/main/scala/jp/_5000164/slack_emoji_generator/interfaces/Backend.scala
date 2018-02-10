@@ -13,31 +13,33 @@ class Backend($: BackendScope[Unit, State]) {
   def render(state: State): VdomElement = {
     val f = $.zoomState(_.color)(value => _.copy(color = value))
     <.div(
+      Styles.wrapper,
+      <.div(Styles.titleBar),
       <.div(
-        <.canvas(^.id := "canvas", Styles.canvas)
+        Styles.canvasWrapper,
+        <.canvas(^.id := "canvas", Styles.canvas),
+        <.textarea(^.id := "text", ^.value := state.text, ^.placeholder := "ここに入力", ^.onChange ==> onChangeText(f), Styles.text)
       ),
       <.div(
-        <.textarea(^.value := state.text, ^.onChange ==> onChangeText(f)),
-        <.input(^.value := state.color, ^.onChange ==> onChangeColor(state.text))
+        Styles.saveButtonWrapper,
+        <.button("保存", ^.onClick --> Canvas.save(state.text), Styles.saveButton)
       ),
       <.div(
-        <.button(^.onClick --> Canvas.save(state.text), "保存")
+        Styles.selectColorWrapper,
+        <.input(^.value := state.color, ^.onChange ==> onChangeColor(state.text), Styles.textColor),
+        <.button("色をランダムで選択", ^.onClick --> onClickRandomColor(state.text, f), Styles.randomButton)
       ),
       <.div(
-        <.ul(Canvas.colorList.toVdomArray({
-          case (key, value) => <.li(
-            ^.key := key,
-            ^.onClick --> onClickColor(state.text, value, f),
-            ^.style := js.Dictionary("backgroundColor" -> s"#$value").asInstanceOf[js.Object],
-            Styles.colorItem
-          )
-        }),
-          <.li(
-            ^.key := "Random",
-            ^.onClick --> onClickRandomColor(state.text, f),
-            Styles.colorItem,
-            "?"
-          )
+        <.ul(
+          Styles.colorList,
+          Canvas.colorList.toVdomArray({
+            case (key, value) => <.li(
+              ^.key := key,
+              ^.onClick --> onClickColor(state.text, value, f),
+              ^.style := js.Dictionary("backgroundColor" -> s"#$value").asInstanceOf[js.Object],
+              Styles.colorListItem
+            )
+          })
         )
       )
     )
