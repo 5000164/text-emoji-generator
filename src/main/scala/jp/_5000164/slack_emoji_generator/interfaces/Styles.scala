@@ -28,9 +28,14 @@ object Styles extends StyleSheet.Inline {
 
   val wrapper = style(
     width(300 px),
-    height(290 px),
+    height(278 px),
     margin(0 px),
-    padding(10 px, 0 px, 0 px, 0 px)
+    padding(0 px),
+    backgroundColor(rgb(255, 255, 255))
+  )
+
+  val titleBar = style(
+    height(22 px)
   )
 
   val canvasWrapper = style(

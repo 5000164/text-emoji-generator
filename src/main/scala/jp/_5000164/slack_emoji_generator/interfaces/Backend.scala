@@ -14,6 +14,7 @@ class Backend($: BackendScope[Unit, State]) {
     val f = $.zoomState(_.color)(value => _.copy(color = value))
     <.div(
       Styles.wrapper,
+      <.div(Styles.titleBar),
       <.div(
         Styles.canvasWrapper,
         <.canvas(^.id := "canvas", Styles.canvas),
