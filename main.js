@@ -7,8 +7,10 @@ let win
 function createWindow() {
   win = new BrowserWindow({'titleBarStyle': 'hidden', width: 300, height: 300})
 
+  const pathname = (process.env.ELECTRON_ENV === 'development') ? path.join(__dirname, 'index-dev.html') : path.join(__dirname, 'index.html')
+
   win.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
+    pathname: pathname,
     protocol: 'file:',
     slashes: true
   }))
