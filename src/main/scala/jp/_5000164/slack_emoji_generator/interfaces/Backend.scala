@@ -1,82 +1,32 @@
 package jp._5000164.slack_emoji_generator.interfaces
 
-import japgolly.scalajs.react.vdom.html_<^.{<, _}
+import japgolly.scalajs.react.vdom.html_<^._
 import japgolly.scalajs.react.{BackendScope, Callback, ReactEventFromInput, StateAccessPure}
 import jp._5000164.slack_emoji_generator.domain.State
-import jp._5000164.slack_emoji_generator.interfaces.Canvas.colorList
+import org.scalajs.dom.document
+import org.scalajs.dom.html.Canvas
 
-import scala.scalajs.js
-import scala.util.Random
 import scalacss.ScalaCssReact._
 
 class Backend($: BackendScope[Unit, State]) {
   def render(state: State): VdomElement = {
-    val f = $.zoomState(_.color)(value => _.copy(color = value))
+    val f = $.zoomState(_.canvas)(value => _.copy(canvas = value))
     <.div(
       <.div(
         <.canvas(^.id := "canvas", Styles.canvas)
       ),
       <.div(
-        <.textarea(^.value := state.text, ^.onChange ==> onChangeText(f)),
-        <.input(^.value := state.color, ^.onChange ==> onChangeColor(state.text))
-      ),
-      <.div(
-        <.button(^.onClick --> Canvas.save(state.text), "保存")
-      ),
-      <.div(
-        <.ul(Canvas.colorList.toVdomArray({
-          case (key, value) => <.li(
-            ^.key := key,
-            ^.onClick --> onClickColor(state.text, value, f),
-            ^.style := js.Dictionary("backgroundColor" -> s"#$value").asInstanceOf[js.Object],
-            Styles.colorItem
-          )
-        }),
-          <.li(
-            ^.key := "Random",
-            ^.onClick --> onClickRandomColor(state.text, f),
-            Styles.colorItem,
-            "?"
-          )
-        )
+        <.textarea(^.value := state.text, ^.onChange ==> onChange(state.canvas, f)),
+        <.button(^.onClick --> Text.save(state), "保存")
       )
     )
   }
 
-  def onChangeText(s: StateAccessPure[String])(e: ReactEventFromInput): Callback = {
+  def onChange(canvas: Option[Canvas], s: StateAccessPure[Option[Canvas]])(e: ReactEventFromInput): Callback = {
     val updatedText = e.target.value
-    val color = Random.shuffle(colorList).head._2
-
-    {
-      $.modState(_.copy(text = updatedText))
-    } >> {
-      Canvas.generate(updatedText, color)
-    } >> {
-      s.setState(color)
-    }
-  }
-
-  def onChangeColor(text: String)(e: ReactEventFromInput): Callback = {
-    val updatedColor = e.target.value
-    $.modState(_.copy(color = updatedColor))
+    $.modState(_.copy(text = updatedText))
   } >> {
-    val updatedColor = e.target.value
-    Canvas.generate(text, updatedColor)
-  }
-
-  def onClickColor(text: String, color: String, s: StateAccessPure[String]): Callback = {
-    Canvas.generate(text, color)
-  } >> {
-    s.setState(color)
-  }
-
-  def onClickRandomColor(text: String, s: StateAccessPure[String]): Callback = {
-    val color = Random.shuffle(colorList).head._2
-
-    {
-      Canvas.generate(text, color)
-    } >> {
-      s.setState(color)
-    }
+    val updatedText = e.target.value
+    Text.generate(canvas.getOrElse(document.getElementById("canvas").asInstanceOf[Canvas]), updatedText, s)
   }
 }

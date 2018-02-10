@@ -12,12 +12,4 @@ object Styles extends StyleSheet.Inline {
     width(128 px),
     height(128 px)
   )
-
-  val colorItem = style(
-    display.inlineBlock,
-    width(20 px),
-    height(20 px),
-    cursor.pointer,
-    userSelect := "none"
-  )
 }

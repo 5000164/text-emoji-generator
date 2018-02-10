@@ -1,6 +1,8 @@
 package jp._5000164.slack_emoji_generator.domain
 
+import org.scalajs.dom.html.Canvas
+
 case class State(
-                  text: String,
-                  color: String
+                  canvas: Option[Canvas],
+                  text: String
                 )
