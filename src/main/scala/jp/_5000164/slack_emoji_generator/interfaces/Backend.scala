@@ -17,7 +17,7 @@ class Backend($: BackendScope[Unit, State]) {
       <.div(
         Styles.canvasWrapper,
         <.canvas(^.id := "canvas", Styles.canvas),
-        <.textarea(^.value := state.text, ^.placeholder := "ここに入力", ^.onChange ==> onChangeText(f), Styles.text)
+        <.textarea(^.id := "text", ^.value := state.text, ^.placeholder := "ここに入力", ^.onChange ==> onChangeText(f), Styles.text)
       ),
       <.div(
         Styles.saveButtonWrapper,
