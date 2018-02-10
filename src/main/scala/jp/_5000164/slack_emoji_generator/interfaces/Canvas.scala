@@ -35,10 +35,13 @@ object Canvas {
     val fileName = text.replace("\n", "")
     val dialog = js.Dynamic.global.require("electron").remote.dialog
     val option = js.Dynamic.literal("defaultPath" -> s"$fileName.png")
-    val callback = (x: String) => {
-      val image = canvas.toDataURL("image/png").drop("data:image/png;base64,".length)
-      val fs = js.Dynamic.global.require("fs")
-      fs.writeFile(x, image, js.Dynamic.literal("encoding" -> "base64"))
+    val callback = (x: Any) => {
+      if (x.isInstanceOf[String]) {
+        val fileName = x.toString
+        val image = canvas.toDataURL("image/png").drop("data:image/png;base64,".length)
+        val fs = js.Dynamic.global.require("fs")
+        fs.writeFile(fileName, image, js.Dynamic.literal("encoding" -> "base64"))
+      }
     }
     dialog.showSaveDialog(null, option, callback)
   }
