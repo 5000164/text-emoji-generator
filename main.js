@@ -15,6 +15,10 @@ function createWindow() {
     slashes: true
   }))
 
+  if (process.env.ELECTRON_ENV === 'development') {
+    win.webContents.openDevTools()
+  }
+
   win.on('closed', () => {
     win = null
   })
