@@ -78,7 +78,7 @@ object Styles extends StyleSheet.Inline {
 
   val textColor = style(
     width(100 px),
-    height(26 px),
+    height(28 px),
     noMargin,
     defaultBorder
   )
