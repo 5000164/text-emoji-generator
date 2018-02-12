@@ -1,7 +1,7 @@
 enablePlugins(ScalaJSPlugin)
 enablePlugins(ScalaJSBundlerPlugin)
 
-name := "slack-emoji-generator"
+name := "text-emoji-generator"
 
 version := "0.1"
 

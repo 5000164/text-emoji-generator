@@ -1,4 +1,4 @@
-package jp._5000164.slack_emoji_generator.domain
+package jp._5000164.text_emoji_generator.domain
 
 import org.scalatest.FreeSpec
 

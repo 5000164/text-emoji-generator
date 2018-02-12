@@ -90,7 +90,7 @@ function createWindow() {
         {
           label: 'Learn More',
           click() {
-            require('electron').shell.openExternal('https://github.com/5000164/slack-emoji-generator')
+            require('electron').shell.openExternal('https://github.com/5000164/text-emoji-generator')
           }
         }
       ]
