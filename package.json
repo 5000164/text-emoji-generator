@@ -1,5 +1,5 @@
 {
-  "name"    : "slack-emoji-generator",
+  "name"    : "text-emoji-generator",
   "version" : "0.1",
   "main"    : "main.js"
 }

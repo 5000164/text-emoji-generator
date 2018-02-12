@@ -1,6 +1,6 @@
-package jp._5000164.slack_emoji_generator.interfaces
+package jp._5000164.text_emoji_generator.interfaces
 
-import jp._5000164.slack_emoji_generator.CssSettings._
+import jp._5000164.text_emoji_generator.CssSettings._
 
 import scala.language.postfixOps
 

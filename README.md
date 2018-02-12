@@ -1,1 +1,1 @@
-# slack-emoji-generator
+# text-emoji-generator
