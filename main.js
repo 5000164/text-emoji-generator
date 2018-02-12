@@ -7,7 +7,7 @@ let win
 function createWindow() {
   win = new BrowserWindow({'titleBarStyle': 'hidden', width: 300, height: 300})
 
-  const pathname = (process.env.ELECTRON_ENV === 'development') ? path.join(__dirname, 'index-dev.html') : path.join(__dirname, 'index.html')
+  const pathname = (process.env.TEXT_EMOJI_GENERATOR_ENV === 'development') ? path.join(__dirname, 'index-dev.html') : path.join(__dirname, 'index.html')
 
   win.loadURL(url.format({
     pathname: pathname,
@@ -15,7 +15,7 @@ function createWindow() {
     slashes: true
   }))
 
-  if (process.env.ELECTRON_ENV === 'development') {
+  if (process.env.TEXT_EMOJI_GENERATOR_ENV === 'development') {
     win.webContents.openDevTools()
   }
 
