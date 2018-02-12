@@ -39,6 +39,12 @@ function createWindow() {
       ]
     },
     {
+      label: 'File',
+      submenu: [
+        {role: 'close'}
+      ]
+    },
+    {
       label: 'Edit',
       submenu: [
         {role: 'undo'},
@@ -49,35 +55,24 @@ function createWindow() {
         {role: 'paste'},
         {role: 'pasteandmatchstyle'},
         {role: 'delete'},
-        {role: 'selectall'},
-        {type: 'separator'},
-        {
-          label: 'Speech',
-          submenu: [
-            {role: 'startspeaking'},
-            {role: 'stopspeaking'}
-          ]
-        }
-      ],
+        {role: 'selectall'}
+      ]
     },
     {
       label: 'View',
       submenu: [
         {role: 'reload'},
-        {role: 'forcereload'},
-        {role: 'toggledevtools'},
+        {type: 'separator'},
+        {role: 'togglefullscreen'},
         {type: 'separator'},
         {role: 'resetzoom'},
         {role: 'zoomin'},
-        {role: 'zoomout'},
-        {type: 'separator'},
-        {role: 'togglefullscreen'}
+        {role: 'zoomout'}
       ]
     },
     {
       role: 'window',
       submenu: [
-        {role: 'close'},
         {role: 'minimize'},
         {role: 'zoom'},
         {type: 'separator'},
