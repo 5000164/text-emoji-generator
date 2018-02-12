@@ -1,5 +1,5 @@
 {
-  "name"    : "text-emoji-generator",
-  "version" : "0.1",
-  "main"    : "main.js"
+  "name": "Text Emoji Generator",
+  "version": "0.1.0",
+  "main": "main.js"
 }
