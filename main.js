@@ -89,6 +89,12 @@ function createWindow() {
           click() {
             require('electron').shell.openExternal('https://github.com/5000164/text-emoji-generator')
           }
+        },
+        {
+          label: 'License and Open Source Notices',
+          click() {
+            require('electron').shell.openExternal('https://github.com/5000164/text-emoji-generator/blob/master/LICENSE-THIRDPARTY.md')
+          }
         }
       ]
     }
