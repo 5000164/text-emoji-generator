@@ -1,6 +1,6 @@
-package jp._5000164.slack_emoji_generator.interfaces
+package jp._5000164.text_emoji_generator.interfaces
 
-import jp._5000164.slack_emoji_generator.CssSettings._
+import jp._5000164.text_emoji_generator.CssSettings._
 
 import scala.language.postfixOps
 
@@ -78,7 +78,7 @@ object Styles extends StyleSheet.Inline {
 
   val textColor = style(
     width(100 px),
-    height(26 px),
+    height(28 px),
     noMargin,
     defaultBorder
   )
