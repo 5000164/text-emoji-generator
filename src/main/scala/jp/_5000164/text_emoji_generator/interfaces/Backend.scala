@@ -1,9 +1,9 @@
-package jp._5000164.slack_emoji_generator.interfaces
+package jp._5000164.text_emoji_generator.interfaces
 
 import japgolly.scalajs.react.vdom.html_<^.{<, _}
 import japgolly.scalajs.react.{BackendScope, Callback, ReactEventFromInput, StateAccessPure}
-import jp._5000164.slack_emoji_generator.domain.State
-import jp._5000164.slack_emoji_generator.interfaces.Canvas.colorList
+import jp._5000164.text_emoji_generator.domain.State
+import jp._5000164.text_emoji_generator.interfaces.Canvas.colorList
 
 import scala.scalajs.js
 import scala.util.Random

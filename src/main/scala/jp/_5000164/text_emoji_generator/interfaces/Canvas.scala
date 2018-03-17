@@ -1,7 +1,7 @@
-package jp._5000164.slack_emoji_generator.interfaces
+package jp._5000164.text_emoji_generator.interfaces
 
 import japgolly.scalajs.react.Callback
-import jp._5000164.slack_emoji_generator.domain.{Text => DomainText}
+import jp._5000164.text_emoji_generator.domain.{Text => DomainText}
 import org.scalajs.dom
 import org.scalajs.dom.document
 import org.scalajs.dom.html.Canvas

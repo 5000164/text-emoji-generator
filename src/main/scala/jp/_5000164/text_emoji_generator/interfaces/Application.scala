@@ -1,8 +1,8 @@
-package jp._5000164.slack_emoji_generator.interfaces
+package jp._5000164.text_emoji_generator.interfaces
 
 import japgolly.scalajs.react._
-import jp._5000164.slack_emoji_generator.CssSettings._
-import jp._5000164.slack_emoji_generator.domain.State
+import jp._5000164.text_emoji_generator.CssSettings._
+import jp._5000164.text_emoji_generator.domain.State
 import org.scalajs.dom.document
 
 import scala.scalajs.js
