@@ -19,5 +19,5 @@ npmDependencies in Compile ++= Seq(
   "react" -> "15.6.1",
   "react-dom" -> "15.6.1")
 
-libraryDependencies += "org.scalactic" %% "scalactic" % "3.0.4"
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.4" % "test"
+libraryDependencies += "org.scalactic" %% "scalactic" % "3.0.5"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.5" % "test"
