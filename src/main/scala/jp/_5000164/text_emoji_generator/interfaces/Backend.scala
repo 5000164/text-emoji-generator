@@ -18,7 +18,7 @@ class Backend($: BackendScope[Unit, State]) {
       <.div(
         Styles.canvasWrapper,
         <.canvas(^.id := "canvas", Styles.canvas),
-        <.textarea(^.id := "text", ^.value := state.text, ^.placeholder := "ここに入力", ^.onChange ==> onChangeText(f), Styles.text)
+        <.textarea(^.id := "text", ^.value := state.text, ^.placeholder := "ここに入力", ^.onChange ==> onChangeText(state.fontFace, f), Styles.text)
       ),
       <.div(
         Styles.saveButtonWrapper,
@@ -26,8 +26,8 @@ class Backend($: BackendScope[Unit, State]) {
       ),
       <.div(
         Styles.selectColorWrapper,
-        <.input(^.value := state.color, ^.onChange ==> onChangeColor(state.text), Styles.textColor),
-        <.button("色をランダムで選択", ^.onClick --> onClickRandomColor(state.text, f), Styles.randomButton)
+        <.input(^.value := state.color, ^.onChange ==> onChangeColor(state.text, state.fontFace), Styles.textColor),
+        <.button("色をランダムで選択", ^.onClick --> onClickRandomColor(state.text, state.fontFace, f), Styles.randomButton)
       ),
       <.div(
         <.ul(
@@ -35,7 +35,7 @@ class Backend($: BackendScope[Unit, State]) {
           Canvas.colorList.toVdomArray({
             case (key, value) => <.li(
               ^.key := key,
-              ^.onClick --> onClickColor(state.text, value, f),
+              ^.onClick --> onClickColor(state.text, value, state.fontFace, f),
               ^.style := js.Dictionary("backgroundColor" -> s"#$value").asInstanceOf[js.Object],
               Styles.colorListItem
             )
@@ -55,38 +55,38 @@ class Backend($: BackendScope[Unit, State]) {
     )
   }
 
-  def onChangeText(s: StateAccessPure[String])(e: ReactEventFromInput): Callback = {
+  def onChangeText(fontFace: FontFace, s: StateAccessPure[String])(e: ReactEventFromInput): Callback = {
     val updatedText = e.target.value
     val color = Random.shuffle(colorList).head._2
 
     {
       $.modState(_.copy(text = updatedText))
     } >> {
-      Canvas.generate(updatedText, color)
+      Canvas.generate(updatedText, color, fontFace)
     } >> {
       s.setState(color)
     }
   }
 
-  def onChangeColor(text: String)(e: ReactEventFromInput): Callback = {
+  def onChangeColor(text: String, fontFace: FontFace)(e: ReactEventFromInput): Callback = {
     val updatedColor = e.target.value
     $.modState(_.copy(color = updatedColor))
   } >> {
     val updatedColor = e.target.value
-    Canvas.generate(text, updatedColor)
+    Canvas.generate(text, updatedColor, fontFace)
   }
 
-  def onClickColor(text: String, color: String, s: StateAccessPure[String]): Callback = {
-    Canvas.generate(text, color)
+  def onClickColor(text: String, color: String, fontFace: FontFace, s: StateAccessPure[String]): Callback = {
+    Canvas.generate(text, color, fontFace)
   } >> {
     s.setState(color)
   }
 
-  def onClickRandomColor(text: String, s: StateAccessPure[String]): Callback = {
+  def onClickRandomColor(text: String, fontFace: FontFace, s: StateAccessPure[String]): Callback = {
     val color = Random.shuffle(colorList).head._2
 
     {
-      Canvas.generate(text, color)
+      Canvas.generate(text, color, fontFace)
     } >> {
       s.setState(color)
     }
