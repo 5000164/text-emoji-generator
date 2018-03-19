@@ -2,12 +2,12 @@ package jp._5000164.text_emoji_generator.interfaces
 
 import japgolly.scalajs.react.vdom.html_<^.{<, _}
 import japgolly.scalajs.react.{BackendScope, Callback, ReactEventFromInput, StateAccessPure}
-import jp._5000164.text_emoji_generator.domain.State
+import jp._5000164.text_emoji_generator.domain.{FontFace, Gothic, Mincho, State}
 import jp._5000164.text_emoji_generator.interfaces.Canvas.colorList
+import scalacss.ScalaCssReact._
 
 import scala.scalajs.js
 import scala.util.Random
-import scalacss.ScalaCssReact._
 
 class Backend($: BackendScope[Unit, State]) {
   def render(state: State): VdomElement = {
@@ -40,6 +40,16 @@ class Backend($: BackendScope[Unit, State]) {
               Styles.colorListItem
             )
           })
+        )
+      ),
+      <.div(
+        <.label(
+          <.input.radio(^.name := "type-face", ^.value := "gothic", ^.checked := state.fontFace == Gothic, ^.onChange ==> onClickFontFace(Gothic)),
+          "ゴシック体"
+        ),
+        <.label(
+          <.input.radio(^.name := "type-face", ^.value := "mincho", ^.checked := state.fontFace == Mincho, ^.onChange ==> onClickFontFace(Mincho)),
+          "明朝体"
         )
       )
     )
@@ -80,5 +90,9 @@ class Backend($: BackendScope[Unit, State]) {
     } >> {
       s.setState(color)
     }
+  }
+
+  def onClickFontFace(fontFace: FontFace)(e: ReactEventFromInput): Callback = {
+    $.modState(_.copy(fontFace = fontFace))
   }
 }
