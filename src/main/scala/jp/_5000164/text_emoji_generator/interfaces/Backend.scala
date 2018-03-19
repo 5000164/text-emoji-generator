@@ -44,11 +44,11 @@ class Backend($: BackendScope[Unit, State]) {
       ),
       <.div(
         <.label(
-          <.input.radio(^.name := "type-face", ^.value := "gothic", ^.checked := state.fontFace == Gothic, ^.onChange ==> onClickFontFace(Gothic)),
+          <.input.radio(^.name := "type-face", ^.value := "gothic", ^.checked := state.fontFace == Gothic, ^.onChange ==> onClickFontFace(state.text, state.color, Gothic)),
           "ゴシック体"
         ),
         <.label(
-          <.input.radio(^.name := "type-face", ^.value := "mincho", ^.checked := state.fontFace == Mincho, ^.onChange ==> onClickFontFace(Mincho)),
+          <.input.radio(^.name := "type-face", ^.value := "mincho", ^.checked := state.fontFace == Mincho, ^.onChange ==> onClickFontFace(state.text, state.color, Mincho)),
           "明朝体"
         )
       )
@@ -92,7 +92,9 @@ class Backend($: BackendScope[Unit, State]) {
     }
   }
 
-  def onClickFontFace(fontFace: FontFace)(e: ReactEventFromInput): Callback = {
+  def onClickFontFace(text: String, color: String, fontFace: FontFace)(e: ReactEventFromInput): Callback = {
     $.modState(_.copy(fontFace = fontFace))
+  } >> {
+    Canvas.generate(text, color, fontFace)
   }
 }
