@@ -5,7 +5,7 @@ const url = require('url')
 let win
 
 function createWindow() {
-  win = new BrowserWindow({'titleBarStyle': 'hidden', width: 300, height: 300})
+  win = new BrowserWindow({'titleBarStyle': 'hidden', width: 600, height: 600})
 
   const pathname = (process.env.TEXT_EMOJI_GENERATOR_ENV === 'development') ? path.join(__dirname, 'index-dev.html') : path.join(__dirname, 'index.html')
 
