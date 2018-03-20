@@ -18,7 +18,13 @@ class Backend($: BackendScope[Unit, State]) {
       <.div(
         Styles.canvasWrapper,
         <.canvas(^.id := "canvas", Styles.canvas),
-        <.textarea(^.id := "text", ^.value := state.text, ^.placeholder := "ここに入力", ^.onChange ==> onChangeText(state.fontFace, f), Styles.text)
+        <.textarea(
+          ^.id := "text",
+          ^.value := state.text,
+          ^.placeholder := "ここに入力",
+          ^.onChange ==> onChangeText(state.fontFace, f),
+          Styles.text,
+          if (state.fontFace == Gothic) ^.fontFamily := "Hiragino Kaku Gothic ProN" else ^.fontFamily := "Hiragino Mincho ProN")
       ),
       <.div(
         Styles.saveButtonWrapper,
