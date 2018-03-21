@@ -9,6 +9,12 @@ scalaVersion := "2.12.4"
 
 scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked", "-Xlint")
 
+if (sys.env.getOrElse("TEXT_EMOJI_GENERATOR_ENV", "production") == "production") {
+  scalacOptions ++= Seq("-Xelide-below", "OFF")
+} else {
+  scalacOptions ++= Seq()
+}
+
 scalaJSUseMainModuleInitializer := true
 
 libraryDependencies += "com.github.japgolly.scalajs-react" %%% "core" % "1.2.0"
