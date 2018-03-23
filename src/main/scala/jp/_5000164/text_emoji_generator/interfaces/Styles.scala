@@ -26,9 +26,9 @@ object Styles extends StyleSheet.Inline {
     cursor.pointer
   )
 
-  val wrapper = style(
-    width(300 px),
-    height(278 px),
+  val background = style(
+    width(500 px),
+    height(500 px),
     margin(0 px),
     padding(0 px),
     backgroundColor(rgb(255, 255, 255))
@@ -37,11 +37,17 @@ object Styles extends StyleSheet.Inline {
   val titleBar = style(
     height(22 px)
   )
+  val wrapper = style(
+    width(400 px),
+    height(400 px),
+    margin(0 px),
+    padding(28 px, 50 px, 50 px),
+  )
 
   val canvasWrapper = style(
     width(260 px),
     margin(0 px, auto),
-    padding(0 px),
+    padding(20 px, 0 px),
     unsafeChild("textarea::placeholder")(
       color(rgb(238, 238, 238))
     )
@@ -95,11 +101,15 @@ object Styles extends StyleSheet.Inline {
 
   val colorListItem = style(
     display.inlineBlock,
-    width(30 px),
-    height(30 px),
+    width(40 px),
+    height(40 px),
     margin(0 px),
     padding(0 px),
     cursor.pointer,
     userSelect := "none"
+  )
+
+  val fontFaceSelector = style(
+    paddingTop(10 px)
   )
 }
