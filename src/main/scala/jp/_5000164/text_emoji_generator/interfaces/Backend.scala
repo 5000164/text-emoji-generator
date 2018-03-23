@@ -13,49 +13,58 @@ class Backend($: BackendScope[Unit, State]) {
   def render(state: State): VdomElement = {
     val f = $.zoomState(_.color)(value => _.copy(color = value))
     <.div(
-      Styles.wrapper,
+      Styles.background,
       <.div(Styles.titleBar),
       <.div(
-        Styles.canvasWrapper,
-        <.canvas(^.id := "canvas", Styles.canvas),
-        <.textarea(
-          ^.id := "text",
-          ^.value := state.text,
-          ^.placeholder := "ここに入力",
-          ^.onChange ==> onChangeText(state.fontFace, f),
-          Styles.text,
-          if (state.fontFace == Gothic) ^.fontFamily := "Hiragino Kaku Gothic ProN" else ^.fontFamily := "Hiragino Mincho ProN")
-      ),
-      <.div(
-        Styles.saveButtonWrapper,
-        <.button("保存", ^.onClick --> Canvas.save(state.text), Styles.saveButton)
-      ),
-      <.div(
-        Styles.selectColorWrapper,
-        <.input(^.value := state.color, ^.onChange ==> onChangeColor(state.text, state.fontFace), Styles.textColor),
-        <.button("色をランダムで選択", ^.onClick --> onClickRandomColor(state.text, state.fontFace, f), Styles.randomButton)
-      ),
-      <.div(
-        <.ul(
-          Styles.colorList,
-          Canvas.colorList.toVdomArray({
-            case (key, value) => <.li(
-              ^.key := key,
-              ^.onClick --> onClickColor(state.text, value, state.fontFace, f),
-              ^.style := js.Dictionary("backgroundColor" -> s"#$value").asInstanceOf[js.Object],
-              Styles.colorListItem
-            )
-          })
-        )
-      ),
-      <.div(
-        <.label(
-          <.input.radio(^.name := "type-face", ^.value := "gothic", ^.checked := state.fontFace == Gothic, ^.onChange ==> onClickFontFace(state.text, state.color, Gothic)),
-          "ゴシック体"
+        Styles.wrapper,
+        <.div(
+          Styles.canvasWrapper,
+          <.canvas(^.id := "canvas", Styles.canvas),
+          <.textarea(
+            ^.id := "text",
+            ^.value := state.text,
+            ^.placeholder := "ここに入力",
+            ^.onChange ==> onChangeText(state.fontFace, f),
+            Styles.text,
+            if (state.fontFace == Gothic) ^.fontFamily := "Hiragino Kaku Gothic ProN" else ^.fontFamily := "Hiragino Mincho ProN")
         ),
-        <.label(
-          <.input.radio(^.name := "type-face", ^.value := "mincho", ^.checked := state.fontFace == Mincho, ^.onChange ==> onClickFontFace(state.text, state.color, Mincho)),
-          "明朝体"
+        <.div(
+          Styles.saveButtonWrapper,
+          <.button("保存", ^.onClick --> Canvas.save(state.text), Styles.saveButton)
+        ),
+        <.div(
+          Styles.selectColorWrapper,
+          <.input(^.value := state.color, ^.onChange ==> onChangeColor(state.text, state.fontFace), Styles.textColor),
+          <.button("色をランダムで選択", ^.onClick --> onClickRandomColor(state.text, state.fontFace, f), Styles.randomButton)
+        ),
+        <.div(
+          <.ul(
+            Styles.colorList,
+            Canvas.colorList.toVdomArray({
+              case (key, value) => <.li(
+                ^.key := key,
+                ^.onClick --> onClickColor(state.text, value, state.fontFace, f),
+                ^.style := js.Dictionary("backgroundColor" -> s"#$value").asInstanceOf[js.Object],
+                Styles.colorListItem
+              )
+            })
+          )
+        ),
+        <.div(
+          Styles.fontFaceSelector,
+          <.div("書体選択"),
+          <.div(
+            <.label(
+              <.input.radio(^.name := "type-face", ^.value := "gothic", ^.checked := state.fontFace == Gothic, ^.onChange ==> onClickFontFace(state.text, state.color, Gothic)),
+              "ゴシック体"
+            ),
+            <.div(
+            ),
+            <.label(
+              <.input.radio(^.name := "type-face", ^.value := "mincho", ^.checked := state.fontFace == Mincho, ^.onChange ==> onClickFontFace(state.text, state.color, Mincho)),
+              "明朝体"
+            )
+          )
         )
       )
     )
