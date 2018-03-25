@@ -12,28 +12,27 @@
 
 Category | License | Dependency | Notes
 --- | --- | --- | ---
-Apache | [Apache-2.0](http://opensource.org/licenses/Apache-2.0) | com.github.japgolly.scalacss # core_sjs0.6_2.12 # 0.5.3 | <notextile></notextile>
-Apache | [Apache-2.0](http://opensource.org/licenses/Apache-2.0) | com.github.japgolly.scalacss # ext-react_sjs0.6_2.12 # 0.5.3 | <notextile></notextile>
-Apache | [Apache-2.0](http://opensource.org/licenses/Apache-2.0) | com.github.japgolly.scalajs-react # core_sjs0.6_2.12 # 1.1.1 | <notextile></notextile>
+Apache | [Apache-2.0](http://opensource.org/licenses/Apache-2.0) | com.github.japgolly.scalacss # core_sjs0.6_2.12 # 0.5.5 | <notextile></notextile>
+Apache | [Apache-2.0](http://opensource.org/licenses/Apache-2.0) | com.github.japgolly.scalacss # ext-react_sjs0.6_2.12 # 0.5.5 | <notextile></notextile>
+Apache | [Apache-2.0](http://opensource.org/licenses/Apache-2.0) | com.github.japgolly.scalajs-react # core_sjs0.6_2.12 # 1.2.0 | <notextile></notextile>
 Apache | [Apache-2.0](http://opensource.org/licenses/Apache-2.0) | com.github.japgolly.univeq # univeq_sjs0.6_2.12 # 1.0.2 | <notextile></notextile>
-Apache | [the Apache License, ASL Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.scalactic # scalactic_2.12 # 3.0.4 | <notextile></notextile>
-Apache | [the Apache License, ASL Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.scalatest # scalatest_2.12 # 3.0.4 | <notextile></notextile>
+Apache | [the Apache License, ASL Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.scalactic # scalactic_2.12 # 3.0.5 | <notextile></notextile>
+Apache | [the Apache License, ASL Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) | org.scalatest # scalatest_2.12 # 3.0.5 | <notextile></notextile>
 BSD | [BSD 3-Clause](http://www.scala-lang.org/license.html) | org.scala-lang # scala-library # 2.12.4 | <notextile></notextile>
 BSD | [BSD 3-Clause](http://www.scala-lang.org/license.html) | org.scala-lang # scala-reflect # 2.12.4 | <notextile></notextile>
-BSD | [BSD 3-clause](http://opensource.org/licenses/BSD-3-Clause) | org.scala-lang.modules # scala-parser-combinators_2.12 # 1.0.4 | <notextile></notextile>
-BSD | [BSD 3-clause](http://opensource.org/licenses/BSD-3-Clause) | org.scala-lang.modules # scala-xml_2.12 # 1.0.5 | <notextile></notextile>
+BSD | [BSD 3-clause](http://opensource.org/licenses/BSD-3-Clause) | org.scala-lang.modules # scala-xml_2.12 # 1.0.6 | <notextile></notextile>
 BSD | [BSD New](https://github.com/scala-js/scala-js/blob/master/LICENSE) | org.scala-js # scalajs-library_2.12 # 0.6.22 | <notextile></notextile>
 BSD | [BSD New](https://github.com/scala-js/scala-js/blob/master/LICENSE) | org.scala-js # scalajs-test-interface_2.12 # 0.6.22 | <notextile></notextile>
-MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # scalajs-dom_sjs0.6_2.12 # 0.9.3 | <notextile></notextile>
+MIT | [MIT](http://www.opensource.org/licenses/mit-license.html) | com.lihaoyi # sourcecode_sjs0.6_2.12 # 0.1.4 | <notextile></notextile>
+MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # scalajs-dom_sjs0.6_2.12 # 0.9.4 | <notextile></notextile>
 
 ## npm Dependencies
 
 | module name                        | license                                            | repository                                                    |
 |------------------------------------|----------------------------------------------------|---------------------------------------------------------------|
-| @types/node@8.9.5                  | MIT                                                | https://www.github.com/DefinitelyTyped/DefinitelyTyped        |
+| @types/node@8.10.0                 | MIT                                                | https://www.github.com/DefinitelyTyped/DefinitelyTyped        |
 | abbrev@1.1.0                       | ISC                                                | https://github.com/isaacs/abbrev-js                           |
 | abbrev@1.1.1                       | ISC                                                | https://github.com/isaacs/abbrev-js                           |
-| accepts@1.3.4                      | MIT                                                | https://github.com/jshttp/accepts                             |
 | accepts@1.3.5                      | MIT                                                | https://github.com/jshttp/accepts                             |
 | acorn-dynamic-import@2.0.2         | MIT                                                | https://github.com/kesne/acorn-dynamic-import                 |
 | acorn@4.0.13                       | MIT                                                | https://github.com/ternjs/acorn                               |
@@ -61,6 +60,7 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | array-find-index@1.0.2             | MIT                                                | https://github.com/sindresorhus/array-find-index              |
 | array-flatten@1.1.1                | MIT                                                | https://github.com/blakeembrey/array-flatten                  |
 | array-flatten@2.1.1                | MIT                                                | https://github.com/blakeembrey/array-flatten                  |
+| array-includes@3.0.3               | MIT                                                | https://github.com/ljharb/array-includes                      |
 | array-union@1.0.2                  | MIT                                                | https://github.com/sindresorhus/array-union                   |
 | array-uniq@1.0.3                   | MIT                                                | https://github.com/sindresorhus/array-uniq                    |
 | array-unique@0.2.1                 | MIT                                                | https://github.com/jonschlinkert/array-unique                 |
@@ -144,12 +144,10 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | collection-visit@1.0.0             | MIT                                                | https://github.com/jonschlinkert/collection-visit             |
 | combined-stream@1.0.5              | MIT                                                | https://github.com/felixge/node-combined-stream               |
 | combined-stream@1.0.6              | MIT                                                | https://github.com/felixge/node-combined-stream               |
-| commander@2.15.0                   | MIT                                                | https://github.com/tj/commander.js                            |
+| commander@2.15.1                   | MIT                                                | https://github.com/tj/commander.js                            |
 | compare-version@0.1.2              | MIT                                                | https://github.com/kevva/compare-version                      |
 | component-emitter@1.2.1            | MIT                                                | https://github.com/component/emitter                          |
-| compressible@2.0.12                | MIT                                                | https://github.com/jshttp/compressible                        |
 | compressible@2.0.13                | MIT                                                | https://github.com/jshttp/compressible                        |
-| compression@1.7.1                  | MIT                                                | https://github.com/expressjs/compression                      |
 | compression@1.7.2                  | MIT                                                | https://github.com/expressjs/compression                      |
 | concat-map@0.0.1                   | MIT                                                | https://github.com/substack/node-concat-map                   |
 | concat-stream@1.6.0                | MIT                                                | https://github.com/maxogden/concat-stream                     |
@@ -187,6 +185,7 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | decompress-zip@0.3.0               | MIT                                                | https://github.com/bower/decompress-zip                       |
 | deep-equal@1.0.1                   | MIT                                                | https://github.com/substack/node-deep-equal                   |
 | deep-extend@0.4.2                  | MIT                                                | https://github.com/unclechu/node-deep-extend                  |
+| define-properties@1.1.2            | MIT                                                | https://github.com/ljharb/define-properties                   |
 | define-property@0.2.5              | MIT                                                | https://github.com/jonschlinkert/define-property              |
 | define-property@1.0.0              | MIT                                                | https://github.com/jonschlinkert/define-property              |
 | define-property@2.0.2              | MIT                                                | https://github.com/jonschlinkert/define-property              |
@@ -210,7 +209,7 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | electron-download@3.3.0            | BSD-3-Clause                                       | https://github.com/electron-userland/electron-download        |
 | electron-download@4.1.0            | BSD-3-Clause                                       | https://github.com/electron-userland/electron-download        |
 | electron-osx-sign@0.4.10           | BSD-2-Clause                                       | https://github.com/electron-userland/electron-osx-sign        |
-| electron-packager@11.1.0           | BSD-2-Clause                                       | https://github.com/electron-userland/electron-packager        |
+| electron-packager@11.2.0           | BSD-2-Clause                                       | https://github.com/electron-userland/electron-packager        |
 | electron@1.8.4                     | MIT                                                | https://github.com/electron/electron                          |
 | elliptic@6.4.0                     | MIT                                                | https://github.com/indutny/elliptic                           |
 | emojis-list@2.1.0                  | MIT                                                | https://github.com/kikobeats/emojis-list                      |
@@ -221,6 +220,8 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | errno@0.1.6                        | MIT                                                | https://github.com/rvagg/node-errno                           |
 | errno@0.1.7                        | MIT                                                | https://github.com/rvagg/node-errno                           |
 | error-ex@1.3.1                     | MIT                                                | https://github.com/qix-/node-error-ex                         |
+| es-abstract@1.10.0                 | MIT                                                | https://github.com/ljharb/es-abstract                         |
+| es-to-primitive@1.1.1              | MIT                                                | https://github.com/ljharb/es-to-primitive                     |
 | es5-ext@0.10.38                    | MIT                                                | https://github.com/medikoo/es5-ext                            |
 | es5-ext@0.10.41                    | ISC                                                | https://github.com/medikoo/es5-ext                            |
 | es6-iterator@2.0.3                 | MIT                                                | https://github.com/medikoo/es6-iterator                       |
@@ -245,7 +246,6 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | expand-brackets@0.1.5              | MIT                                                | https://github.com/jonschlinkert/expand-brackets              |
 | expand-brackets@2.1.4              | MIT                                                | https://github.com/jonschlinkert/expand-brackets              |
 | expand-range@1.8.2                 | MIT                                                | https://github.com/jonschlinkert/expand-range                 |
-| express@4.16.2                     | MIT                                                | https://github.com/expressjs/express                          |
 | express@4.16.3                     | MIT                                                | https://github.com/expressjs/express                          |
 | extend-shallow@2.0.1               | MIT                                                | https://github.com/jonschlinkert/extend-shallow               |
 | extend-shallow@3.0.2               | MIT                                                | https://github.com/jonschlinkert/extend-shallow               |
@@ -265,12 +265,12 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | filename-regex@2.0.1               | MIT                                                | https://github.com/regexhq/filename-regex                     |
 | fill-range@2.2.3                   | MIT                                                | https://github.com/jonschlinkert/fill-range                   |
 | fill-range@4.0.0                   | MIT                                                | https://github.com/jonschlinkert/fill-range                   |
-| finalhandler@1.1.0                 | MIT                                                | https://github.com/pillarjs/finalhandler                      |
 | finalhandler@1.1.1                 | MIT                                                | https://github.com/pillarjs/finalhandler                      |
 | find-up@1.1.2                      | MIT                                                | https://github.com/sindresorhus/find-up                       |
 | find-up@2.1.0                      | MIT                                                | https://github.com/sindresorhus/find-up                       |
 | for-in@1.0.2                       | MIT                                                | https://github.com/jonschlinkert/for-in                       |
 | for-own@0.1.5                      | MIT                                                | https://github.com/jonschlinkert/for-own                      |
+| foreach@2.0.5                      | MIT                                                | https://github.com/manuelstofer/foreach                       |
 | forever-agent@0.6.1                | Apache-2.0                                         | https://github.com/mikeal/forever-agent                       |
 | form-data@2.1.4                    | MIT                                                | https://github.com/form-data/form-data                        |
 | form-data@2.3.2                    | MIT                                                | https://github.com/form-data/form-data                        |
@@ -286,6 +286,7 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | fsevents@1.1.3                     | MIT                                                | https://github.com/strongloop/fsevents                        |
 | fstream-ignore@1.0.5               | ISC                                                | https://github.com/isaacs/fstream-ignore                      |
 | fstream@1.0.11                     | ISC                                                | https://github.com/npm/fstream                                |
+| function-bind@1.1.1                | MIT                                                | https://github.com/Raynos/function-bind                       |
 | gauge@2.7.4                        | ISC                                                | https://github.com/iarna/gauge                                |
 | get-caller-file@1.0.2              | ISC                                                | https://github.com/stefanpenner/get-caller-file               |
 | get-package-info@1.0.0             | MIT                                                | https://github.com/rahatarmanahmed/get-package-info           |
@@ -308,11 +309,13 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | has-ansi@0.1.0                     | MIT                                                | https://github.com/sindresorhus/has-ansi                      |
 | has-flag@1.0.0                     | MIT                                                | https://github.com/sindresorhus/has-flag                      |
 | has-flag@2.0.0                     | MIT                                                | https://github.com/sindresorhus/has-flag                      |
+| has-flag@3.0.0                     | MIT                                                | https://github.com/sindresorhus/has-flag                      |
 | has-unicode@2.0.1                  | ISC                                                | https://github.com/iarna/has-unicode                          |
 | has-value@0.3.1                    | MIT                                                | https://github.com/jonschlinkert/has-value                    |
 | has-value@1.0.0                    | MIT                                                | https://github.com/jonschlinkert/has-value                    |
 | has-values@0.1.4                   | MIT                                                | https://github.com/jonschlinkert/has-values                   |
 | has-values@1.0.0                   | MIT                                                | https://github.com/jonschlinkert/has-values                   |
+| has@1.0.1                          | MIT                                                | https://github.com/tarruda/has                                |
 | hash-base@2.0.2                    | MIT                                                | https://github.com/crypto-browserify/hash-base                |
 | hash-base@3.0.4                    | MIT                                                | https://github.com/crypto-browserify/hash-base                |
 | hash.js@1.1.3                      | MIT                                                | https://github.com/indutny/hash.js                            |
@@ -328,7 +331,6 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | html-entities@1.2.1                | MIT                                                | https://github.com/mdevils/node-html-entities                 |
 | http-deceiver@1.2.7                | MIT                                                | https://github.com/indutny/http-deceiver                      |
 | http-errors@1.6.2                  | MIT                                                | https://github.com/jshttp/http-errors                         |
-| http-parser-js@0.4.10              | MIT                                                | https://github.com/creationix/http-parser-js                  |
 | http-parser-js@0.4.11              | MIT                                                | https://github.com/creationix/http-parser-js                  |
 | http-proxy-middleware@0.17.4       | MIT                                                | https://github.com/chimurai/http-proxy-middleware             |
 | http-proxy@1.16.2                  | MIT                                                | https://github.com/nodejitsu/node-http-proxy                  |
@@ -337,6 +339,7 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | https-browserify@1.0.0             | MIT                                                | https://github.com/substack/https-browserify                  |
 | iconv-lite@0.4.19                  | MIT                                                | https://github.com/ashtuchkin/iconv-lite                      |
 | ieee754@1.1.8                      | BSD-3-Clause                                       | https://github.com/feross/ieee754                             |
+| import-local@1.0.0                 | MIT                                                | https://github.com/sindresorhus/import-local                  |
 | indent-string@2.1.0                | MIT                                                | https://github.com/sindresorhus/indent-string                 |
 | indexof@0.0.1                      | MIT*                                               |                                                               |
 | inflight@1.0.6                     | ISC                                                | https://github.com/npm/inflight                               |
@@ -348,7 +351,6 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | interpret@1.1.0                    | MIT                                                | https://github.com/tkellen/node-interpret                     |
 | invert-kv@1.0.0                    | MIT                                                | https://github.com/sindresorhus/invert-kv                     |
 | ip@1.1.5                           | MIT                                                | https://github.com/indutny/node-ip                            |
-| ipaddr.js@1.5.2                    | MIT                                                | https://github.com/whitequark/ipaddr.js                       |
 | ipaddr.js@1.6.0                    | MIT                                                | https://github.com/whitequark/ipaddr.js                       |
 | is-accessor-descriptor@0.1.6       | MIT                                                | https://github.com/jonschlinkert/is-accessor-descriptor       |
 | is-accessor-descriptor@1.0.0       | MIT                                                | https://github.com/jonschlinkert/is-accessor-descriptor       |
@@ -356,8 +358,10 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | is-binary-path@1.0.1               | MIT                                                | https://github.com/sindresorhus/is-binary-path                |
 | is-buffer@1.1.6                    | MIT                                                | https://github.com/feross/is-buffer                           |
 | is-builtin-module@1.0.0            | MIT                                                | https://github.com/sindresorhus/is-builtin-module             |
+| is-callable@1.1.3                  | MIT                                                | https://github.com/ljharb/is-callable                         |
 | is-data-descriptor@0.1.4           | MIT                                                | https://github.com/jonschlinkert/is-data-descriptor           |
 | is-data-descriptor@1.0.0           | MIT                                                | https://github.com/jonschlinkert/is-data-descriptor           |
+| is-date-object@1.0.1               | MIT                                                | https://github.com/ljharb/is-date-object                      |
 | is-descriptor@0.1.6                | MIT                                                | https://github.com/jonschlinkert/is-descriptor                |
 | is-descriptor@1.0.2                | MIT                                                | https://github.com/jonschlinkert/is-descriptor                |
 | is-dotfile@1.0.3                   | MIT                                                | https://github.com/jonschlinkert/is-dotfile                   |
@@ -383,10 +387,13 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | is-posix-bracket@0.1.1             | MIT                                                | https://github.com/jonschlinkert/is-posix-bracket             |
 | is-primitive@2.0.0                 | MIT                                                | https://github.com/jonschlinkert/is-primitive                 |
 | is-promise@1.0.1                   | MIT                                                | https://github.com/then/is-promise                            |
+| is-regex@1.0.4                     | MIT                                                | https://github.com/ljharb/is-regex                            |
 | is-stream@1.1.0                    | MIT                                                | https://github.com/sindresorhus/is-stream                     |
+| is-symbol@1.0.1                    | MIT                                                | https://github.com/ljharb/is-symbol                           |
 | is-typedarray@1.0.0                | MIT                                                | https://github.com/hughsk/is-typedarray                       |
 | is-utf8@0.2.1                      | MIT                                                | https://github.com/wayfind/is-utf8                            |
 | is-windows@1.0.2                   | MIT                                                | https://github.com/jonschlinkert/is-windows                   |
+| is-wsl@1.1.0                       | MIT                                                | https://github.com/sindresorhus/is-wsl                        |
 | isarray@0.0.1                      | MIT                                                | https://github.com/juliangruber/isarray                       |
 | isarray@1.0.0                      | MIT                                                | https://github.com/juliangruber/isarray                       |
 | isbinaryfile@3.0.2                 | MIT                                                | https://github.com/gjtorikian/isBinaryFile                    |
@@ -411,6 +418,7 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | jsonify@0.0.0                      | Public Domain                                      | https://github.com/substack/jsonify                           |
 | jsprim@1.4.0                       | MIT                                                | https://github.com/joyent/node-jsprim                         |
 | jsprim@1.4.1                       | MIT                                                | https://github.com/joyent/node-jsprim                         |
+| killable@1.0.0                     | ISC                                                | https://github.com/marten-de-vries/killable                   |
 | kind-of@3.2.2                      | MIT                                                | https://github.com/jonschlinkert/kind-of                      |
 | kind-of@4.0.0                      | MIT                                                | https://github.com/jonschlinkert/kind-of                      |
 | kind-of@5.1.0                      | MIT                                                | https://github.com/jonschlinkert/kind-of                      |
@@ -418,7 +426,7 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | klaw@1.3.1                         | MIT                                                | https://github.com/jprichardson/node-klaw                     |
 | lazy-cache@1.0.4                   | MIT                                                | https://github.com/jonschlinkert/lazy-cache                   |
 | lcid@1.0.0                         | MIT                                                | https://github.com/sindresorhus/lcid                          |
-| license-checker@16.0.0             | BSD-3-Clause                                       | https://github.com/davglass/license-checker                   |
+| license-checker@18.0.0             | BSD-3-Clause                                       | https://github.com/davglass/license-checker                   |
 | load-json-file@1.1.0               | MIT                                                | https://github.com/sindresorhus/load-json-file                |
 | load-json-file@2.0.0               | MIT                                                | https://github.com/sindresorhus/load-json-file                |
 | loader-runner@2.3.0                | MIT                                                | https://github.com/webpack/loader-runner                      |
@@ -447,10 +455,8 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | micromatch@3.1.9                   | MIT                                                | https://github.com/micromatch/micromatch                      |
 | miller-rabin@4.0.1                 | MIT                                                | https://github.com/indutny/miller-rabin                       |
 | mime-db@1.27.0                     | MIT                                                | https://github.com/jshttp/mime-db                             |
-| mime-db@1.30.0                     | MIT                                                | https://github.com/jshttp/mime-db                             |
 | mime-db@1.33.0                     | MIT                                                | https://github.com/jshttp/mime-db                             |
 | mime-types@2.1.15                  | MIT                                                | https://github.com/jshttp/mime-types                          |
-| mime-types@2.1.17                  | MIT                                                | https://github.com/jshttp/mime-types                          |
 | mime-types@2.1.18                  | MIT                                                | https://github.com/jshttp/mime-types                          |
 | mime@1.4.1                         | MIT                                                | https://github.com/broofa/node-mime                           |
 | mime@1.6.0                         | MIT                                                | https://github.com/broofa/node-mime                           |
@@ -495,15 +501,16 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | object-assign@4.1.1                | MIT                                                | https://github.com/sindresorhus/object-assign                 |
 | object-copy@0.1.0                  | MIT                                                | https://github.com/jonschlinkert/object-copy                  |
 | object-keys@0.4.0                  | MIT                                                | https://github.com/ljharb/object-keys                         |
+| object-keys@1.0.11                 | MIT                                                | https://github.com/ljharb/object-keys                         |
 | object-visit@1.0.1                 | MIT                                                | https://github.com/jonschlinkert/object-visit                 |
 | object.omit@2.0.1                  | MIT                                                | https://github.com/jonschlinkert/object.omit                  |
 | object.pick@1.3.0                  | MIT                                                | https://github.com/jonschlinkert/object.pick                  |
-| obuf@1.1.1                         | MIT                                                | https://github.com/indutny/offset-buffer                      |
 | obuf@1.1.2                         | MIT                                                | https://github.com/indutny/offset-buffer                      |
 | on-finished@2.3.0                  | MIT                                                | https://github.com/jshttp/on-finished                         |
 | on-headers@1.0.1                   | MIT                                                | https://github.com/jshttp/on-headers                          |
 | once@1.4.0                         | ISC                                                | https://github.com/isaacs/once                                |
 | opn@4.0.2                          | MIT                                                | https://github.com/sindresorhus/opn                           |
+| opn@5.3.0                          | MIT                                                | https://github.com/sindresorhus/opn                           |
 | original@1.0.0                     | MIT                                                | https://github.com/unshiftio/original                         |
 | os-browserify@0.3.0                | MIT                                                | https://github.com/CoderPuppy/os-browserify                   |
 | os-homedir@1.0.2                   | MIT                                                | https://github.com/sindresorhus/os-homedir                    |
@@ -542,6 +549,7 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | pify@3.0.0                         | MIT                                                | https://github.com/sindresorhus/pify                          |
 | pinkie-promise@2.0.1               | MIT                                                | https://github.com/floatdrop/pinkie-promise                   |
 | pinkie@2.0.4                       | MIT                                                | https://github.com/floatdrop/pinkie                           |
+| pkg-dir@2.0.0                      | MIT                                                | https://github.com/sindresorhus/pkg-dir                       |
 | plist@2.1.0                        | MIT                                                | https://github.com/TooTallNate/node-plist                     |
 | portfinder@1.0.13                  | MIT                                                | https://github.com/indexzero/node-portfinder                  |
 | posix-character-classes@0.1.1      | MIT                                                | https://github.com/jonschlinkert/posix-character-classes      |
@@ -553,9 +561,7 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | progress-stream@1.2.0              | BSD-2-Clause                                       | https://github.com/freeall/progress-stream                    |
 | promise@1.3.0                      | MIT                                                | https://github.com/then/promise                               |
 | promise@7.3.1                      | MIT                                                | https://github.com/then/promise                               |
-| prop-types@15.6.0                  | MIT                                                | https://github.com/reactjs/prop-types                         |
 | prop-types@15.6.1                  | MIT                                                | https://github.com/facebook/prop-types                        |
-| proxy-addr@2.0.2                   | MIT                                                | https://github.com/jshttp/proxy-addr                          |
 | proxy-addr@2.0.3                   | MIT                                                | https://github.com/jshttp/proxy-addr                          |
 | prr@1.0.1                          | MIT                                                | https://github.com/rvagg/prr                                  |
 | pruner@0.0.7                       | MIT                                                |                                                               |
@@ -580,7 +586,9 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | rc@1.2.6                           | (BSD-2-Clause OR MIT OR Apache-2.0)                | https://github.com/dominictarr/rc                             |
 | rcedit@1.0.0                       | MIT                                                | https://github.com/electron/node-rcedit                       |
 | react-dom@15.6.1                   | BSD-3-Clause                                       | https://github.com/facebook/react                             |
+| react-dom@16.2.0                   | MIT                                                | https://github.com/facebook/react                             |
 | react@15.6.1                       | BSD-3-Clause                                       | https://github.com/facebook/react                             |
+| react@16.2.0                       | MIT                                                | https://github.com/facebook/react                             |
 | read-installed@4.0.3               | ISC                                                | https://github.com/isaacs/read-installed                      |
 | read-package-json@2.0.13           | ISC                                                | https://github.com/npm/read-package-json                      |
 | read-pkg-up@1.0.1                  | MIT                                                | https://github.com/sindresorhus/read-pkg-up                   |
@@ -605,8 +613,10 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | require-directory@2.1.1            | MIT                                                | https://github.com/troygoode/node-require-directory           |
 | require-main-filename@1.0.1        | ISC                                                | https://github.com/yargs/require-main-filename                |
 | requires-port@1.0.0                | MIT                                                | https://github.com/unshiftio/requires-port                    |
+| resolve-cwd@2.0.0                  | MIT                                                | https://github.com/sindresorhus/resolve-cwd                   |
+| resolve-from@3.0.0                 | MIT                                                | https://github.com/sindresorhus/resolve-from                  |
 | resolve-url@0.2.1                  | MIT                                                | https://github.com/lydell/resolve-url                         |
-| resolve@1.5.0                      | MIT                                                | https://github.com/browserify/node-resolve                    |
+| resolve@1.6.0                      | MIT                                                | https://github.com/browserify/node-resolve                    |
 | ret@0.1.15                         | MIT                                                | https://github.com/fent/ret.js                                |
 | right-align@0.1.3                  | MIT                                                | https://github.com/jonschlinkert/right-align                  |
 | rimraf@2.6.1                       | ISC                                                | https://github.com/isaacs/rimraf                              |
@@ -620,10 +630,8 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | selfsigned@1.10.2                  | MIT                                                | https://github.com/jfromaniello/selfsigned                    |
 | semver@5.3.0                       | ISC                                                | https://github.com/npm/node-semver                            |
 | semver@5.5.0                       | ISC                                                | https://github.com/npm/node-semver                            |
-| send@0.16.1                        | MIT                                                | https://github.com/pillarjs/send                              |
 | send@0.16.2                        | MIT                                                | https://github.com/pillarjs/send                              |
 | serve-index@1.9.1                  | MIT                                                | https://github.com/expressjs/serve-index                      |
-| serve-static@1.13.1                | MIT                                                | https://github.com/expressjs/serve-static                     |
 | serve-static@1.13.2                | MIT                                                | https://github.com/expressjs/serve-static                     |
 | set-blocking@2.0.0                 | ISC                                                | https://github.com/yargs/set-blocking                         |
 | set-immediate-shim@1.0.1           | MIT                                                | https://github.com/sindresorhus/set-immediate-shim            |
@@ -646,6 +654,7 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | sntp@2.1.0                         | BSD-3-Clause                                       | https://github.com/hueniverse/sntp                            |
 | sockjs-client@1.1.4                | MIT                                                | https://github.com/sockjs/sockjs-client                       |
 | sockjs@0.3.18                      | MIT                                                | https://github.com/sockjs/sockjs-node                         |
+| sockjs@0.3.19                      | MIT                                                | https://github.com/sockjs/sockjs-node                         |
 | source-list-map@2.0.0              | MIT                                                | https://github.com/webpack/source-list-map                    |
 | source-map-loader@0.2.1            | MIT                                                | https://github.com/webpack/source-map-loader                  |
 | source-map-resolve@0.5.1           | MIT                                                | https://github.com/lydell/source-map-resolve                  |
@@ -675,7 +684,6 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | sshpk@1.13.0                       | MIT                                                | https://github.com/arekinath/node-sshpk                       |
 | sshpk@1.14.1                       | MIT                                                | https://github.com/arekinath/node-sshpk                       |
 | static-extend@0.1.2                | MIT                                                | https://github.com/jonschlinkert/static-extend                |
-| statuses@1.3.1                     | MIT                                                | https://github.com/jshttp/statuses                            |
 | statuses@1.4.0                     | MIT                                                | https://github.com/jshttp/statuses                            |
 | stream-browserify@2.0.1            | MIT                                                | https://github.com/substack/stream-browserify                 |
 | stream-http@2.8.0                  | MIT                                                | https://github.com/jhiesey/stream-http                        |
@@ -699,6 +707,7 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | supports-color@0.2.0               | MIT                                                | https://github.com/sindresorhus/supports-color                |
 | supports-color@3.2.3               | MIT                                                | https://github.com/chalk/supports-color                       |
 | supports-color@4.5.0               | MIT                                                | https://github.com/chalk/supports-color                       |
+| supports-color@5.3.0               | MIT                                                | https://github.com/chalk/supports-color                       |
 | tapable@0.2.8                      | MIT                                                | https://github.com/webpack/tapable                            |
 | tar-pack@3.4.0                     | BSD-2-Clause                                       | https://github.com/ForbesLindesay/tar-pack                    |
 | tar@2.2.1                          | ISC                                                | https://github.com/isaacs/node-tar                            |
@@ -724,7 +733,6 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | tty-browserify@0.0.0               | MIT                                                | https://github.com/substack/tty-browserify                    |
 | tunnel-agent@0.6.0                 | Apache-2.0                                         | https://github.com/mikeal/tunnel-agent                        |
 | tweetnacl@0.14.5                   | Unlicense                                          | https://github.com/dchest/tweetnacl-js                        |
-| type-is@1.6.15                     | MIT                                                | https://github.com/jshttp/type-is                             |
 | type-is@1.6.16                     | MIT                                                | https://github.com/jshttp/type-is                             |
 | typedarray@0.0.6                   | MIT                                                | https://github.com/substack/typedarray                        |
 | ua-parser-js@0.7.17                | (GPL-2.0 OR MIT)                                   | https://github.com/faisalman/ua-parser-js                     |
@@ -758,9 +766,9 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | vm-browserify@0.0.4                | MIT                                                | https://github.com/substack/vm-browserify                     |
 | watchpack@1.4.0                    | MIT                                                | https://github.com/webpack/watchpack                          |
 | watchpack@1.5.0                    | MIT                                                | https://github.com/webpack/watchpack                          |
-| wbuf@1.7.2                         | MIT                                                | https://github.com/indutny/wbuf                               |
 | wbuf@1.7.3                         | MIT                                                | https://github.com/indutny/wbuf                               |
 | webpack-dev-middleware@1.12.2      | MIT                                                | https://github.com/webpack/webpack-dev-middleware             |
+| webpack-dev-server@2.11.1          | MIT                                                | https://github.com/webpack/webpack-dev-server                 |
 | webpack-dev-server@2.7.1           | MIT                                                | https://github.com/webpack/webpack-dev-server                 |
 | webpack-sources@1.1.0              | MIT                                                | https://github.com/webpack/webpack-sources                    |
 | webpack@3.5.5                      | MIT                                                | https://github.com/webpack/webpack                            |
