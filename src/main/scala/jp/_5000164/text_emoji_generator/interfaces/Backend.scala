@@ -38,18 +38,16 @@ class Backend($: BackendScope[Unit, State]) {
           <.input(^.value := state.color, ^.onChange ==> onChangeColor(state.text, state.fontFace), Styles.textColor),
           <.button("色をランダムで選択", ^.onClick --> onClickRandomColor(state.text, state.fontFace, f), Styles.randomButton)
         ),
-        <.div(
-          <.ul(
-            Styles.colorList,
-            Canvas.colorList.toVdomArray({
-              case (key, value) => <.li(
-                ^.key := key,
-                ^.onClick --> onClickColor(state.text, value, state.fontFace, f),
-                ^.style := js.Dictionary("backgroundColor" -> s"#$value").asInstanceOf[js.Object],
-                Styles.colorListItem
-              )
-            })
-          )
+        <.ul(
+          Styles.colorList,
+          Canvas.colorList.toVdomArray({
+            case (key, value) => <.li(
+              ^.key := key,
+              ^.onClick --> onClickColor(state.text, value, state.fontFace, f),
+              ^.style := js.Dictionary("backgroundColor" -> s"#$value").asInstanceOf[js.Object],
+              Styles.colorListItem
+            )
+          })
         ),
         <.div(
           Styles.fontFaceSelector,
@@ -57,13 +55,15 @@ class Backend($: BackendScope[Unit, State]) {
           <.div(
             <.label(
               <.input.radio(^.name := "type-face", ^.value := "gothic", ^.checked := state.fontFace == Gothic, ^.onChange ==> onClickFontFace(state.text, state.color, Gothic)),
-              "ゴシック体"
+              "ゴシック体",
+              Styles.fontFaceButton
             )
           ),
           <.div(
             <.label(
               <.input.radio(^.name := "type-face", ^.value := "mincho", ^.checked := state.fontFace == Mincho, ^.onChange ==> onClickFontFace(state.text, state.color, Mincho)),
-              "明朝体"
+              "明朝体",
+              Styles.fontFaceButton
             )
           )
         )
