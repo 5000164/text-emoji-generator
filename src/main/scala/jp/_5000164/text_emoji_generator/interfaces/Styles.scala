@@ -112,4 +112,8 @@ object Styles extends StyleSheet.Inline {
   val fontFaceSelector = style(
     paddingTop(10 px)
   )
+
+  val fontFaceButton = style(
+    cursor.pointer
+  )
 }
