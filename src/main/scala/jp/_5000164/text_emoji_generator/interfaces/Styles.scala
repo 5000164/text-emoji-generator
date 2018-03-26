@@ -19,7 +19,7 @@ object Styles extends StyleSheet.Inline {
 
   val defaultButton: Styles.dsl.StyleS = mixin(
     height(30 px),
-    margin(5 px),
+    margin(0 px),
     fontSize(16 px),
     backgroundColor(rgb(242, 242, 242)),
     border.none,
@@ -39,9 +39,9 @@ object Styles extends StyleSheet.Inline {
   )
   val wrapper = style(
     width(400 px),
-    height(400 px),
+    height(450 px),
     margin(0 px),
-    padding(28 px, 50 px, 50 px),
+    padding(3 px, 50 px, 25 px),
   )
 
   val canvasWrapper = style(
@@ -71,6 +71,7 @@ object Styles extends StyleSheet.Inline {
   )
 
   val saveButtonWrapper = style(
+    margin(10 px, 0 px),
     textAlign.right
   )
 
@@ -79,6 +80,7 @@ object Styles extends StyleSheet.Inline {
   )
 
   val selectColorWrapper = style(
+    margin(10 px, 0 px),
     textAlign.right
   )
 
@@ -94,7 +96,7 @@ object Styles extends StyleSheet.Inline {
   )
 
   val colorList = style(
-    margin(0 px),
+    margin(10 px, 0 px),
     padding(0 px),
     fontSize(0 px)
   )
@@ -110,7 +112,7 @@ object Styles extends StyleSheet.Inline {
   )
 
   val fontFaceSelector = style(
-    paddingTop(10 px)
+    margin(10 px, 0 px)
   )
 
   val fontFaceButton = style(
