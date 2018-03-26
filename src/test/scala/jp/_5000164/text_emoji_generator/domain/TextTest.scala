@@ -4,7 +4,7 @@ import org.scalatest.FreeSpec
 
 class TextTest extends FreeSpec {
   "2 行で 4 文字の印字位置を計算" in {
-    assert(Text.calculatePosition(List("よん", "もじ")) == List(
+    assert(Text.calculatePosition(List("よん", "もじ"), LeftJustified) == List(
       PrintChar("よ", 32.0, 32.0, 64.0),
       PrintChar("ん", 96.0, 32.0, 64.0),
       PrintChar("も", 32.0, 96.0, 64.0),
@@ -13,7 +13,7 @@ class TextTest extends FreeSpec {
   }
 
   "2 行で上が 2 文字で下が 3 文字の印字位置を計算" in {
-    assert(Text.calculatePosition(List("した", "３文字")) == List(
+    assert(Text.calculatePosition(List("した", "３文字"), LeftJustified) == List(
       PrintChar("し", 21.0, 32.0, 42.0),
       PrintChar("た", 63.0, 32.0, 42.0),
       PrintChar("３", 21.0, 96.0, 42.0),
