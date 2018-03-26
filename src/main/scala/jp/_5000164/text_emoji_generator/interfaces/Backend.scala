@@ -38,18 +38,16 @@ class Backend($: BackendScope[Unit, State]) {
           <.input(^.value := state.color, ^.onChange ==> onChangeColor(state.text, state.fontFace), Styles.textColor),
           <.button("色をランダムで選択", ^.onClick --> onClickRandomColor(state.text, state.fontFace, f), Styles.randomButton)
         ),
-        <.div(
-          <.ul(
-            Styles.colorList,
-            Canvas.colorList.toVdomArray({
-              case (key, value) => <.li(
-                ^.key := key,
-                ^.onClick --> onClickColor(state.text, value, state.fontFace, f),
-                ^.style := js.Dictionary("backgroundColor" -> s"#$value").asInstanceOf[js.Object],
-                Styles.colorListItem
-              )
-            })
-          )
+        <.ul(
+          Styles.colorList,
+          Canvas.colorList.toVdomArray({
+            case (key, value) => <.li(
+              ^.key := key,
+              ^.onClick --> onClickColor(state.text, value, state.fontFace, f),
+              ^.style := js.Dictionary("backgroundColor" -> s"#$value").asInstanceOf[js.Object],
+              Styles.colorListItem
+            )
+          })
         ),
         <.div(
           Styles.fontFaceSelector,
