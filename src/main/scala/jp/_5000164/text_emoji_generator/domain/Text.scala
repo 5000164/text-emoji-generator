@@ -7,7 +7,7 @@ object Text {
     side / maxRow
   }
 
-  def calculatePosition(lines: List[String]): List[PrintChar] = {
+  def calculatePosition(lines: List[String], align: Align): List[PrintChar] = {
     val side = 128
     val maxLength = lines.reduceLeft((a, b) => if (a.length > b.length) a else b).length
     val maxRow = lines.size
@@ -45,3 +45,9 @@ case class PrintChar(
                       y: Double,
                       maxWidth: Double
                     )
+
+sealed trait Align
+
+case object LeftJustified extends Align
+
+case object Centering extends Align

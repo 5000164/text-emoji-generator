@@ -1,7 +1,7 @@
 package jp._5000164.text_emoji_generator.interfaces
 
 import japgolly.scalajs.react.Callback
-import jp._5000164.text_emoji_generator.domain.{FontFace, Gothic, Text => DomainText}
+import jp._5000164.text_emoji_generator.domain.{FontFace, Gothic, LeftJustified, Text => DomainText}
 import org.scalajs.dom
 import org.scalajs.dom.document
 import org.scalajs.dom.html.Canvas
@@ -28,7 +28,7 @@ object Canvas {
     val selectedFontFace = if (fontFace == Gothic) "Hiragino Kaku Gothic ProN" else "Hiragino Mincho ProN"
     ctx.font = s"bold ${fontSize}px '$selectedFontFace'"
 
-    DomainText.calculatePosition(lines).foreach(c => ctx.fillText(c.content, c.x, c.y, c.maxWidth))
+    DomainText.calculatePosition(lines, LeftJustified).foreach(c => ctx.fillText(c.content, c.x, c.y, c.maxWidth))
   }
 
   def save(text: String) = Callback {
