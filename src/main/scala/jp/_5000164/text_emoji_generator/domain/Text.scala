@@ -20,19 +20,21 @@ object Text {
 
     var result: List[PrintChar] = List()
 
-    var rowNumber = 1
-    for (line <- lines) {
-      var columnNumber = 1
-      for (char <- line) {
-        result = PrintChar(
-          char.toString,
-          widthUnit * columnNumber - widthUnitCenter,
-          heightUnit * rowNumber - heightUnitCenter,
-          maxWidth
-        ) :: result
-        columnNumber += 1
+    if (align == LeftJustified) {
+      var rowNumber = 1
+      for (line <- lines) {
+        var columnNumber = 1
+        for (char <- line) {
+          result = PrintChar(
+            char.toString,
+            widthUnit * columnNumber - widthUnitCenter,
+            heightUnit * rowNumber - heightUnitCenter,
+            maxWidth
+          ) :: result
+          columnNumber += 1
+        }
+        rowNumber += 1
       }
-      rowNumber += 1
     }
 
     result.reverse
