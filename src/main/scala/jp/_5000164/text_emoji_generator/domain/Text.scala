@@ -35,6 +35,33 @@ object Text {
         }
         rowNumber += 1
       }
+    } else {
+      var rowNumber = 1
+      for (line <- lines) {
+        if (line.length == 1) {
+          for (char <- line) {
+            result = PrintChar(
+              char.toString,
+              64.0,
+              heightUnit * rowNumber - heightUnitCenter,
+              maxWidth
+            ) :: result
+          }
+          rowNumber += 1
+        } else {
+          var columnNumber = 1
+          for (char <- line) {
+            result = PrintChar(
+              char.toString,
+              widthUnit * columnNumber - widthUnitCenter,
+              heightUnit * rowNumber - heightUnitCenter,
+              maxWidth
+            ) :: result
+            columnNumber += 1
+          }
+          rowNumber += 1
+        }
+      }
     }
 
     result.reverse
