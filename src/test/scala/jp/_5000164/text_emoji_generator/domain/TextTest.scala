@@ -30,6 +30,16 @@ class TextTest extends FreeSpec {
     ))
   }
 
+  "中央寄せで 2 行で上が 2 文字で下が 3 文字の印字位置を計算" in {
+    assert(Text.calculatePosition(List("一二", "三四五"), Centering) == List(
+      PrintChar("一", 43.0, 32.0, 42.0),
+      PrintChar("二", 85.0, 32.0, 42.0),
+      PrintChar("三", 22.0, 96.0, 42.0),
+      PrintChar("四", 64.0, 96.0, 42.0),
+      PrintChar("五", 106.0, 96.0, 42.0)
+    ))
+  }
+
   "2 行の時フォントサイズは 64" in {
     assert(Text.calculateFontSize(List("２", "行")) == 64)
   }
