@@ -1,7 +1,7 @@
 package jp._5000164.text_emoji_generator.interfaces
 
 import japgolly.scalajs.react.Callback
-import jp._5000164.text_emoji_generator.domain.{FontFace, Gothic, LeftJustified, Text => DomainText}
+import jp._5000164.text_emoji_generator.domain.{Align, FontFace, Gothic, Text => DomainText}
 import org.scalajs.dom
 import org.scalajs.dom.document
 import org.scalajs.dom.html.Canvas
@@ -11,7 +11,7 @@ import scala.scalajs.js
 object Canvas {
   def get: Canvas = document.getElementById("canvas").asInstanceOf[Canvas]
 
-  def generate(text: String, color: String, fontFace: FontFace): Callback = Callback {
+  def generate(text: String, color: String, fontFace: FontFace, align: Align): Callback = Callback {
     val canvas = get
     canvas.width = 128
     canvas.height = 128
@@ -28,7 +28,7 @@ object Canvas {
     val selectedFontFace = if (fontFace == Gothic) "Hiragino Kaku Gothic ProN" else "Hiragino Mincho ProN"
     ctx.font = s"bold ${fontSize}px '$selectedFontFace'"
 
-    DomainText.calculatePosition(lines, LeftJustified).foreach(c => ctx.fillText(c.content, c.x, c.y, c.maxWidth))
+    DomainText.calculatePosition(lines, align).foreach(c => ctx.fillText(c.content, c.x, c.y, c.maxWidth))
   }
 
   def save(text: String) = Callback {

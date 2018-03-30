@@ -65,8 +65,3 @@ case class PrintChar(
                       maxWidth: Double
                     )
 
-sealed trait Align
-
-case object LeftJustified extends Align
-
-case object Centering extends Align
