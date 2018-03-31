@@ -15,6 +15,6 @@ case object Mincho extends FontFace
 
 sealed trait Align
 
-case object LeftJustified extends Align
+case object Left extends Align
 
-case object Centering extends Align
+case object Center extends Align

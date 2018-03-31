@@ -26,7 +26,7 @@ class Backend($: BackendScope[Unit, State]) {
             ^.onChange ==> onChangeText(state.fontFace, state.align, f),
             Styles.text,
             if (state.fontFace == Gothic) ^.fontFamily := "Hiragino Kaku Gothic ProN" else ^.fontFamily := "Hiragino Mincho ProN",
-            if (state.align == LeftJustified) ^.textAlign := "left" else ^.textAlign := "center"
+            if (state.align == Left) ^.textAlign := "left" else ^.textAlign := "center"
           ),
           <.canvas(^.id := "canvas", Styles.canvas)
         ),
@@ -73,14 +73,14 @@ class Backend($: BackendScope[Unit, State]) {
           <.div("位置選択"),
           <.div(
             <.label(
-              <.input.radio(^.name := "align", ^.value := "left-justified", ^.checked := state.align == LeftJustified, ^.onChange ==> onClickAlign(state.text, state.color, state.fontFace, LeftJustified)),
+              <.input.radio(^.name := "align", ^.value := "left", ^.checked := state.align == Left, ^.onChange ==> onClickAlign(state.text, state.color, state.fontFace, Left)),
               "左寄せ",
               Styles.alignButton
             )
           ),
           <.div(
             <.label(
-              <.input.radio(^.name := "align", ^.value := "centering", ^.checked := state.align == Centering, ^.onChange ==> onClickAlign(state.text, state.color, state.fontFace, Centering)),
+              <.input.radio(^.name := "align", ^.value := "center", ^.checked := state.align == Center, ^.onChange ==> onClickAlign(state.text, state.color, state.fontFace, Center)),
               "中央寄せ",
               Styles.alignButton
             )
