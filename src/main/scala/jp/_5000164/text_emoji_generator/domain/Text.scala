@@ -20,7 +20,7 @@ object Text {
 
     var result: List[PrintChar] = List()
 
-    if (align == LeftJustified) {
+    if (align == Left) {
       var rowNumber = 1
       for (line <- lines) {
         var columnNumber = 1
