@@ -97,7 +97,7 @@ class Backend($: BackendScope[Unit, State]) {
     {
       $.modState(_.copy(text = updatedText))
     } >> {
-      Canvas.generate(updatedText, color, fontFace, align)
+      Canvas.generate(State(updatedText, color, fontFace, align))
     } >> {
       s.setState(color)
     }
@@ -108,11 +108,11 @@ class Backend($: BackendScope[Unit, State]) {
     $.modState(_.copy(color = updatedColor))
   } >> {
     val updatedColor = e.target.value
-    Canvas.generate(text, updatedColor, fontFace, align)
+    Canvas.generate(State(text, updatedColor, fontFace, align))
   }
 
   def onClickColor(text: String, color: String, fontFace: FontFace, align: Align, s: StateAccessPure[String]): Callback = {
-    Canvas.generate(text, color, fontFace, align)
+    Canvas.generate(State(text, color, fontFace, align))
   } >> {
     s.setState(color)
   }
@@ -121,7 +121,7 @@ class Backend($: BackendScope[Unit, State]) {
     val color = Random.shuffle(colorList).head._2
 
     {
-      Canvas.generate(text, color, fontFace, align)
+      Canvas.generate(State(text, color, fontFace, align))
     } >> {
       s.setState(color)
     }
@@ -130,12 +130,12 @@ class Backend($: BackendScope[Unit, State]) {
   def onClickFontFace(text: String, color: String, fontFace: FontFace, align: Align)(e: ReactEventFromInput): Callback = {
     $.modState(_.copy(fontFace = fontFace))
   } >> {
-    Canvas.generate(text, color, fontFace, align)
+    Canvas.generate(State(text, color, fontFace, align))
   }
 
   def onClickAlign(text: String, color: String, fontFace: FontFace, align: Align)(e: ReactEventFromInput): Callback = {
     $.modState(_.copy(align = align))
   } >> {
-    Canvas.generate(text, color, fontFace, align)
+    Canvas.generate(State(text, color, fontFace, align))
   }
 }
