@@ -55,14 +55,14 @@ class Backend($: BackendScope[Unit, State]) {
           <.div("書体選択"),
           <.div(
             <.label(
-              <.input.radio(^.name := "type-face", ^.value := "gothic", ^.checked := state.fontFace == Gothic, ^.onChange ==> onClickFontFace(state, Gothic)),
+              <.input.radio(^.name := "type-face", ^.value := Gothic.toString, ^.checked := state.fontFace == Gothic, ^.onChange ==> onChangeFontFace(state)),
               "ゴシック体",
               Styles.fontFaceButton
             )
           ),
           <.div(
             <.label(
-              <.input.radio(^.name := "type-face", ^.value := "mincho", ^.checked := state.fontFace == Mincho, ^.onChange ==> onClickFontFace(state, Mincho)),
+              <.input.radio(^.name := "type-face", ^.value := Mincho.toString, ^.checked := state.fontFace == Mincho, ^.onChange ==> onChangeFontFace(state)),
               "明朝体",
               Styles.fontFaceButton
             )
@@ -127,9 +127,11 @@ class Backend($: BackendScope[Unit, State]) {
     }
   }
 
-  def onClickFontFace(state: State, fontFace: FontFace)(e: ReactEventFromInput): Callback = {
+  def onChangeFontFace(state: State)(e: ReactEventFromInput): Callback = {
+    val fontFace = if (e.target.value == Gothic.toString) Gothic else Mincho
     $.modState(_.copy(fontFace = fontFace))
   } >> {
+    val fontFace = if (e.target.value == Gothic.toString) Gothic else Mincho
     Canvas.generate(State(state.text, state.color, fontFace, state.align))
   }
 
