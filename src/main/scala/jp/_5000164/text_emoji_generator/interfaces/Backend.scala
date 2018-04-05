@@ -73,14 +73,14 @@ class Backend($: BackendScope[Unit, State]) {
           <.div("位置選択"),
           <.div(
             <.label(
-              <.input.radio(^.name := "align", ^.value := "left", ^.checked := state.align == Left, ^.onChange ==> onClickAlign(state, Left)),
+              <.input.radio(^.name := "align", ^.value := Left.toString, ^.checked := state.align == Left, ^.onChange ==> onClickAlign(state)),
               "左寄せ",
               Styles.alignButton
             )
           ),
           <.div(
             <.label(
-              <.input.radio(^.name := "align", ^.value := "center", ^.checked := state.align == Center, ^.onChange ==> onClickAlign(state, Center)),
+              <.input.radio(^.name := "align", ^.value := Center.toString, ^.checked := state.align == Center, ^.onChange ==> onClickAlign(state)),
               "中央寄せ",
               Styles.alignButton
             )
@@ -135,9 +135,11 @@ class Backend($: BackendScope[Unit, State]) {
     Canvas.generate(State(state.text, state.color, fontFace, state.align))
   }
 
-  def onClickAlign(state: State, align: Align)(e: ReactEventFromInput): Callback = {
+  def onClickAlign(state: State)(e: ReactEventFromInput): Callback = {
+    val align = if (e.target.value == Left.toString) Left else Center
     $.modState(_.copy(align = align))
   } >> {
+    val align = if (e.target.value == Left.toString) Left else Center
     Canvas.generate(State(state.text, state.color, state.fontFace, align))
   }
 }
