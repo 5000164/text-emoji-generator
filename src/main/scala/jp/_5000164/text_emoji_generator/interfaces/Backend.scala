@@ -129,17 +129,11 @@ class Backend($: BackendScope[Unit, State]) {
 
   def onChangeFontFace(state: State)(e: ReactEventFromInput): Callback = {
     val fontFace = if (e.target.value == Gothic.toString) Gothic else Mincho
-    $.modState(_.copy(fontFace = fontFace))
-  } >> {
-    val fontFace = if (e.target.value == Gothic.toString) Gothic else Mincho
-    Canvas.generate(State(state.text, state.color, fontFace, state.align))
+    Canvas.generate(State(state.text, state.color, fontFace, state.align)) >> $.modState(_.copy(fontFace = fontFace))
   }
 
   def onClickAlign(state: State)(e: ReactEventFromInput): Callback = {
     val align = if (e.target.value == Left.toString) Left else Center
-    $.modState(_.copy(align = align))
-  } >> {
-    val align = if (e.target.value == Left.toString) Left else Center
-    Canvas.generate(State(state.text, state.color, state.fontFace, align))
+    Canvas.generate(State(state.text, state.color, state.fontFace, align)) >> $.modState(_.copy(align = align))
   }
 }
