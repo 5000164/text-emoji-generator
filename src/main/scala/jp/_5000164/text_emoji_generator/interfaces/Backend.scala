@@ -2,7 +2,7 @@ package jp._5000164.text_emoji_generator.interfaces
 
 import japgolly.scalajs.react.vdom.html_<^.{<, _}
 import japgolly.scalajs.react.{BackendScope, Callback, ReactEventFromInput, StateAccessPure}
-import jp._5000164.text_emoji_generator.domain.{FontFace, Gothic, Mincho, State}
+import jp._5000164.text_emoji_generator.domain._
 import jp._5000164.text_emoji_generator.interfaces.Canvas.colorList
 import scalacss.ScalaCssReact._
 
@@ -23,9 +23,10 @@ class Backend($: BackendScope[Unit, State]) {
             ^.id := "text",
             ^.value := state.text,
             ^.placeholder := "ここに入力",
-            ^.onChange ==> onChangeText(state.fontFace, f),
+            ^.onChange ==> onChangeText(state, f),
             Styles.text,
-            if (state.fontFace == Gothic) ^.fontFamily := "Hiragino Kaku Gothic ProN" else ^.fontFamily := "Hiragino Mincho ProN"
+            if (state.fontFace == Gothic) ^.fontFamily := "Hiragino Kaku Gothic ProN" else ^.fontFamily := "Hiragino Mincho ProN",
+            if (state.align == Left) ^.textAlign := "left" else ^.textAlign := "center"
           ),
           <.canvas(^.id := "canvas", Styles.canvas)
         ),
@@ -35,15 +36,15 @@ class Backend($: BackendScope[Unit, State]) {
         ),
         <.div(
           Styles.selectColorWrapper,
-          <.input(^.value := state.color, ^.onChange ==> onChangeColor(state.text, state.fontFace), Styles.textColor),
-          <.button("色をランダムで選択", ^.onClick --> onClickRandomColor(state.text, state.fontFace, f), Styles.randomButton)
+          <.input(^.value := state.color, ^.onChange ==> onChangeColor(state), Styles.textColor),
+          <.button("色をランダムで選択", ^.onClick --> onClickRandomColor(state, f), Styles.randomButton)
         ),
         <.ul(
           Styles.colorList,
           Canvas.colorList.toVdomArray({
             case (key, value) => <.li(
               ^.key := key,
-              ^.onClick --> onClickColor(state.text, value, state.fontFace, f),
+              ^.onClick --> onClickColor(state, value, f),
               ^.style := js.Dictionary("backgroundColor" -> s"#$value").asInstanceOf[js.Object],
               Styles.colorListItem
             )
@@ -54,16 +55,34 @@ class Backend($: BackendScope[Unit, State]) {
           <.div("書体選択"),
           <.div(
             <.label(
-              <.input.radio(^.name := "type-face", ^.value := "gothic", ^.checked := state.fontFace == Gothic, ^.onChange ==> onClickFontFace(state.text, state.color, Gothic)),
+              <.input.radio(^.name := "type-face", ^.value := Gothic.toString, ^.checked := state.fontFace == Gothic, ^.onChange ==> onChangeFontFace(state)),
               "ゴシック体",
               Styles.fontFaceButton
             )
           ),
           <.div(
             <.label(
-              <.input.radio(^.name := "type-face", ^.value := "mincho", ^.checked := state.fontFace == Mincho, ^.onChange ==> onClickFontFace(state.text, state.color, Mincho)),
+              <.input.radio(^.name := "type-face", ^.value := Mincho.toString, ^.checked := state.fontFace == Mincho, ^.onChange ==> onChangeFontFace(state)),
               "明朝体",
               Styles.fontFaceButton
+            )
+          )
+        ),
+        <.div(
+          Styles.alignSelector,
+          <.div("位置選択"),
+          <.div(
+            <.label(
+              <.input.radio(^.name := "align", ^.value := Left.toString, ^.checked := state.align == Left, ^.onChange ==> onClickAlign(state)),
+              "左寄せ",
+              Styles.alignButton
+            )
+          ),
+          <.div(
+            <.label(
+              <.input.radio(^.name := "align", ^.value := Center.toString, ^.checked := state.align == Center, ^.onChange ==> onClickAlign(state)),
+              "中央寄せ",
+              Styles.alignButton
             )
           )
         )
@@ -71,46 +90,50 @@ class Backend($: BackendScope[Unit, State]) {
     )
   }
 
-  def onChangeText(fontFace: FontFace, s: StateAccessPure[String])(e: ReactEventFromInput): Callback = {
+  def onChangeText(state: State, s: StateAccessPure[String])(e: ReactEventFromInput): Callback = {
     val updatedText = e.target.value
     val color = Random.shuffle(colorList).head._2
 
     {
       $.modState(_.copy(text = updatedText))
     } >> {
-      Canvas.generate(updatedText, color, fontFace)
+      Canvas.generate(State(updatedText, color, state.fontFace, state.align))
     } >> {
       s.setState(color)
     }
   }
 
-  def onChangeColor(text: String, fontFace: FontFace)(e: ReactEventFromInput): Callback = {
+  def onChangeColor(state: State)(e: ReactEventFromInput): Callback = {
     val updatedColor = e.target.value
     $.modState(_.copy(color = updatedColor))
   } >> {
     val updatedColor = e.target.value
-    Canvas.generate(text, updatedColor, fontFace)
+    Canvas.generate(State(state.text, updatedColor, state.fontFace, state.align))
   }
 
-  def onClickColor(text: String, color: String, fontFace: FontFace, s: StateAccessPure[String]): Callback = {
-    Canvas.generate(text, color, fontFace)
+  def onClickColor(state: State, updatedColor: String, s: StateAccessPure[String]): Callback = {
+    Canvas.generate(State(state.text, updatedColor, state.fontFace, state.align))
   } >> {
-    s.setState(color)
+    s.setState(updatedColor)
   }
 
-  def onClickRandomColor(text: String, fontFace: FontFace, s: StateAccessPure[String]): Callback = {
+  def onClickRandomColor(state: State, s: StateAccessPure[String]): Callback = {
     val color = Random.shuffle(colorList).head._2
 
     {
-      Canvas.generate(text, color, fontFace)
+      Canvas.generate(State(state.text, color, state.fontFace, state.align))
     } >> {
       s.setState(color)
     }
   }
 
-  def onClickFontFace(text: String, color: String, fontFace: FontFace)(e: ReactEventFromInput): Callback = {
-    $.modState(_.copy(fontFace = fontFace))
-  } >> {
-    Canvas.generate(text, color, fontFace)
+  def onChangeFontFace(state: State)(e: ReactEventFromInput): Callback = {
+    val fontFace = if (e.target.value == Gothic.toString) Gothic else Mincho
+    Canvas.generate(State(state.text, state.color, fontFace, state.align)) >> $.modState(_.copy(fontFace = fontFace))
+  }
+
+  def onClickAlign(state: State)(e: ReactEventFromInput): Callback = {
+    val align = if (e.target.value == Left.toString) Left else Center
+    Canvas.generate(State(state.text, state.color, state.fontFace, align)) >> $.modState(_.copy(align = align))
   }
 }
