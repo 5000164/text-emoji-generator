@@ -50,8 +50,7 @@ object Styles extends StyleSheet.Inline {
     gridColumnStart := "1",
     gridColumnEnd := "3",
     width(260 px),
-    margin(0 px, auto),
-    padding(20 px, 0 px),
+    margin(20 px, auto, 5 px),
     unsafeChild("textarea::placeholder")(
       color(rgb(238, 238, 238))
     )
@@ -77,7 +76,7 @@ object Styles extends StyleSheet.Inline {
   val saveButtonWrapper = style(
     gridColumnStart := "1",
     gridColumnEnd := "3",
-    margin(10 px, 0 px),
+    margin(5 px, 0 px),
     textAlign.right
   )
 
@@ -88,7 +87,7 @@ object Styles extends StyleSheet.Inline {
   val selectColorWrapper = style(
     gridColumnStart := "1",
     gridColumnEnd := "3",
-    margin(10 px, 0 px),
+    margin(5 px, 0 px),
     textAlign.right
   )
 
@@ -106,7 +105,7 @@ object Styles extends StyleSheet.Inline {
   val colorList = style(
     gridColumnStart := "1",
     gridColumnEnd := "3",
-    margin(10 px, 0 px),
+    margin(5 px, 0 px),
     padding(0 px),
     fontSize(0 px)
   )
@@ -124,7 +123,7 @@ object Styles extends StyleSheet.Inline {
   val fontFaceSelector = style(
     gridColumnStart := "1",
     gridColumnEnd := "2",
-    margin(10 px, 0 px)
+    margin(5 px, 0 px)
   )
 
   val fontFaceButton = style(
@@ -134,7 +133,7 @@ object Styles extends StyleSheet.Inline {
   val alignSelector = style(
     gridColumnStart := "2",
     gridColumnEnd := "3",
-    margin(10 px, 0 px)
+    margin(5 px, 0 px)
   )
 
   val alignButton = style(
