@@ -38,6 +38,8 @@ object Styles extends StyleSheet.Inline {
     height(22 px)
   )
   val wrapper = style(
+    display.grid,
+    gridTemplateColumns := "1fr 1fr",
     width(400 px),
     height(450 px),
     margin(0 px),
@@ -45,6 +47,8 @@ object Styles extends StyleSheet.Inline {
   )
 
   val canvasWrapper = style(
+    gridColumnStart := "1",
+    gridColumnEnd := "3",
     width(260 px),
     margin(0 px, auto),
     padding(20 px, 0 px),
@@ -71,6 +75,8 @@ object Styles extends StyleSheet.Inline {
   )
 
   val saveButtonWrapper = style(
+    gridColumnStart := "1",
+    gridColumnEnd := "3",
     margin(10 px, 0 px),
     textAlign.right
   )
@@ -80,6 +86,8 @@ object Styles extends StyleSheet.Inline {
   )
 
   val selectColorWrapper = style(
+    gridColumnStart := "1",
+    gridColumnEnd := "3",
     margin(10 px, 0 px),
     textAlign.right
   )
@@ -96,6 +104,8 @@ object Styles extends StyleSheet.Inline {
   )
 
   val colorList = style(
+    gridColumnStart := "1",
+    gridColumnEnd := "3",
     margin(10 px, 0 px),
     padding(0 px),
     fontSize(0 px)
@@ -112,6 +122,8 @@ object Styles extends StyleSheet.Inline {
   )
 
   val fontFaceSelector = style(
+    gridColumnStart := "1",
+    gridColumnEnd := "2",
     margin(10 px, 0 px)
   )
 
@@ -120,6 +132,8 @@ object Styles extends StyleSheet.Inline {
   )
 
   val alignSelector = style(
+    gridColumnStart := "2",
+    gridColumnEnd := "3",
     margin(10 px, 0 px)
   )
 
