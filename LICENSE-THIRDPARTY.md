@@ -30,7 +30,7 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 
 | module name                        | license                                            | repository                                                    |
 |------------------------------------|----------------------------------------------------|---------------------------------------------------------------|
-| @types/node@8.10.0                 | MIT                                                | https://www.github.com/DefinitelyTyped/DefinitelyTyped        |
+| @types/node@8.10.3                 | MIT                                                | https://www.github.com/DefinitelyTyped/DefinitelyTyped        |
 | abbrev@1.1.0                       | ISC                                                | https://github.com/isaacs/abbrev-js                           |
 | abbrev@1.1.1                       | ISC                                                | https://github.com/isaacs/abbrev-js                           |
 | accepts@1.3.5                      | MIT                                                | https://github.com/jshttp/accepts                             |
@@ -406,7 +406,7 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | js-tokens@3.0.2                    | MIT                                                | https://github.com/lydell/js-tokens                           |
 | jsbn@0.1.1                         | MIT                                                | https://github.com/andyperlitch/jsbn                          |
 | json-loader@0.5.7                  | MIT                                                | https://github.com/webpack/json-loader                        |
-| json-parse-better-errors@1.0.1     | MIT                                                | https://github.com/zkat/json-parse-better-errors              |
+| json-parse-better-errors@1.0.2     | MIT                                                | https://github.com/zkat/json-parse-better-errors              |
 | json-schema-traverse@0.3.1         | MIT                                                | https://github.com/epoberezkin/json-schema-traverse           |
 | json-schema@0.2.3                  | AFLv2.1,BSD                                        | https://github.com/kriszyp/json-schema                        |
 | json-stable-stringify@1.0.1        | MIT                                                | https://github.com/substack/json-stable-stringify             |
@@ -616,7 +616,7 @@ MIT | [MIT](http://opensource.org/licenses/mit-license.php) | org.scala-js # sca
 | resolve-cwd@2.0.0                  | MIT                                                | https://github.com/sindresorhus/resolve-cwd                   |
 | resolve-from@3.0.0                 | MIT                                                | https://github.com/sindresorhus/resolve-from                  |
 | resolve-url@0.2.1                  | MIT                                                | https://github.com/lydell/resolve-url                         |
-| resolve@1.6.0                      | MIT                                                | https://github.com/browserify/node-resolve                    |
+| resolve@1.7.0                      | MIT                                                | https://github.com/browserify/resolve                         |
 | ret@0.1.15                         | MIT                                                | https://github.com/fent/ret.js                                |
 | right-align@0.1.3                  | MIT                                                | https://github.com/jonschlinkert/right-align                  |
 | rimraf@2.6.1                       | ISC                                                | https://github.com/isaacs/rimraf                              |
