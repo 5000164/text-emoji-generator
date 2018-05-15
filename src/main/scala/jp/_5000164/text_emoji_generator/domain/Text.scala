@@ -64,4 +64,3 @@ case class PrintChar(
                       y: Double,
                       maxWidth: Double
                     )
-
