@@ -28,7 +28,7 @@ object Canvas {
     val selectedFontFace = if (state.fontFace == Gothic) "Hiragino Kaku Gothic ProN" else "Hiragino Mincho ProN"
     ctx.font = s"bold ${fontSize}px '$selectedFontFace'"
 
-    DomainText.calculatePosition(lines, state.align).foreach(c => ctx.fillText(c.content, c.x, c.y, c.maxWidth))
+    DomainText.calculatePosition(lines, state.align).foreach(c => ctx.fillText(c.content, c.x, c.y, c.width))
   }
 
   def save(text: String) = Callback {

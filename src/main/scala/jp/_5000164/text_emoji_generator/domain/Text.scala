@@ -11,7 +11,8 @@ object Text {
     val side = 128
     val maxLength = lines.reduceLeft((a, b) => if (a.length > b.length) a else b).length
     val maxRow = lines.length
-    val maxWidth = side / (if (maxLength > maxRow) maxLength else maxRow)
+    val width = side / (if (maxLength > maxRow) maxLength else maxRow)
+    val height = calculateFontSize(lines)
 
     val heightUnit = side / maxRow
     val heightUnitCenter = heightUnit / 2
@@ -29,7 +30,8 @@ object Text {
             char.toString,
             widthUnit * columnNumber - widthUnitCenter,
             heightUnit * rowNumber - heightUnitCenter,
-            maxWidth
+            width,
+            height
           ) :: result
           columnNumber += 1
         }
@@ -46,7 +48,8 @@ object Text {
             char.toString,
             margin + widthUnit * columnNumber - widthUnitCenter,
             heightUnit * rowNumber - heightUnitCenter,
-            maxWidth
+            width,
+            height
           ) :: result
           columnNumber += 1
         }
@@ -85,5 +88,6 @@ case class PrintChar(
                       content: String,
                       x: Double,
                       y: Double,
-                      maxWidth: Double
+                      width: Double,
+                      height: Double
                     )
