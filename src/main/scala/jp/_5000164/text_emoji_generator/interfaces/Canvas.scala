@@ -1,7 +1,7 @@
 package jp._5000164.text_emoji_generator.interfaces
 
 import japgolly.scalajs.react.Callback
-import jp._5000164.text_emoji_generator.domain.{Gothic, State, Text => DomainText}
+import jp._5000164.text_emoji_generator.domain.{Gothic, PrintChar, State, Text => DomainText}
 import org.scalajs.dom
 import org.scalajs.dom.document
 import org.scalajs.dom.html.Canvas
@@ -12,6 +12,12 @@ object Canvas {
   def get: Canvas = document.getElementById("canvas").asInstanceOf[Canvas]
 
   def generate(state: State): Callback = Callback {
+    val lines = state.text.split("\n").toList
+    val charList = DomainText.calculatePosition(lines, state.align)
+    printChar(charList, state)
+  }
+
+  def printChar(charList: List[PrintChar], state: State): Unit = {
     val canvas = get
     canvas.width = 128
     canvas.height = 128
@@ -20,15 +26,14 @@ object Canvas {
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
 
-    ctx.fillStyle = s"#${state.color}"
-
-    val lines = state.text.split("\n").toList
-
-    val fontSize = DomainText.calculateFontSize(lines)
     val selectedFontFace = if (state.fontFace == Gothic) "Hiragino Kaku Gothic ProN" else "Hiragino Mincho ProN"
-    ctx.font = s"bold ${fontSize}px '$selectedFontFace'"
 
-    DomainText.calculatePosition(lines, state.align).foreach(c => ctx.fillText(c.content, c.x, c.y, c.width))
+    ctx.fillStyle = s"#${state.color}"
+    charList.foreach(char => {
+      val fontSize = char.height
+      ctx.font = s"bold ${fontSize}px '$selectedFontFace'"
+      ctx.fillText(char.content, char.x, char.y, char.width)
+    })
   }
 
   def save(text: String) = Callback {
