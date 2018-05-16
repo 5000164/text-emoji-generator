@@ -21,40 +21,41 @@ object Text {
 
     var result: List[PrintChar] = List()
 
-    if (align == Left) {
-      var rowNumber = 1
-      for (line <- lines) {
-        var columnNumber = 1
-        for (char <- line) {
-          result = PrintChar(
-            char.toString,
-            widthUnit * columnNumber - widthUnitCenter,
-            heightUnit * rowNumber - heightUnitCenter,
-            width,
-            height
-          ) :: result
-          columnNumber += 1
+    align match {
+      case Left =>
+        var rowNumber = 1
+        for (line <- lines) {
+          var columnNumber = 1
+          for (char <- line) {
+            result = PrintChar(
+              char.toString,
+              widthUnit * columnNumber - widthUnitCenter,
+              heightUnit * rowNumber - heightUnitCenter,
+              width,
+              height
+            ) :: result
+            columnNumber += 1
+          }
+          rowNumber += 1
         }
-        rowNumber += 1
-      }
-    } else {
-      var rowNumber = 1
-      for (line <- lines) {
-        val lineWidth = widthUnit * line.length
-        val margin = (side - lineWidth) / 2
-        var columnNumber = 1
-        for (char <- line) {
-          result = PrintChar(
-            char.toString,
-            margin + widthUnit * columnNumber - widthUnitCenter,
-            heightUnit * rowNumber - heightUnitCenter,
-            width,
-            height
-          ) :: result
-          columnNumber += 1
+      case Center =>
+        var rowNumber = 1
+        for (line <- lines) {
+          val lineWidth = widthUnit * line.length
+          val margin = (side - lineWidth) / 2
+          var columnNumber = 1
+          for (char <- line) {
+            result = PrintChar(
+              char.toString,
+              margin + widthUnit * columnNumber - widthUnitCenter,
+              heightUnit * rowNumber - heightUnitCenter,
+              width,
+              height
+            ) :: result
+            columnNumber += 1
+          }
+          rowNumber += 1
         }
-        rowNumber += 1
-      }
     }
 
     result.reverse
