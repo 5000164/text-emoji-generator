@@ -23,38 +23,30 @@ object Text {
 
     align match {
       case Left =>
-        var rowNumber = 1
-        for (line <- lines) {
-          var columnNumber = 1
-          for (char <- line) {
+        for ((line, rowNumber) <- lines.zipWithIndex) {
+          for ((char, columnNumber) <- line.zipWithIndex) {
             result = PrintChar(
               char.toString,
-              widthUnit * columnNumber - widthUnitCenter,
-              heightUnit * rowNumber - heightUnitCenter,
+              widthUnit * (columnNumber + 1) - widthUnitCenter,
+              heightUnit * (rowNumber + 1) - heightUnitCenter,
               width,
               height
             ) :: result
-            columnNumber += 1
           }
-          rowNumber += 1
         }
       case Center =>
-        var rowNumber = 1
-        for (line <- lines) {
+        for ((line, rowNumber) <- lines.zipWithIndex) {
           val lineWidth = widthUnit * line.length
           val margin = (side - lineWidth) / 2
-          var columnNumber = 1
-          for (char <- line) {
+          for ((char, columnNumber) <- line.zipWithIndex) {
             result = PrintChar(
               char.toString,
-              margin + widthUnit * columnNumber - widthUnitCenter,
-              heightUnit * rowNumber - heightUnitCenter,
+              margin + widthUnit * (columnNumber + 1) - widthUnitCenter,
+              heightUnit * (rowNumber + 1) - heightUnitCenter,
               width,
               height
             ) :: result
-            columnNumber += 1
           }
-          rowNumber += 1
         }
     }
 
