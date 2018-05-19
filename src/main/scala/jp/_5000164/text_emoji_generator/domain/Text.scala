@@ -1,14 +1,14 @@
 package jp._5000164.text_emoji_generator.domain
 
 object Text {
+  val side = 128
+
   def calculateFontSize(lines: List[String]): Int = {
-    val side = 128
     val maxRow = lines.length
     side / maxRow
   }
 
   def calculatePosition(lines: List[String], align: Align): List[PrintChar] = {
-    val side = 128
     val maxLength = lines.reduceLeft((a, b) => if (a.length > b.length) a else b).length
     val maxRow = lines.length
     val width = side / (if (maxLength > maxRow) maxLength else maxRow)
