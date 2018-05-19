@@ -9,7 +9,7 @@ object Text {
   }
 
   def calculatePosition(lines: List[String], align: Align): List[PrintChar] = {
-    val maxLength = lines.reduceLeft((a, b) => if (a.length > b.length) a else b).length
+    val maxLength = lines.map(_.length).max
     val maxRow = lines.length
     val width = side / (if (maxLength > maxRow) maxLength else maxRow)
     val height = calculateFontSize(lines)
