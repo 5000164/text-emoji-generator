@@ -19,38 +19,35 @@ object Text {
     val widthUnit = side / maxLength
     val widthUnitCenter = widthUnit / 2
 
-    var result: List[PrintChar] = List()
-
     align match {
       case Left =>
-        for ((line, rowNumber) <- lines.zipWithIndex) {
-          for ((char, columnNumber) <- line.zipWithIndex) {
-            result = PrintChar(
-              char.toString,
-              widthUnit * (columnNumber + 1) - widthUnitCenter,
-              heightUnit * (rowNumber + 1) - heightUnitCenter,
-              width,
-              height
-            ) :: result
-          }
-        }
+        for (
+          (line, rowNumber) <- lines.zipWithIndex;
+          (char, columnNumber) <- line.zipWithIndex
+        ) yield
+          PrintChar(
+            char.toString,
+            widthUnit * (columnNumber + 1) - widthUnitCenter,
+            heightUnit * (rowNumber + 1) - heightUnitCenter,
+            width,
+            height
+          )
       case Center =>
-        for ((line, rowNumber) <- lines.zipWithIndex) {
+        for (
+          (line, rowNumber) <- lines.zipWithIndex;
+          (char, columnNumber) <- line.zipWithIndex
+        ) yield {
           val lineWidth = widthUnit * line.length
           val margin = (side - lineWidth) / 2
-          for ((char, columnNumber) <- line.zipWithIndex) {
-            result = PrintChar(
-              char.toString,
-              margin + widthUnit * (columnNumber + 1) - widthUnitCenter,
-              heightUnit * (rowNumber + 1) - heightUnitCenter,
-              width,
-              height
-            ) :: result
-          }
+          PrintChar(
+            char.toString,
+            margin + widthUnit * (columnNumber + 1) - widthUnitCenter,
+            heightUnit * (rowNumber + 1) - heightUnitCenter,
+            width,
+            height
+          )
         }
     }
-
-    result.reverse
   }
 
   val colorList = List(
