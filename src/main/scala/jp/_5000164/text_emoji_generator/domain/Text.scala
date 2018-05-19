@@ -22,27 +22,18 @@ object Text {
     for (
       (line, rowNumber) <- lines.zipWithIndex;
       (char, columnNumber) <- line.zipWithIndex
-    ) yield
-      align match {
+    ) yield {
+      val x = align match {
         case Left =>
-          PrintChar(
-            char.toString,
-            widthUnit * (columnNumber + 1) - widthUnitCenter,
-            heightUnit * (rowNumber + 1) - heightUnitCenter,
-            width,
-            height
-          )
+          widthUnit * (columnNumber + 1) - widthUnitCenter
         case Center =>
           val lineWidth = widthUnit * line.length
           val margin = (side - lineWidth) / 2
-          PrintChar(
-            char.toString,
-            margin + widthUnit * (columnNumber + 1) - widthUnitCenter,
-            heightUnit * (rowNumber + 1) - heightUnitCenter,
-            width,
-            height
-          )
+          margin + widthUnit * (columnNumber + 1) - widthUnitCenter
       }
+      val y = heightUnit * (rowNumber + 1) - heightUnitCenter
+      PrintChar(char.toString, x, y, width, height)
+    }
   }
 
   val colorList = List(
