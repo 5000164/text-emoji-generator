@@ -19,12 +19,12 @@ object Text {
     val widthUnit = side / maxLength
     val widthUnitCenter = widthUnit / 2
 
-    align match {
-      case Left =>
-        for (
-          (line, rowNumber) <- lines.zipWithIndex;
-          (char, columnNumber) <- line.zipWithIndex
-        ) yield
+    for (
+      (line, rowNumber) <- lines.zipWithIndex;
+      (char, columnNumber) <- line.zipWithIndex
+    ) yield
+      align match {
+        case Left =>
           PrintChar(
             char.toString,
             widthUnit * (columnNumber + 1) - widthUnitCenter,
@@ -32,11 +32,7 @@ object Text {
             width,
             height
           )
-      case Center =>
-        for (
-          (line, rowNumber) <- lines.zipWithIndex;
-          (char, columnNumber) <- line.zipWithIndex
-        ) yield {
+        case Center =>
           val lineWidth = widthUnit * line.length
           val margin = (side - lineWidth) / 2
           PrintChar(
@@ -46,8 +42,7 @@ object Text {
             width,
             height
           )
-        }
-    }
+      }
   }
 
   val colorList = List(
