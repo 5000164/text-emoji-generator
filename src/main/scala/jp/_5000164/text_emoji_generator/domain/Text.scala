@@ -11,30 +11,90 @@ object Text {
   }
 
   def calculatePosition(lines: List[String], align: Align): List[PrintChar] = {
+    val charSizeMatrix = calculateCharSize(lines)
+    val charPositionMatrix = calculateCharPosition(charSizeMatrix, align)
+    toPrintChar(lines, charSizeMatrix, charPositionMatrix)
+  }
+
+  /**
+    * 文字の大きさを計算する
+    *
+    * @param lines 入力された内容
+    * @return 文字ごとの大きさのマトリックス
+    */
+  private def calculateCharSize(lines: Seq[String]): Seq[Seq[CharSize]] = {
     val maxLength = lines.map(_.length).max
     val maxRow = lines.length
     val width = side / (if (maxLength > maxRow) maxLength else maxRow)
-    val height = calculateFontSize(lines)
+    val height = calculateFontSize(lines.toList)
 
-    val heightUnit = side / maxRow
-    val heightUnitCenter = heightUnit / 2
-    val widthUnit = side / maxLength
-    val widthUnitCenter = widthUnit / 2
-
-    for (
-      (line, rowNumber) <- lines.zipWithIndex;
-      (char, columnNumber) <- line.zipWithIndex
-    ) yield {
-      val margin = align match {
-        case Left => 0
-        case Center =>
-          val lineWidth = widthUnit * line.length
-          (side - lineWidth) / 2
+    for (line <- lines) yield
+      for (_ <- line) yield {
+        CharSize(width, height)
       }
-      val x = margin + widthUnit * (columnNumber + 1) - widthUnitCenter
-      val y = heightUnit * (rowNumber + 1) - heightUnitCenter
-      PrintChar(char.toString, x, y, width, height)
+  }
+
+  /**
+    * 文字の位置を計算する
+    *
+    * @param charSizeMatrix 文字ごとの大きさのマトリックス
+    * @param align          文字の位置揃え
+    * @return 文字ごとの位置のマトリックス
+    */
+  private def calculateCharPosition(charSizeMatrix: Seq[Seq[CharSize]], align: Align): Seq[Seq[CharPosition]] = {
+    var x = 0.0
+    var y = 0.0
+
+    for (charSizeList <- charSizeMatrix) yield {
+      x = 0.0
+      val height = charSizeList.head.height
+      y = y + height
+      val margin = calculateMargin(align, charSizeList)
+      for (charSize <- charSizeList) yield {
+        val width = charSize.width
+        x = x + width
+        CharPosition(
+          x = margin + x - (width / 2),
+          y = y - (height / 2)
+        )
+      }
     }
+  }
+
+  /**
+    * 行の開始位置までのマージンを計算する
+    *
+    * @param align        文字の位置揃え
+    * @param charSizeList 文字ごとの大きさのリスト
+    * @return 行の開始位置までのマージン
+    */
+  private def calculateMargin(align: Align, charSizeList: Seq[CharSize]): Double = align match {
+    case Left => 0
+    case Center =>
+      val totalWidth = charSizeList.map(_.width).sum
+      (side - totalWidth) / 2
+  }
+
+  /**
+    * 表示用のデータ構造に変換する
+    *
+    * @param lines              入力された内容
+    * @param charSizeMatrix     文字ごとの大きさのマトリックス
+    * @param charPositionMatrix 文字ごとの位置のマトリックス
+    * @return 表示用のデータ
+    */
+  private def toPrintChar(lines: List[String], charSizeMatrix: Seq[Seq[CharSize]], charPositionMatrix: Seq[Seq[CharPosition]]): List[PrintChar] = {
+    (for ((line, rowIndex) <- lines.zipWithIndex) yield {
+      for ((char, columnIndex) <- line.zipWithIndex) yield {
+        PrintChar(
+          char.toString,
+          charPositionMatrix(rowIndex)(columnIndex).x,
+          charPositionMatrix(rowIndex)(columnIndex).y,
+          charSizeMatrix(rowIndex)(columnIndex).width,
+          charSizeMatrix(rowIndex)(columnIndex).height
+        )
+      }
+    }).flatten
   }
 
   val colorList = List(
@@ -60,3 +120,13 @@ object Text {
     ("Black", "000000")
   )
 }
+
+case class CharSize(
+                     width: Double,
+                     height: Double
+                   )
+
+case class CharPosition(
+                         x: Double,
+                         y: Double
+                       )
