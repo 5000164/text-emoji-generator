@@ -1,5 +1,6 @@
 package jp._5000164.text_emoji_generator.domain
 
+import jp._5000164.text_emoji_generator.interfaces.PrintChar
 import org.scalatest.FreeSpec
 
 class TextTest extends FreeSpec {
