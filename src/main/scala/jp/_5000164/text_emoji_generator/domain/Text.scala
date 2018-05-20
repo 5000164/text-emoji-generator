@@ -1,7 +1,5 @@
 package jp._5000164.text_emoji_generator.domain
 
-import jp._5000164.text_emoji_generator.interfaces.PrintChar
-
 object Text {
   val side = 128
 
@@ -10,11 +8,11 @@ object Text {
     side / maxRow
   }
 
-  def calculatePosition(text: String, align: Align): Seq[PrintChar] = {
+  def calculatePosition(text: String, align: Align): (Seq[String], Seq[Seq[CharSize]], Seq[Seq[CharPosition]]) = {
     val lines = text.split("\n").toSeq
     val charSizeMatrix = calculateCharSize(lines)
     val charPositionMatrix = calculateCharPosition(charSizeMatrix, align)
-    toPrintChar(lines, charSizeMatrix, charPositionMatrix)
+    (lines, charSizeMatrix, charPositionMatrix)
   }
 
   /**
@@ -75,27 +73,6 @@ object Text {
       val totalWidth = charSizeList.map(_.width).sum
       (side - totalWidth) / 2
   }
-
-  /**
-    * 表示用のデータ構造に変換する
-    *
-    * @param lines              入力された内容
-    * @param charSizeMatrix     文字ごとの大きさのマトリックス
-    * @param charPositionMatrix 文字ごとの位置のマトリックス
-    * @return 表示用のデータ
-    */
-  private def toPrintChar(lines: Seq[String], charSizeMatrix: Seq[Seq[CharSize]], charPositionMatrix: Seq[Seq[CharPosition]]): Seq[PrintChar] =
-    (for ((line, rowIndex) <- lines.zipWithIndex) yield {
-      for ((char, columnIndex) <- line.zipWithIndex) yield {
-        PrintChar(
-          char.toString,
-          charPositionMatrix(rowIndex)(columnIndex).x,
-          charPositionMatrix(rowIndex)(columnIndex).y,
-          charSizeMatrix(rowIndex)(columnIndex).width,
-          charSizeMatrix(rowIndex)(columnIndex).height
-        )
-      }
-    }).flatten
 
   val colorList = List(
     ("Red", "F44336"),

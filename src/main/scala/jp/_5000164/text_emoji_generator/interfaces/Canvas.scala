@@ -1,7 +1,7 @@
 package jp._5000164.text_emoji_generator.interfaces
 
 import japgolly.scalajs.react.Callback
-import jp._5000164.text_emoji_generator.domain.{Gothic, State, Text => DomainText}
+import jp._5000164.text_emoji_generator.domain.{Align, CharPosition, CharSize, Gothic, State, Text => DomainText}
 import org.scalajs.dom
 import org.scalajs.dom.document
 import org.scalajs.dom.html.Canvas
@@ -12,9 +12,42 @@ object Canvas {
   def get: Canvas = document.getElementById("canvas").asInstanceOf[Canvas]
 
   def generate(state: State): Callback = Callback {
-    val charList = DomainText.calculatePosition(state.text, state.align)
-    printChar(charList, state)
+    val printCharList = calculatePrintChar(state.text, state.align)
+    printChar(printCharList, state)
   }
+
+  /**
+    * 表示するために計算する
+    *
+    * @param text  入力された内容
+    * @param align 文字の位置揃え
+    * @return 表示用の情報
+    */
+  def calculatePrintChar(text: String, align: Align): Seq[PrintChar] = {
+    val (lines, charSizeMatrix, charPositionMatrix) = DomainText.calculatePosition(text, align)
+    toPrintChar(lines, charSizeMatrix, charPositionMatrix)
+  }
+
+  /**
+    * 表示用のデータ構造に変換する
+    *
+    * @param lines              入力された内容
+    * @param charSizeMatrix     文字ごとの大きさのマトリックス
+    * @param charPositionMatrix 文字ごとの位置のマトリックス
+    * @return 表示用のデータ
+    */
+  private def toPrintChar(lines: Seq[String], charSizeMatrix: Seq[Seq[CharSize]], charPositionMatrix: Seq[Seq[CharPosition]]): Seq[PrintChar] =
+    (for ((line, rowIndex) <- lines.zipWithIndex) yield {
+      for ((char, columnIndex) <- line.zipWithIndex) yield {
+        PrintChar(
+          char.toString,
+          charPositionMatrix(rowIndex)(columnIndex).x,
+          charPositionMatrix(rowIndex)(columnIndex).y,
+          charSizeMatrix(rowIndex)(columnIndex).width,
+          charSizeMatrix(rowIndex)(columnIndex).height
+        )
+      }
+    }).flatten
 
   def printChar(charList: Seq[PrintChar], state: State): Unit = {
     val canvas = get
