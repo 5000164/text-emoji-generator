@@ -16,7 +16,7 @@ object Canvas {
     printChar(charList, state)
   }
 
-  def printChar(charList: List[PrintChar], state: State): Unit = {
+  def printChar(charList: Seq[PrintChar], state: State): Unit = {
     val canvas = get
     canvas.width = 128
     canvas.height = 128
