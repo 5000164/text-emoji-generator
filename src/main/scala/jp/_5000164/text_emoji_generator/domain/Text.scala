@@ -12,7 +12,7 @@ object Text {
   }
 
   /**
-    * 文字の大きさを計算する
+    * 文字の大きさを計算する。
     *
     * @param lines 1 行ごとに区切った内容
     * @return 文字ごとの大きさのマトリックス
@@ -28,7 +28,7 @@ object Text {
   }
 
   /**
-    * 基本となる文字の高さを計算する
+    * 基本となる文字の高さを計算する。
     *
     * @param lines 1 行ごとに区切った内容
     * @return 基本となる文字の高さ
@@ -36,7 +36,7 @@ object Text {
   private def calculateUnitHeight(lines: Seq[String]): Double = side / lines.length
 
   /**
-    * 基本となる文字の幅を計算する
+    * 基本となる文字の幅を計算する。
     *
     * @param lines      1 行ごとに区切った内容
     * @param unitHeight 基本となる文字の高さ
@@ -51,7 +51,7 @@ object Text {
   }
 
   /**
-    * 文字の位置を計算する
+    * 文字の位置を計算する。
     *
     * @param charSizeMatrix 文字ごとの大きさのマトリックス
     * @param align          文字の位置揃え
@@ -78,7 +78,7 @@ object Text {
   }
 
   /**
-    * 行の開始位置までのマージンを計算する
+    * 行の開始位置までのマージンを計算する。
     *
     * @param align        文字の位置揃え
     * @param charSizeList 文字ごとの大きさのリスト

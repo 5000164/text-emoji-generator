@@ -17,7 +17,7 @@ object Canvas {
   }
 
   /**
-    * 表示するために計算する
+    * 表示するために計算する。
     *
     * @param text  入力された内容
     * @param align 文字の位置揃え
@@ -29,7 +29,7 @@ object Canvas {
   }
 
   /**
-    * 表示用のデータ構造に変換する
+    * 表示用のデータ構造に変換する。
     *
     * @param lines              入力された内容
     * @param charSizeMatrix     文字ごとの大きさのマトリックス
