@@ -23,14 +23,13 @@ object Text {
       (line, rowNumber) <- lines.zipWithIndex;
       (char, columnNumber) <- line.zipWithIndex
     ) yield {
-      val x = align match {
-        case Left =>
-          widthUnit * (columnNumber + 1) - widthUnitCenter
+      val margin = align match {
+        case Left => 0
         case Center =>
           val lineWidth = widthUnit * line.length
-          val margin = (side - lineWidth) / 2
-          margin + widthUnit * (columnNumber + 1) - widthUnitCenter
+          (side - lineWidth) / 2
       }
+      val x = margin + widthUnit * (columnNumber + 1) - widthUnitCenter
       val y = heightUnit * (rowNumber + 1) - heightUnitCenter
       PrintChar(char.toString, x, y, width, height)
     }
