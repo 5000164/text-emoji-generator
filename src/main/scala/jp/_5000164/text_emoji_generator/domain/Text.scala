@@ -58,20 +58,20 @@ object Text {
     * @return 文字ごとの位置のマトリックス
     */
   private def calculateCharPosition(charSizeMatrix: Seq[Seq[CharSize]], align: Align): Seq[Seq[CharPosition]] = {
-    var x = 0.0
-    var y = 0.0
+    var endX = 0.0
+    var endY = 0.0
 
     for (charSizeList <- charSizeMatrix) yield {
-      x = 0.0
+      endX = 0.0
       val height = charSizeList.head.height
-      y = y + height
+      endY = endY + height
       val margin = calculateMargin(align, charSizeList)
       for (charSize <- charSizeList) yield {
         val width = charSize.width
-        x = x + width
+        endX = endX + width
         CharPosition(
-          x = margin + x - (width / 2),
-          y = y - (height / 2)
+          x = margin + endX - (width / 2),
+          y = endY - (height / 2)
         )
       }
     }
