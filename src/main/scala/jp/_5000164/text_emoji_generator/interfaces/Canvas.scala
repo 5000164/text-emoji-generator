@@ -1,7 +1,7 @@
 package jp._5000164.text_emoji_generator.interfaces
 
 import japgolly.scalajs.react.Callback
-import jp._5000164.text_emoji_generator.domain.{Gothic, PrintChar, State, Text => DomainText}
+import jp._5000164.text_emoji_generator.domain.{Gothic, State, Text => DomainText}
 import org.scalajs.dom
 import org.scalajs.dom.document
 import org.scalajs.dom.html.Canvas
@@ -52,3 +52,11 @@ object Canvas {
     dialog.showSaveDialog(null, option, callback)
   }
 }
+
+case class PrintChar(
+                      content: String,
+                      x: Double,
+                      y: Double,
+                      width: Double,
+                      height: Double
+                    )

@@ -1,5 +1,7 @@
 package jp._5000164.text_emoji_generator.domain
 
+import jp._5000164.text_emoji_generator.interfaces.PrintChar
+
 object Text {
   val side = 128
 
@@ -58,11 +60,3 @@ object Text {
     ("Black", "000000")
   )
 }
-
-case class PrintChar(
-                      content: String,
-                      x: Double,
-                      y: Double,
-                      width: Double,
-                      height: Double
-                    )
