@@ -10,7 +10,8 @@ object Text {
     side / maxRow
   }
 
-  def calculatePosition(lines: List[String], align: Align): List[PrintChar] = {
+  def calculatePosition(text: String, align: Align): List[PrintChar] = {
+    val lines = text.split("\n").toSeq
     val charSizeMatrix = calculateCharSize(lines)
     val charPositionMatrix = calculateCharPosition(charSizeMatrix, align)
     toPrintChar(lines, charSizeMatrix, charPositionMatrix)
@@ -83,7 +84,7 @@ object Text {
     * @param charPositionMatrix 文字ごとの位置のマトリックス
     * @return 表示用のデータ
     */
-  private def toPrintChar(lines: List[String], charSizeMatrix: Seq[Seq[CharSize]], charPositionMatrix: Seq[Seq[CharPosition]]): List[PrintChar] = {
+  private def toPrintChar(lines: Seq[String], charSizeMatrix: Seq[Seq[CharSize]], charPositionMatrix: Seq[Seq[CharPosition]]): List[PrintChar] = {
     (for ((line, rowIndex) <- lines.zipWithIndex) yield {
       for ((char, columnIndex) <- line.zipWithIndex) yield {
         PrintChar(
@@ -94,7 +95,7 @@ object Text {
           charSizeMatrix(rowIndex)(columnIndex).height
         )
       }
-    }).flatten
+    }).flatten.toList
   }
 
   val colorList = List(

@@ -12,8 +12,7 @@ object Canvas {
   def get: Canvas = document.getElementById("canvas").asInstanceOf[Canvas]
 
   def generate(state: State): Callback = Callback {
-    val lines = state.text.split("\n").toList
-    val charList = DomainText.calculatePosition(lines, state.align)
+    val charList = DomainText.calculatePosition(state.text, state.align)
     printChar(charList, state)
   }
 
