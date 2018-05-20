@@ -4,11 +4,6 @@ object Text {
   /** 配置できる枠の一辺の長さ */
   val side = 128
 
-  def calculateFontSize(lines: List[String]): Int = {
-    val maxRow = lines.length
-    side / maxRow
-  }
-
   def calculatePosition(text: String, align: Align): (Seq[String], Seq[Seq[CharSize]], Seq[Seq[CharPosition]]) = {
     val lines = text.split("\n").toSeq
     val charSizeMatrix = calculateCharSize(lines)
@@ -19,19 +14,40 @@ object Text {
   /**
     * 文字の大きさを計算する
     *
-    * @param lines 入力された内容
+    * @param lines 1 行ごとに区切った内容
     * @return 文字ごとの大きさのマトリックス
     */
   private def calculateCharSize(lines: Seq[String]): Seq[Seq[CharSize]] = {
-    val maxLength = lines.map(_.length).max
-    val maxRow = lines.length
-    val width = side / (if (maxLength > maxRow) maxLength else maxRow)
-    val height = calculateFontSize(lines.toList)
+    val unitHeight = calculateUnitHeight(lines)
+    val unitWidth = calculateUnitWidth(lines, unitHeight)
 
     for (line <- lines) yield
       for (_ <- line) yield {
-        CharSize(width, height)
+        CharSize(unitWidth, unitHeight)
       }
+  }
+
+  /**
+    * 基本となる文字の高さを計算する
+    *
+    * @param lines 1 行ごとに区切った内容
+    * @return 基本となる文字の高さ
+    */
+  private def calculateUnitHeight(lines: Seq[String]): Double = side / lines.length
+
+  /**
+    * 基本となる文字の幅を計算する
+    *
+    * @param lines      1 行ごとに区切った内容
+    * @param unitHeight 基本となる文字の高さ
+    * @return 基本となる文字の幅
+    */
+  private def calculateUnitWidth(lines: Seq[String], unitHeight: Double): Double = {
+    val maxLength = lines.map(_.length).max
+    val provisionalUnitWidth = side / maxLength
+
+    // 文字の幅は文字の高さを超えて指定することはできない
+    if (provisionalUnitWidth <= unitHeight) provisionalUnitWidth else unitHeight
   }
 
   /**
