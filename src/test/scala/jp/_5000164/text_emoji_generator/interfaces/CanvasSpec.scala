@@ -12,8 +12,7 @@ class CanvasSpec extends FreeSpec {
       PrintChar("ん", 96.0, 32.0, 64.0, 64.0),
       PrintChar("も", 32.0, 96.0, 64.0, 64.0),
       PrintChar("じ", 96.0, 96.0, 64.0, 64.0)
-    )
-    )
+    ))
   }
 
   "左寄せで 2 行で上が 2 文字で下が 3 文字の印字位置を計算" in {
