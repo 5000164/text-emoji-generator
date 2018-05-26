@@ -120,5 +120,11 @@ class CanvasSpec extends FeatureSpec {
       assert(Canvas.calculatePrintChar(text, Left) === Seq(
         PrintChar("1", 64.0, 64.0, 128.0, 128.0)))
     }
+
+    scenario("[] だけで内容がない") {
+      val text = "[]"
+      assert(Canvas.calculatePrintChar(text, Left) === Seq(
+        PrintChar(" ", 64.0, 64.0, 128.0, 128.0)))
+    }
   }
 }
