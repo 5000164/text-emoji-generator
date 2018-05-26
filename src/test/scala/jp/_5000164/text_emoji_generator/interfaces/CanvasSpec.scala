@@ -61,6 +61,24 @@ class CanvasSpec extends FeatureSpec {
     }
   }
 
+  feature("空の入力でもエラーを起こさない") {
+    scenario("入力が空") {
+      val text = ""
+      assert(Canvas.calculatePrintChar(text, Left) === Seq(
+        PrintChar(" ", 64.0, 64.0, 128.0, 128.0)))
+    }
+
+    scenario("空行がある") {
+      val text = """1
+                   |
+                   |2""".stripMargin
+      assert(Canvas.calculatePrintChar(text, Left) === Seq(
+        PrintChar("1", 21.333333333333332, 21.333333333333332, 42.666666666666664, 42.666666666666664),
+        PrintChar(" ", 21.333333333333332, 64.0, 42.666666666666664, 42.666666666666664),
+        PrintChar("2", 21.333333333333332, 106.66666666666667, 42.666666666666664, 42.666666666666664)))
+    }
+  }
+
   feature("[] で囲んだ部分は 1 文字分の幅になる") {
     scenario("行の先頭で挟む") {
       val text = "[12]3"

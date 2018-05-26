@@ -27,7 +27,9 @@ object Text {
   private def analysisText(text: String): Seq[Seq[RichChar]] = {
     val lines = text.split("\n").toSeq
     for (line <- lines) yield {
-      if (line.contains("[") && line.contains("]")) {
+      if (line == "") {
+        Seq(RichChar(' ', 1))
+      } else if (line.contains("[") && line.contains("]")) {
         val dividedByStart = line.split('[')
         if (dividedByStart.length == 1) {
           val dividedByEnd = dividedByStart.head.split(']')
