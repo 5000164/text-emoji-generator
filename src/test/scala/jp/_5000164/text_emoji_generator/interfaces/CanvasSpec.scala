@@ -79,7 +79,7 @@ class CanvasSpec extends FeatureSpec {
     }
 
     scenario("行の中間で挟む") {
-      val text = """1[23]4""".stripMargin
+      val text = "1[23]4"
       assert(Canvas.calculatePrintChar(text, Left) === Seq(
         PrintChar("1", 21.333333333333332, 64.0, 42.666666666666664, 128.0),
         PrintChar("2", 53.333333333333336, 64.0, 21.333333333333332, 128.0),
@@ -88,7 +88,7 @@ class CanvasSpec extends FeatureSpec {
     }
 
     scenario("挟む文字数を 3 文字にする") {
-      val text = """1[234]5""".stripMargin
+      val text = "1[234]5"
       assert(Canvas.calculatePrintChar(text, Left) === Seq(
         PrintChar("1", 21.333333333333332, 64.0, 42.666666666666664, 128.0),
         PrintChar("2", 49.77777777777777, 64.0, 14.222222222222221, 128.0),
