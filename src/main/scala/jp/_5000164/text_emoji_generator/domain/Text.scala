@@ -2,7 +2,7 @@ package jp._5000164.text_emoji_generator.domain
 
 object Text {
   /** 配置できる枠の一辺の長さ */
-  val side = 128
+  val side = 128.0
 
   /**
     * 位置を計算する。
