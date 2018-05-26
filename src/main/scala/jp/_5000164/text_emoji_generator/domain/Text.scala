@@ -31,43 +31,33 @@ object Text {
         Seq(RichChar(' ', 1))
       } else if (line.contains("[") && line.contains("]")) {
         val dividedByStart = line.split('[')
-        if (dividedByStart.length == 1) {
-          val dividedByEnd = dividedByStart.head.split(']')
-          if (dividedByEnd.length == 1) {
-            line.map(RichChar(_, 1))
+        val dividedByEnd = dividedByStart.last.split(']')
+        if (dividedByEnd.isEmpty) {
+          if (dividedByStart.head.isEmpty) {
+            Seq(RichChar(' ', 1))
           } else {
-            val surrounded = dividedByEnd.head
-            val tail = dividedByEnd.last
+            val head = dividedByStart.head
             var result: Seq[RichChar] = Seq()
-            result = result ++ surrounded.map(RichChar(_, surrounded.length))
-            result = result ++ tail.map(RichChar(_, 1))
+            result = result ++ head.map(RichChar(_, 1))
             result
           }
+        } else if (dividedByEnd.length == 1) {
+          val head = dividedByStart.head
+          val surrounded = dividedByEnd.head
+          var result: Seq[RichChar] = Seq()
+          result = result ++ head.map(RichChar(_, 1))
+          result = result ++ surrounded.map(RichChar(_, surrounded.length))
+          result
         } else {
-          val dividedByEnd = dividedByStart.last.split(']')
-          if (dividedByEnd.length == 0) {
-            val head = dividedByStart.head
-            var result: Seq[RichChar] = Seq()
-            result = result ++ head.map(RichChar(_, 1))
-            result
-          } else if (dividedByEnd.length == 1) {
-            val head = dividedByStart.head
-            val surrounded = dividedByEnd.head
-            var result: Seq[RichChar] = Seq()
-            result = result ++ head.map(RichChar(_, 1))
-            result = result ++ surrounded.map(RichChar(_, surrounded.length))
-            result
-          } else {
-            val head = dividedByStart.head
-            val surrounded = dividedByEnd.head
-            val tail = dividedByEnd.last
+          val head = dividedByStart.head
+          val surrounded = dividedByEnd.head
+          val tail = dividedByEnd.last
 
-            var result: Seq[RichChar] = Seq()
-            result = result ++ head.map(RichChar(_, 1))
-            result = result ++ surrounded.map(RichChar(_, surrounded.length))
-            result = result ++ tail.map(RichChar(_, 1))
-            result
-          }
+          var result: Seq[RichChar] = Seq()
+          result = result ++ head.map(RichChar(_, 1))
+          result = result ++ surrounded.map(RichChar(_, surrounded.length))
+          result = result ++ tail.map(RichChar(_, 1))
+          result
         }
       } else {
         line.map(RichChar(_, 1))
