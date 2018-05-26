@@ -98,9 +98,9 @@ class CanvasSpec extends FeatureSpec {
     }
 
     scenario("挟む文字数が空") {
-      val text = "![]"
+      val text = "1[]"
       assert(Canvas.calculatePrintChar(text, Left) === Seq(
-        PrintChar("!", 64.0, 64.0, 128.0, 128.0)))
+        PrintChar("1", 64.0, 64.0, 128.0, 128.0)))
     }
   }
 }
