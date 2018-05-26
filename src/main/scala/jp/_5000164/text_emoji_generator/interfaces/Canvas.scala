@@ -86,9 +86,8 @@ object Canvas {
 }
 
 case class PrintChar(
-                      content: String,
-                      x: Double,
-                      y: Double,
-                      width: Double,
-                      height: Double
-                    )
+    content: String,
+    x: Double,
+    y: Double,
+    width: Double,
+    height: Double)

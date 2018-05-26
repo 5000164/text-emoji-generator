@@ -11,8 +11,7 @@ class CanvasSpec extends FreeSpec {
       PrintChar("よ", 32.0, 32.0, 64.0, 64.0),
       PrintChar("ん", 96.0, 32.0, 64.0, 64.0),
       PrintChar("も", 32.0, 96.0, 64.0, 64.0),
-      PrintChar("じ", 96.0, 96.0, 64.0, 64.0)
-    ))
+      PrintChar("じ", 96.0, 96.0, 64.0, 64.0)))
   }
 
   "左寄せで 2 行で上が 2 文字で下が 3 文字の印字位置を計算" in {
@@ -23,8 +22,7 @@ class CanvasSpec extends FreeSpec {
       PrintChar("た", 63.0, 32.0, 42.0, 64.0),
       PrintChar("３", 21.0, 96.0, 42.0, 64.0),
       PrintChar("文", 63.0, 96.0, 42.0, 64.0),
-      PrintChar("字", 105.0, 96.0, 42.0, 64.0)
-    ))
+      PrintChar("字", 105.0, 96.0, 42.0, 64.0)))
   }
 
   "中央寄せで 2 行で上が 2 文字で下が 1 文字の印字位置を計算" in {
@@ -33,8 +31,7 @@ class CanvasSpec extends FreeSpec {
     assert(Canvas.calculatePrintChar(text, Center) === Seq(
       PrintChar("一", 32.0, 32.0, 64.0, 64.0),
       PrintChar("二", 96.0, 32.0, 64.0, 64.0),
-      PrintChar("三", 64.0, 96.0, 64.0, 64.0)
-    ))
+      PrintChar("三", 64.0, 96.0, 64.0, 64.0)))
   }
 
   "中央寄せで 2 行で上が 2 文字で下が 3 文字の印字位置を計算" in {
@@ -45,7 +42,7 @@ class CanvasSpec extends FreeSpec {
       PrintChar("二", 85.0, 32.0, 42.0, 64.0),
       PrintChar("三", 22.0, 96.0, 42.0, 64.0),
       PrintChar("四", 64.0, 96.0, 42.0, 64.0),
-      PrintChar("五", 106.0, 96.0, 42.0, 64.0)
-    ))
+      PrintChar("五", 106.0, 96.0, 42.0, 64.0)))
+  }
   }
 }
