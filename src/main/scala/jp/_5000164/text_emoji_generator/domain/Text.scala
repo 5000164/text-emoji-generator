@@ -43,7 +43,12 @@ object Text {
           }
         } else {
           val dividedByEnd = dividedByStart.last.split(']')
-          if (dividedByEnd.length == 1) {
+          if (dividedByEnd.length == 0) {
+            val head = dividedByStart.head
+            var result: Seq[RichChar] = Seq()
+            result = result ++ head.map(RichChar(_, 1))
+            result
+          } else if (dividedByEnd.length == 1) {
             val head = dividedByStart.head
             val surrounded = dividedByEnd.head
             var result: Seq[RichChar] = Seq()
