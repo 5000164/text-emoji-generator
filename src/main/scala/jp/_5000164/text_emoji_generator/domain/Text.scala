@@ -4,46 +4,104 @@ object Text {
   /** 配置できる枠の一辺の長さ */
   val side = 128
 
-  def calculatePosition(text: String, align: Align): (Seq[String], Seq[Seq[CharSize]], Seq[Seq[CharPosition]]) = {
-    val lines = text.split("\n").toSeq
-    val charSizeMatrix = calculateCharSize(lines)
+  /**
+    * 位置を計算する。
+    *
+    * @param text  入力された文字
+    * @param align 位置揃え
+    * @return 印字する文字、文字の大きさ、文字の位置
+    */
+  def calculatePosition(text: String, align: Align): (Seq[Seq[RichChar]], Seq[Seq[CharSize]], Seq[Seq[CharPosition]]) = {
+    val charMatrix = analysisText(text)
+    val charSizeMatrix = calculateCharSize(charMatrix)
     val charPositionMatrix = calculateCharPosition(charSizeMatrix, align)
-    (lines, charSizeMatrix, charPositionMatrix)
+    (charMatrix, charSizeMatrix, charPositionMatrix)
+  }
+
+  /**
+    * 文字を解析する。
+    *
+    * @param text 入力された文字
+    * @return 解析した文字
+    */
+  private def analysisText(text: String): Seq[Seq[RichChar]] = {
+    val lines = text.split("\n").toSeq
+    for (line <- lines) yield {
+      if (line.contains("[") && line.contains("]")) {
+        val dividedByStart = line.split('[')
+        if (dividedByStart.length == 1) {
+          val dividedByEnd = dividedByStart.head.split(']')
+          if (dividedByEnd.length == 1) {
+            line.map(RichChar(_, 1))
+          } else {
+            val surrounded = dividedByEnd.head
+            val tail = dividedByEnd.last
+            var result: Seq[RichChar] = Seq()
+            result = result ++ surrounded.map(RichChar(_, surrounded.length))
+            result = result ++ tail.map(RichChar(_, 1))
+            result
+          }
+        } else {
+          val dividedByEnd = dividedByStart.last.split(']')
+          if (dividedByEnd.length == 1) {
+            val head = dividedByStart.head
+            val surrounded = dividedByEnd.head
+            var result: Seq[RichChar] = Seq()
+            result = result ++ head.map(RichChar(_, 1))
+            result = result ++ surrounded.map(RichChar(_, surrounded.length))
+            result
+          } else {
+            val head = dividedByStart.head
+            val surrounded = dividedByEnd.head
+            val tail = dividedByEnd.last
+
+            var result: Seq[RichChar] = Seq()
+            result = result ++ head.map(RichChar(_, 1))
+            result = result ++ surrounded.map(RichChar(_, surrounded.length))
+            result = result ++ tail.map(RichChar(_, 1))
+            result
+          }
+        }
+      } else {
+        line.map(RichChar(_, 1))
+      }
+    }
   }
 
   /**
     * 文字の大きさを計算する。
     *
-    * @param lines 1 行ごとに区切った内容
+    * @param charMatrix 解析した文字
     * @return 文字ごとの大きさのマトリックス
     */
-  private def calculateCharSize(lines: Seq[String]): Seq[Seq[CharSize]] = {
-    val unitHeight = calculateUnitHeight(lines)
-    val unitWidth = calculateUnitWidth(lines, unitHeight)
+  private def calculateCharSize(charMatrix: Seq[Seq[RichChar]]): Seq[Seq[CharSize]] = {
+    val unitHeight = calculateUnitHeight(charMatrix)
+    val unitWidth = calculateUnitWidth(charMatrix, unitHeight)
 
-    for (line <- lines) yield
-      for (_ <- line) yield {
-        CharSize(unitWidth, unitHeight)
+    for (charList <- charMatrix) yield {
+      for (char <- charList) yield {
+        CharSize(unitWidth / char.divisionNumber, unitHeight)
       }
+    }
   }
 
   /**
     * 基本となる文字の高さを計算する。
     *
-    * @param lines 1 行ごとに区切った内容
+    * @param charMatrix 解析した文字
     * @return 基本となる文字の高さ
     */
-  private def calculateUnitHeight(lines: Seq[String]): Double = side / lines.length
+  private def calculateUnitHeight(charMatrix: Seq[Seq[RichChar]]): Double = side / charMatrix.length
 
   /**
     * 基本となる文字の幅を計算する。
     *
-    * @param lines      1 行ごとに区切った内容
+    * @param charMatrix 解析した文字
     * @param unitHeight 基本となる文字の高さ
     * @return 基本となる文字の幅
     */
-  private def calculateUnitWidth(lines: Seq[String], unitHeight: Double): Double = {
-    val maxLength = lines.map(_.length).max
+  private def calculateUnitWidth(charMatrix: Seq[Seq[RichChar]], unitHeight: Double): Double = {
+    val maxLength = charMatrix.map(_.map(1.0 / _.divisionNumber).sum).max
     val provisionalUnitWidth = side / maxLength
 
     // 文字の幅は文字の高さを超えて指定することはできない
