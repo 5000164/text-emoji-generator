@@ -115,12 +115,14 @@ object Text {
   )
 }
 
+case class RichChar(
+    char: Char,
+    divisionNumber: Int)
+
 case class CharSize(
-                     width: Double,
-                     height: Double
-                   )
+    width: Double,
+    height: Double)
 
 case class CharPosition(
-                         x: Double,
-                         y: Double
-                       )
+    x: Double,
+    y: Double)
