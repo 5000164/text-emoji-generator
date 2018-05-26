@@ -2,8 +2,9 @@ package jp._5000164.text_emoji_generator.interfaces
 
 import japgolly.scalajs.react.vdom.html_<^.{<, _}
 import japgolly.scalajs.react.{BackendScope, Callback, ReactEventFromInput, StateAccessPure}
+import jp._5000164.text_emoji_generator.domain.Text.colorList
 import jp._5000164.text_emoji_generator.domain._
-import jp._5000164.text_emoji_generator.interfaces.Canvas.colorList
+import jp._5000164.text_emoji_generator.interfaces.Styles.{colorList => colorListStyle}
 import scalacss.ScalaCssReact._
 
 import scala.scalajs.js
@@ -40,8 +41,8 @@ class Backend($: BackendScope[Unit, State]) {
           <.button("色をランダムで選択", ^.onClick --> onClickRandomColor(state, f), Styles.randomButton)
         ),
         <.ul(
-          Styles.colorList,
-          Canvas.colorList.toVdomArray({
+          colorListStyle,
+          colorList.toVdomArray({
             case (key, value) => <.li(
               ^.key := key,
               ^.onClick --> onClickColor(state, value, f),

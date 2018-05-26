@@ -5,7 +5,7 @@ name := "Text Emoji Generator"
 
 version := "1.2.0"
 
-scalaVersion := "2.12.4"
+scalaVersion := "2.12.6"
 
 scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked", "-Xlint")
 
