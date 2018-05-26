@@ -93,4 +93,10 @@ class CanvasSpec extends FreeSpec {
       PrintChar("!", 80.0, 64.0, 32.0, 128.0),
       PrintChar("!", 112.0, 64.0, 32.0, 128.0)))
   }
+
+  "[]の内容が空でも機能する" in {
+    val text = "![]"
+    assert(Canvas.calculatePrintChar(text, Left) === Seq(
+      PrintChar("!", 64.0, 64.0, 128.0, 128.0)))
+  }
 }
