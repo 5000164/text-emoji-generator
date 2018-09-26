@@ -2,11 +2,11 @@
 
 ## Scala Plugins
 
-| Name | License | Repository |
-| --- | --- | --- |
-| sbt-scalajs | BSD 3-Clause | https://github.com/scala-js/scala-js |
-| sbt-scalajs-bundler | BSD 3-Clause | https://github.com/scalacenter/scalajs-bundler |
-| sbt-license-report | Apache 2.0 | https://github.com/sbt/sbt-license-report |
+| Name | Version | License | Repository |
+| --- | --- | --- | --- |
+| sbt-scalajs | 0.6.23 | BSD 3-Clause | https://github.com/scala-js/scala-js |
+| sbt-scalajs-bundler | 0.12.0 | BSD 3-Clause | https://github.com/scalacenter/scalajs-bundler |
+| sbt-license-report | 1.2.0 | Apache 2.0 | https://github.com/sbt/sbt-license-report |
 
 ## Scala Dependencies
 
