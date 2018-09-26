@@ -78,7 +78,7 @@ object Canvas {
         val fileName = x.toString
         val image = canvas.toDataURL("image/png").drop("data:image/png;base64,".length)
         val fs = js.Dynamic.global.require("fs")
-        fs.writeFile(fileName, image, js.Dynamic.literal("encoding" -> "base64"))
+        fs.writeFile(fileName, image, js.Dynamic.literal("encoding" -> "base64"), (error: Any) => {if (error != null) {println(error)}})
       }
     }
     dialog.showSaveDialog(null, option, callback)
