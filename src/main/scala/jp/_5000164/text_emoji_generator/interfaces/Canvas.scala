@@ -1,7 +1,7 @@
 package jp._5000164.text_emoji_generator.interfaces
 
 import japgolly.scalajs.react.Callback
-import jp._5000164.text_emoji_generator.domain.{Gothic, State, Text => DomainText}
+import jp._5000164.text_emoji_generator.domain.{Align, CharPosition, CharSize, Gothic, RichChar, State, Text => DomainText}
 import org.scalajs.dom
 import org.scalajs.dom.document
 import org.scalajs.dom.html.Canvas
@@ -12,6 +12,44 @@ object Canvas {
   def get: Canvas = document.getElementById("canvas").asInstanceOf[Canvas]
 
   def generate(state: State): Callback = Callback {
+    val printCharList = calculatePrintChar(state.text, state.align)
+    printChar(printCharList, state)
+  }
+
+  /**
+    * 表示するために計算する。
+    *
+    * @param text  入力された内容
+    * @param align 文字の位置揃え
+    * @return 表示用の情報
+    */
+  def calculatePrintChar(text: String, align: Align): Seq[PrintChar] = {
+    val (charMatrix, charSizeMatrix, charPositionMatrix) = DomainText.calculatePosition(text, align)
+    toPrintChar(charMatrix, charSizeMatrix, charPositionMatrix)
+  }
+
+  /**
+    * 表示用のデータ構造に変換する。
+    *
+    * @param charMatrix         解析した文字
+    * @param charSizeMatrix     文字ごとの大きさのマトリックス
+    * @param charPositionMatrix 文字ごとの位置のマトリックス
+    * @return 表示用のデータ
+    */
+  private def toPrintChar(charMatrix: Seq[Seq[RichChar]], charSizeMatrix: Seq[Seq[CharSize]], charPositionMatrix: Seq[Seq[CharPosition]]): Seq[PrintChar] =
+    (for ((charList, rowIndex) <- charMatrix.zipWithIndex) yield {
+      for ((char, columnIndex) <- charList.zipWithIndex) yield {
+        PrintChar(
+          char.char.toString,
+          charPositionMatrix(rowIndex)(columnIndex).x,
+          charPositionMatrix(rowIndex)(columnIndex).y,
+          charSizeMatrix(rowIndex)(columnIndex).width,
+          charSizeMatrix(rowIndex)(columnIndex).height
+        )
+      }
+    }).flatten
+
+  def printChar(charList: Seq[PrintChar], state: State): Unit = {
     val canvas = get
     canvas.width = 128
     canvas.height = 128
@@ -20,15 +58,14 @@ object Canvas {
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
 
-    ctx.fillStyle = s"#${state.color}"
-
-    val lines = state.text.split("\n").toList
-
-    val fontSize = DomainText.calculateFontSize(lines)
     val selectedFontFace = if (state.fontFace == Gothic) "Hiragino Kaku Gothic ProN" else "Hiragino Mincho ProN"
-    ctx.font = s"bold ${fontSize}px '$selectedFontFace'"
 
-    DomainText.calculatePosition(lines, state.align).foreach(c => ctx.fillText(c.content, c.x, c.y, c.maxWidth))
+    ctx.fillStyle = s"#${state.color}"
+    charList.foreach(char => {
+      val fontSize = char.height
+      ctx.font = s"bold ${fontSize}px '$selectedFontFace'"
+      ctx.fillText(char.content, char.x, char.y, char.width)
+    })
   }
 
   def save(text: String) = Callback {
@@ -46,27 +83,11 @@ object Canvas {
     }
     dialog.showSaveDialog(null, option, callback)
   }
-
-  val colorList = List(
-    ("Red", "F44336"),
-    ("Pink", "E91E63"),
-    ("Purple", "9C27B0"),
-    ("Deep Purple", "673AB7"),
-    ("Indigo", "3F51B5"),
-    ("Blue", "2196F3"),
-    ("Light Blue", "03A9F4"),
-    ("Cyan", "00BCD4"),
-    ("Teal", "009688"),
-    ("Green", "4CAF50"),
-    ("Light Green", "8BC34A"),
-    ("Lime", "CDDC39"),
-    ("Yellow", "FFEB3B"),
-    ("Amber", "FFC107"),
-    ("Orange", "FF9800"),
-    ("Deep Orange", "FF5722"),
-    ("Brown", "795548"),
-    ("Grey", "9E9E9E"),
-    ("Blue Grey", "607D8B"),
-    ("Black", "000000")
-  )
 }
+
+case class PrintChar(
+    content: String,
+    x: Double,
+    y: Double,
+    width: Double,
+    height: Double)
