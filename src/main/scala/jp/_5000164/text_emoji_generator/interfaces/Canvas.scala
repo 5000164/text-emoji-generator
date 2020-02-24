@@ -68,7 +68,7 @@ object Canvas {
     })
   }
 
-  def save(text: String) = Callback {
+  def save(text: String): Callback = Callback {
     val canvas = get
     val fileName = text.replace("\n", "")
     val dialog = js.Dynamic.global.require("electron").remote.dialog
