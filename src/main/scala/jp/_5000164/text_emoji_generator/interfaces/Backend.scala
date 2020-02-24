@@ -26,7 +26,7 @@ class Backend($: BackendScope[Unit, State]) {
             ^.placeholder := "ここに入力",
             ^.onChange ==> onChangeText(state, f),
             Styles.text,
-            if (state.fontFace == Gothic) ^.fontFamily := "Hiragino Kaku Gothic ProN" else ^.fontFamily := "Hiragino Mincho ProN",
+            if (state.fontFace == Gothic) ^.fontFamily := "Hiragino Sans" else ^.fontFamily := "Hiragino Mincho ProN",
             if (state.align == Left) ^.textAlign := "left" else ^.textAlign := "center"
           ),
           <.canvas(^.id := "canvas", Styles.canvas)

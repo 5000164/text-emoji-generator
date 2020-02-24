@@ -58,7 +58,7 @@ object Canvas {
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
 
-    val selectedFontFace = if (state.fontFace == Gothic) "Hiragino Kaku Gothic ProN" else "Hiragino Mincho ProN"
+    val selectedFontFace = if (state.fontFace == Gothic) "Hiragino Sans" else "Hiragino Mincho ProN"
 
     ctx.fillStyle = s"#${state.color}"
     charList.foreach(char => {
