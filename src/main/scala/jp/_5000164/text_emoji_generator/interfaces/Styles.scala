@@ -28,7 +28,7 @@ object Styles extends StyleSheet.Inline {
     height(500 px),
     margin(0 px),
     padding(0 px),
-    backgroundColor(rgb(255, 255, 255))
+    backgroundColor(rgb(238, 238, 238))
   )
 
   val titleBar = style(height(22 px))
@@ -54,7 +54,8 @@ object Styles extends StyleSheet.Inline {
     width(128 px),
     height(128 px),
     noMargin,
-    defaultBorder
+    backgroundColor(rgb(255, 255, 255)),
+    borderRadius(16 px)
   )
 
   val text = style(

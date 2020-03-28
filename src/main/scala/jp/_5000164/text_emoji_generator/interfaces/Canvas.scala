@@ -68,6 +68,14 @@ object Canvas {
     canvas.height = 128
     type Ctx2D = dom.CanvasRenderingContext2D
     val ctx = canvas.getContext("2d").asInstanceOf[Ctx2D]
+
+    ctx.strokeStyle = "rgb(255, 255, 255)"
+    ctx.lineJoin = "round"
+    ctx.lineWidth = 32
+    ctx.strokeRect(16, 16, 96, 96)
+    ctx.fillStyle = "rgb(255, 255, 255)"
+    ctx.fillRect(16, 16, 96, 96)
+
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
 
