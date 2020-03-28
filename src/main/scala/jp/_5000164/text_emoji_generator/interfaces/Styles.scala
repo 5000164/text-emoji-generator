@@ -8,10 +8,7 @@ object Styles extends StyleSheet.Inline {
 
   import dsl._
 
-  val noMargin: Styles.dsl.StyleS = mixin(
-    margin(0 px),
-    padding(0 px)
-  )
+  val noMargin: Styles.dsl.StyleS = mixin(margin(0 px), padding(0 px))
 
   val defaultBorder: Styles.dsl.StyleS = mixin(
     border(1 px, solid, rgb(238, 238, 238))
@@ -34,9 +31,7 @@ object Styles extends StyleSheet.Inline {
     backgroundColor(rgb(255, 255, 255))
   )
 
-  val titleBar = style(
-    height(22 px)
-  )
+  val titleBar = style(height(22 px))
   val wrapper = style(
     display.grid,
     gridTemplateColumns := "1fr 1fr",
@@ -51,9 +46,7 @@ object Styles extends StyleSheet.Inline {
     gridColumnEnd := "3",
     width(260 px),
     margin(20 px, auto, 5 px),
-    unsafeChild("textarea::placeholder")(
-      color(rgb(238, 238, 238))
-    )
+    unsafeChild("textarea::placeholder")(color(rgb(238, 238, 238)))
   )
 
   val canvas = style(
@@ -80,9 +73,7 @@ object Styles extends StyleSheet.Inline {
     textAlign.right
   )
 
-  val saveButton = style(
-    defaultButton
-  )
+  val saveButton = style(defaultButton)
 
   val selectColorWrapper = style(
     gridColumnStart := "1",
@@ -91,16 +82,9 @@ object Styles extends StyleSheet.Inline {
     textAlign.right
   )
 
-  val textColor = style(
-    width(100 px),
-    height(28 px),
-    noMargin,
-    defaultBorder
-  )
+  val textColor = style(width(100 px), height(28 px), noMargin, defaultBorder)
 
-  val randomButton = style(
-    defaultButton
-  )
+  val randomButton = style(defaultButton)
 
   val colorList = style(
     gridColumnStart := "1",
@@ -120,23 +104,13 @@ object Styles extends StyleSheet.Inline {
     userSelect := "none"
   )
 
-  val fontFaceSelector = style(
-    gridColumnStart := "1",
-    gridColumnEnd := "2",
-    margin(5 px, 0 px)
-  )
+  val fontFaceSelector =
+    style(gridColumnStart := "1", gridColumnEnd := "2", margin(5 px, 0 px))
 
-  val fontFaceButton = style(
-    cursor.pointer
-  )
+  val fontFaceButton = style(cursor.pointer)
 
-  val alignSelector = style(
-    gridColumnStart := "2",
-    gridColumnEnd := "3",
-    margin(5 px, 0 px)
-  )
+  val alignSelector =
+    style(gridColumnStart := "2", gridColumnEnd := "3", margin(5 px, 0 px))
 
-  val alignButton = style(
-    cursor.pointer
-  )
+  val alignButton = style(cursor.pointer)
 }
