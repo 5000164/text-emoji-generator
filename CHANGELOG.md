@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.4.0 - 28 Mar 2020
+
+- Added support for catalina
+- Added support for dark mode
+
 ## 1.3.1 - 26 Sep 2018
 
 - 画像が保存できなかったバグを修正
