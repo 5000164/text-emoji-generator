@@ -1,7 +1,15 @@
 package jp._5000164.text_emoji_generator.interfaces
 
 import japgolly.scalajs.react.Callback
-import jp._5000164.text_emoji_generator.domain.{Align, CharPosition, CharSize, Gothic, RichChar, State, Text => DomainText}
+import jp._5000164.text_emoji_generator.domain.{
+  Align,
+  CharPosition,
+  CharSize,
+  Gothic,
+  RichChar,
+  State,
+  Text => DomainText
+}
 import org.scalajs.dom
 import org.scalajs.dom.document
 import org.scalajs.dom.html.Canvas
@@ -24,7 +32,8 @@ object Canvas {
     * @return 表示用の情報
     */
   def calculatePrintChar(text: String, align: Align): Seq[PrintChar] = {
-    val (charMatrix, charSizeMatrix, charPositionMatrix) = DomainText.calculatePosition(text, align)
+    val (charMatrix, charSizeMatrix, charPositionMatrix) =
+      DomainText.calculatePosition(text, align)
     toPrintChar(charMatrix, charSizeMatrix, charPositionMatrix)
   }
 
@@ -36,7 +45,11 @@ object Canvas {
     * @param charPositionMatrix 文字ごとの位置のマトリックス
     * @return 表示用のデータ
     */
-  private def toPrintChar(charMatrix: Seq[Seq[RichChar]], charSizeMatrix: Seq[Seq[CharSize]], charPositionMatrix: Seq[Seq[CharPosition]]): Seq[PrintChar] =
+  private def toPrintChar(
+    charMatrix: Seq[Seq[RichChar]],
+    charSizeMatrix: Seq[Seq[CharSize]],
+    charPositionMatrix: Seq[Seq[CharPosition]]
+  ): Seq[PrintChar] =
     (for ((charList, rowIndex) <- charMatrix.zipWithIndex) yield {
       for ((char, columnIndex) <- charList.zipWithIndex) yield {
         PrintChar(
@@ -55,10 +68,19 @@ object Canvas {
     canvas.height = 128
     type Ctx2D = dom.CanvasRenderingContext2D
     val ctx = canvas.getContext("2d").asInstanceOf[Ctx2D]
+
+    ctx.strokeStyle = "rgb(255, 255, 255)"
+    ctx.lineJoin = "round"
+    ctx.lineWidth = 32
+    ctx.strokeRect(16, 16, 96, 96)
+    ctx.fillStyle = "rgb(255, 255, 255)"
+    ctx.fillRect(16, 16, 96, 96)
+
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
 
-    val selectedFontFace = if (state.fontFace == Gothic) "Hiragino Sans" else "Hiragino Mincho ProN"
+    val selectedFontFace =
+      if (state.fontFace == Gothic) "Hiragino Sans" else "Hiragino Mincho ProN"
 
     ctx.fillStyle = s"#${state.color}"
     charList.foreach(char => {
@@ -76,18 +98,23 @@ object Canvas {
     val callback = (x: Any) => {
       if (x.isInstanceOf[String]) {
         val fileName = x.toString
-        val image = canvas.toDataURL("image/png").drop("data:image/png;base64,".length)
+        val image =
+          canvas.toDataURL("image/png").drop("data:image/png;base64,".length)
         val fs = js.Dynamic.global.require("fs")
-        fs.writeFile(fileName, image, js.Dynamic.literal("encoding" -> "base64"), (error: Any) => {if (error != null) {println(error)}})
+        fs.writeFile(
+          fileName,
+          image,
+          js.Dynamic.literal("encoding" -> "base64"),
+          (error: Any) => { if (error != null) { println(error) } }
+        )
       }
     }
     dialog.showSaveDialog(null, option, callback)
   }
 }
 
-case class PrintChar(
-    content: String,
-    x: Double,
-    y: Double,
-    width: Double,
-    height: Double)
+case class PrintChar(content: String,
+                     x: Double,
+                     y: Double,
+                     width: Double,
+                     height: Double)
