@@ -93,23 +93,12 @@ object Canvas {
   def save(text: String): Callback = Callback {
     val canvas = get
     val fileName = text.replace("\n", "")
-    val dialog = js.Dynamic.global.require("electron").remote.dialog
-    val option = js.Dynamic.literal("defaultPath" -> s"$fileName.png")
-    val callback = (x: Any) => {
-      if (x.isInstanceOf[String]) {
-        val fileName = x.toString
-        val image =
-          canvas.toDataURL("image/png").drop("data:image/png;base64,".length)
-        val fs = js.Dynamic.global.require("fs")
-        fs.writeFile(
-          fileName,
-          image,
-          js.Dynamic.literal("encoding" -> "base64"),
-          (error: Any) => { if (error != null) { println(error) } }
-        )
-      }
-    }
-    dialog.showSaveDialog(null, option, callback)
+    val image =
+      canvas.toDataURL("image/png").drop("data:image/png;base64,".length)
+    dom.window
+      .asInstanceOf[js.Dynamic]
+      .electron
+      .save(js.Dynamic.literal("fileName" -> fileName, "data" -> image))
   }
 }
 

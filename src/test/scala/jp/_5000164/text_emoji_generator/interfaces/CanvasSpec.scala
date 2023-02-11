@@ -1,9 +1,9 @@
 package jp._5000164.text_emoji_generator.interfaces
 
 import jp._5000164.text_emoji_generator.domain.{Center, Left}
-import org.scalatest.FeatureSpec
+import org.scalatest.featurespec.AnyFeatureSpec
 
-class CanvasSpec extends FeatureSpec {
+class CanvasSpec extends AnyFeatureSpec {
   feature("左寄せの位置が計算できる") {
     scenario("1 行目と 2 行目が同じ文字数") {
       val text = """12

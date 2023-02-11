@@ -3,9 +3,9 @@ enablePlugins(ScalaJSBundlerPlugin)
 
 name := "Text Emoji Generator"
 
-version := "1.4.0"
+version := "1.4.1"
 
-scalaVersion := "2.12.6"
+scalaVersion := "2.13.10"
 
 scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked", "-Xlint")
 
@@ -17,13 +17,13 @@ if (sys.env.getOrElse("TEXT_EMOJI_GENERATOR_ENV", "production") == "production")
 
 scalaJSUseMainModuleInitializer := true
 
-libraryDependencies += "com.github.japgolly.scalajs-react" %%% "core" % "1.2.0"
-libraryDependencies += "com.github.japgolly.scalacss" %%% "core" % "0.5.5"
-libraryDependencies += "com.github.japgolly.scalacss" %%% "ext-react" % "0.5.5"
+libraryDependencies += "com.github.japgolly.scalajs-react" %%% "core" % "2.1.1"
+libraryDependencies += "com.github.japgolly.scalacss" %%% "core" % "1.0.0"
+libraryDependencies += "com.github.japgolly.scalacss" %%% "ext-react" % "1.0.0"
 
 npmDependencies in Compile ++= Seq(
-  "react" -> "16.2.0",
-  "react-dom" -> "16.2.0")
+  "react" -> "17.0.2",
+  "react-dom" -> "17.0.2")
 
-libraryDependencies += "org.scalactic" %% "scalactic" % "3.0.5"
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.5" % "test"
+libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.14"
+libraryDependencies += "org.scalatest" %% "scalatest-featurespec" % "3.2.14" % "test"
