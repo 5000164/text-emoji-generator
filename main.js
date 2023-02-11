@@ -1,11 +1,19 @@
-const {app, BrowserWindow, Menu} = require('electron')
+const fs = require('fs').promises
 const path = require('path')
 const url = require('url')
+const {app, BrowserWindow, Menu, ipcMain, dialog} = require('electron')
 
 let win
 
 function createWindow() {
-  win = new BrowserWindow({'titleBarStyle': 'hidden', width: 500, height: 500})
+  win = new BrowserWindow({
+    width: 500,
+    height: 500,
+    titleBarStyle: 'hidden',
+    webPreferences: {
+      preload: __dirname + '/preload.js'
+    },
+  })
 
   const pathname = (process.env.TEXT_EMOJI_GENERATOR_ENV === 'development') ? path.join(__dirname, 'index-dev.html') : path.join(__dirname, 'index.html')
 
@@ -112,5 +120,14 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
   if (win === null) {
     createWindow()
+  }
+})
+
+ipcMain.on("save", async (event, {fileName, data}) => {
+  const {canceled, filePath} = await dialog.showSaveDialog(null, {
+    defaultPath: `${fileName}.png`
+  })
+  if (!canceled) {
+    await fs.writeFile(filePath, data, {encoding: "base64"})
   }
 })
