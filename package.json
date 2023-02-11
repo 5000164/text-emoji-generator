@@ -1,5 +1,14 @@
 {
   "name": "Text Emoji Generator",
   "version": "1.4.1",
-  "main": "main.js"
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package": "electron-packager . \"Text Emoji Generator\" --platform=darwin --arch=arm64 --electronVersion=19.0.0 --icon=logo.icns --out=$PACKAGE_OUT_PATH --overwrite --asar"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "electron": "^19.0.0",
+    "electron-packager": "^15.5.1"
+  }
 }
