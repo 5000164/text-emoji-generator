@@ -22,7 +22,7 @@ object Canvas {
     * @param align 文字の位置揃え
     * @return 表示用の情報
     */
-  def calculatePrintChar(text: String, align: Align): Seq[PrintChar] = {
+  def calculatePrintChar(text: String, align: Align): Seq[CharToPrint] = {
     val (charMatrix, charSizeMatrix, charPositionMatrix) =
       DomainText.calculatePosition(text, align)
     toPrintChar(charMatrix, charSizeMatrix, charPositionMatrix)
@@ -39,11 +39,11 @@ object Canvas {
       charMatrix: Seq[Seq[RichChar]],
       charSizeMatrix: Seq[Seq[CharSize]],
       charPositionMatrix: Seq[Seq[CharPosition]]
-  ): Seq[PrintChar] =
+  ): Seq[CharToPrint] =
     (for ((charList, rowIndex) <- charMatrix.zipWithIndex) yield {
       for ((char, columnIndex) <- charList.zipWithIndex) yield {
-        PrintChar(
-          char.char.toString,
+        CharToPrint(
+          char.codePoint,
           charPositionMatrix(rowIndex)(columnIndex).x,
           charPositionMatrix(rowIndex)(columnIndex).y,
           charSizeMatrix(rowIndex)(columnIndex).width,
@@ -52,7 +52,7 @@ object Canvas {
       }
     }).flatten
 
-  def printChar(charList: Seq[PrintChar], state: State): Unit = {
+  def printChar(charList: Seq[CharToPrint], state: State): Unit = {
     val canvas = get
     canvas.width = 128
     canvas.height = 128
@@ -78,7 +78,7 @@ object Canvas {
       val fontSize = char.height
       ctx.font = s"bold ${fontSize}px '$selectedFontFace'"
       ctx.fillText(
-        char.content,
+        Character.toChars(char.codePoint).mkString(""),
         char.x,
         char.y,
         char.width

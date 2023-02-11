@@ -59,7 +59,26 @@ object Text {
           result
         }
       } else {
-        line.map(RichChar(_, 1))
+        // サロゲートペアを考慮
+        var result = Seq[RichChar]()
+        var skip = false
+        for (index <- 0 until line.length) {
+          if (skip) {
+            skip = false
+          } else {
+            result :+= RichChar(line.codePointAt(index), 1)
+          }
+
+          if (
+            line
+              .substring(index, index + 1)
+              .charAt(0)
+              .isHighSurrogate
+          ) {
+            skip = true
+          }
+        }
+        result
       }
     }
   }
@@ -164,7 +183,7 @@ object Text {
   )
 }
 
-case class RichChar(char: Char, divisionNumber: Int)
+case class RichChar(codePoint: Int, divisionNumber: Int)
 
 case class CharSize(width: Double, height: Double)
 
