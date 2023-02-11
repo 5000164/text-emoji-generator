@@ -1,6 +1,6 @@
 {
   "name": "Text Emoji Generator",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "main": "main.js",
   "scripts": {
     "start": "electron .",

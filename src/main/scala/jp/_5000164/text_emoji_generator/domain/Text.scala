@@ -59,7 +59,26 @@ object Text {
           result
         }
       } else {
-        line.map(RichChar(_, 1))
+        // サロゲートペアを考慮
+        var result = Seq[RichChar]()
+        var skip = false
+        for (index <- 0 until line.length) {
+          if (skip) {
+            skip = false
+          } else {
+            result :+= RichChar(line.codePointAt(index), 1)
+          }
+
+          if (
+            line
+              .substring(index, index + 1)
+              .charAt(0)
+              .isHighSurrogate
+          ) {
+            skip = true
+          }
+        }
+        result
       }
     }
   }
@@ -141,30 +160,24 @@ object Text {
   }
 
   val colorList = List(
-    ("Red", "F44336"),
-    ("Pink", "E91E63"),
-    ("Purple", "9C27B0"),
-    ("Deep Purple", "673AB7"),
-    ("Indigo", "3F51B5"),
-    ("Blue", "2196F3"),
-    ("Light Blue", "03A9F4"),
-    ("Cyan", "00BCD4"),
-    ("Teal", "009688"),
-    ("Green", "4CAF50"),
-    ("Light Green", "8BC34A"),
-    ("Lime", "CDDC39"),
-    ("Yellow", "FFEB3B"),
-    ("Amber", "FFC107"),
-    ("Orange", "FF9800"),
-    ("Deep Orange", "FF5722"),
-    ("Brown", "795548"),
-    ("Grey", "9E9E9E"),
-    ("Blue Grey", "607D8B"),
+    ("Red", "ff3b30"),
+    ("Orange", "ff9500"),
+    ("Yellow", "ffcc00"),
+    ("Green", "28cd41"),
+    ("Mint", "00c7be"),
+    ("Teal", "59adc4"),
+    ("Cyan", "55bef0"),
+    ("Blue", "007aff"),
+    ("Indigo", "5856d6"),
+    ("Purple", "af52de"),
+    ("Pink", "ff2d55"),
+    ("Brown", "a2845e"),
+    ("Gray", "8e8e93"),
     ("Black", "000000")
   )
 }
 
-case class RichChar(char: Char, divisionNumber: Int)
+case class RichChar(codePoint: Int, divisionNumber: Int)
 
 case class CharSize(width: Double, height: Double)
 

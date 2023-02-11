@@ -10,10 +10,10 @@ class CanvasSpec extends AnyFeatureSpec {
                    |34""".stripMargin
       assert(
         Canvas.calculatePrintChar(text, Left) === Seq(
-          PrintChar("1", 32.0, 32.0, 64.0, 64.0),
-          PrintChar("2", 96.0, 32.0, 64.0, 64.0),
-          PrintChar("3", 32.0, 96.0, 64.0, 64.0),
-          PrintChar("4", 96.0, 96.0, 64.0, 64.0)
+          CharToPrint("1".codePointAt(0), 32.0, 32.0, 64.0, 64.0),
+          CharToPrint("2".codePointAt(0), 96.0, 32.0, 64.0, 64.0),
+          CharToPrint("3".codePointAt(0), 32.0, 96.0, 64.0, 64.0),
+          CharToPrint("4".codePointAt(0), 96.0, 96.0, 64.0, 64.0)
         )
       )
     }
@@ -23,24 +23,24 @@ class CanvasSpec extends AnyFeatureSpec {
                    |345""".stripMargin
       assert(
         Canvas.calculatePrintChar(text, Left) === Seq(
-          PrintChar(
-            "1",
+          CharToPrint(
+            "1".codePointAt(0),
             21.333333333333332,
             32.0,
             42.666666666666664,
             64.0
           ),
-          PrintChar("2", 64.0, 32.0, 42.666666666666664, 64.0),
-          PrintChar(
-            "3",
+          CharToPrint("2".codePointAt(0), 64.0, 32.0, 42.666666666666664, 64.0),
+          CharToPrint(
+            "3".codePointAt(0),
             21.333333333333332,
             96.0,
             42.666666666666664,
             64.0
           ),
-          PrintChar("4", 64.0, 96.0, 42.666666666666664, 64.0),
-          PrintChar(
-            "5",
+          CharToPrint("4".codePointAt(0), 64.0, 96.0, 42.666666666666664, 64.0),
+          CharToPrint(
+            "5".codePointAt(0),
             106.66666666666667,
             96.0,
             42.666666666666664,
@@ -57,9 +57,9 @@ class CanvasSpec extends AnyFeatureSpec {
                    |3""".stripMargin
       assert(
         Canvas.calculatePrintChar(text, Center) === Seq(
-          PrintChar("1", 32.0, 32.0, 64.0, 64.0),
-          PrintChar("2", 96.0, 32.0, 64.0, 64.0),
-          PrintChar("3", 64.0, 96.0, 64.0, 64.0)
+          CharToPrint("1".codePointAt(0), 32.0, 32.0, 64.0, 64.0),
+          CharToPrint("2".codePointAt(0), 96.0, 32.0, 64.0, 64.0),
+          CharToPrint("3".codePointAt(0), 64.0, 96.0, 64.0, 64.0)
         )
       )
     }
@@ -69,30 +69,30 @@ class CanvasSpec extends AnyFeatureSpec {
                    |345""".stripMargin
       assert(
         Canvas.calculatePrintChar(text, Center) === Seq(
-          PrintChar(
-            "1",
+          CharToPrint(
+            "1".codePointAt(0),
             42.66666666666667,
             32.0,
             42.666666666666664,
             64.0
           ),
-          PrintChar(
-            "2",
+          CharToPrint(
+            "2".codePointAt(0),
             85.33333333333333,
             32.0,
             42.666666666666664,
             64.0
           ),
-          PrintChar(
-            "3",
+          CharToPrint(
+            "3".codePointAt(0),
             21.333333333333332,
             96.0,
             42.666666666666664,
             64.0
           ),
-          PrintChar("4", 64.0, 96.0, 42.666666666666664, 64.0),
-          PrintChar(
-            "5",
+          CharToPrint("4".codePointAt(0), 64.0, 96.0, 42.666666666666664, 64.0),
+          CharToPrint(
+            "5".codePointAt(0),
             106.66666666666667,
             96.0,
             42.666666666666664,
@@ -110,22 +110,22 @@ class CanvasSpec extends AnyFeatureSpec {
                    |3""".stripMargin
       assert(
         Canvas.calculatePrintChar(text, Left) === Seq(
-          PrintChar(
-            "1",
+          CharToPrint(
+            "1".codePointAt(0),
             21.333333333333332,
             21.333333333333332,
             42.666666666666664,
             42.666666666666664
           ),
-          PrintChar(
-            "2",
+          CharToPrint(
+            "2".codePointAt(0),
             21.333333333333332,
             64.0,
             42.666666666666664,
             42.666666666666664
           ),
-          PrintChar(
-            "3",
+          CharToPrint(
+            "3".codePointAt(0),
             21.333333333333332,
             106.66666666666667,
             42.666666666666664,
@@ -141,7 +141,7 @@ class CanvasSpec extends AnyFeatureSpec {
       val text = ""
       assert(
         Canvas.calculatePrintChar(text, Left) === Seq(
-          PrintChar(" ", 64.0, 64.0, 128.0, 128.0)
+          CharToPrint(" ".codePointAt(0), 64.0, 64.0, 128.0, 128.0)
         )
       )
     }
@@ -152,22 +152,22 @@ class CanvasSpec extends AnyFeatureSpec {
                    |2""".stripMargin
       assert(
         Canvas.calculatePrintChar(text, Left) === Seq(
-          PrintChar(
-            "1",
+          CharToPrint(
+            "1".codePointAt(0),
             21.333333333333332,
             21.333333333333332,
             42.666666666666664,
             42.666666666666664
           ),
-          PrintChar(
-            " ",
+          CharToPrint(
+            " ".codePointAt(0),
             21.333333333333332,
             64.0,
             42.666666666666664,
             42.666666666666664
           ),
-          PrintChar(
-            "2",
+          CharToPrint(
+            "2".codePointAt(0),
             21.333333333333332,
             106.66666666666667,
             42.666666666666664,
@@ -183,9 +183,9 @@ class CanvasSpec extends AnyFeatureSpec {
       val text = "[12]3"
       assert(
         Canvas.calculatePrintChar(text, Left) === Seq(
-          PrintChar("1", 16.0, 64.0, 32.0, 128.0),
-          PrintChar("2", 48.0, 64.0, 32.0, 128.0),
-          PrintChar("3", 96.0, 64.0, 64.0, 128.0)
+          CharToPrint("1".codePointAt(0), 16.0, 64.0, 32.0, 128.0),
+          CharToPrint("2".codePointAt(0), 48.0, 64.0, 32.0, 128.0),
+          CharToPrint("3".codePointAt(0), 96.0, 64.0, 64.0, 128.0)
         )
       )
     }
@@ -194,9 +194,9 @@ class CanvasSpec extends AnyFeatureSpec {
       val text = "1[23]"
       assert(
         Canvas.calculatePrintChar(text, Left) === Seq(
-          PrintChar("1", 32.0, 64.0, 64.0, 128.0),
-          PrintChar("2", 80.0, 64.0, 32.0, 128.0),
-          PrintChar("3", 112.0, 64.0, 32.0, 128.0)
+          CharToPrint("1".codePointAt(0), 32.0, 64.0, 64.0, 128.0),
+          CharToPrint("2".codePointAt(0), 80.0, 64.0, 32.0, 128.0),
+          CharToPrint("3".codePointAt(0), 112.0, 64.0, 32.0, 128.0)
         )
       )
     }
@@ -205,29 +205,29 @@ class CanvasSpec extends AnyFeatureSpec {
       val text = "1[23]4"
       assert(
         Canvas.calculatePrintChar(text, Left) === Seq(
-          PrintChar(
-            "1",
+          CharToPrint(
+            "1".codePointAt(0),
             21.333333333333332,
             64.0,
             42.666666666666664,
             128.0
           ),
-          PrintChar(
-            "2",
+          CharToPrint(
+            "2".codePointAt(0),
             53.333333333333336,
             64.0,
             21.333333333333332,
             128.0
           ),
-          PrintChar(
-            "3",
+          CharToPrint(
+            "3".codePointAt(0),
             74.66666666666666,
             64.0,
             21.333333333333332,
             128.0
           ),
-          PrintChar(
-            "4",
+          CharToPrint(
+            "4".codePointAt(0),
             106.66666666666667,
             64.0,
             42.666666666666664,
@@ -241,36 +241,36 @@ class CanvasSpec extends AnyFeatureSpec {
       val text = "1[234]5"
       assert(
         Canvas.calculatePrintChar(text, Left) === Seq(
-          PrintChar(
-            "1",
+          CharToPrint(
+            "1".codePointAt(0),
             21.333333333333332,
             64.0,
             42.666666666666664,
             128.0
           ),
-          PrintChar(
-            "2",
+          CharToPrint(
+            "2".codePointAt(0),
             49.77777777777777,
             64.0,
             14.222222222222221,
             128.0
           ),
-          PrintChar(
-            "3",
+          CharToPrint(
+            "3".codePointAt(0),
             64.0,
             64.0,
             14.222222222222221,
             128.0
           ),
-          PrintChar(
-            "4",
+          CharToPrint(
+            "4".codePointAt(0),
             78.22222222222223,
             64.0,
             14.222222222222221,
             128.0
           ),
-          PrintChar(
-            "5",
+          CharToPrint(
+            "5".codePointAt(0),
             106.66666666666667,
             64.0,
             42.666666666666664,
@@ -284,7 +284,7 @@ class CanvasSpec extends AnyFeatureSpec {
       val text = "1[]"
       assert(
         Canvas.calculatePrintChar(text, Left) === Seq(
-          PrintChar("1", 64.0, 64.0, 128.0, 128.0)
+          CharToPrint("1".codePointAt(0), 64.0, 64.0, 128.0, 128.0)
         )
       )
     }
@@ -293,7 +293,7 @@ class CanvasSpec extends AnyFeatureSpec {
       val text = "[]"
       assert(
         Canvas.calculatePrintChar(text, Left) === Seq(
-          PrintChar(" ", 64.0, 64.0, 128.0, 128.0)
+          CharToPrint(" ".codePointAt(0), 64.0, 64.0, 128.0, 128.0)
         )
       )
     }

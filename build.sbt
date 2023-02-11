@@ -3,7 +3,7 @@ enablePlugins(ScalaJSBundlerPlugin)
 
 name := "Text Emoji Generator"
 
-version := "1.4.1"
+version := "1.5.0"
 
 scalaVersion := "2.13.10"
 
