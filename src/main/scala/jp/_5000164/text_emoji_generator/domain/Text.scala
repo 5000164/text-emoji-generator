@@ -1,11 +1,11 @@
 package jp._5000164.text_emoji_generator.domain
 
 object Text {
+
   /** 配置できる枠の一辺の長さ */
   val side = 128.0
 
-  /**
-    * 位置を計算する。
+  /** 位置を計算する。
     *
     * @param text  入力された文字
     * @param align 位置揃え
@@ -18,8 +18,7 @@ object Text {
     (charMatrix, charSizeMatrix, charPositionMatrix)
   }
 
-  /**
-    * 文字を解析する。
+  /** 文字を解析する。
     *
     * @param text 入力された文字
     * @return 解析した文字
@@ -65,8 +64,7 @@ object Text {
     }
   }
 
-  /**
-    * 文字の大きさを計算する。
+  /** 文字の大きさを計算する。
     *
     * @param charMatrix 解析した文字
     * @return 文字ごとの大きさのマトリックス
@@ -82,16 +80,14 @@ object Text {
     }
   }
 
-  /**
-    * 基本となる文字の高さを計算する。
+  /** 基本となる文字の高さを計算する。
     *
     * @param charMatrix 解析した文字
     * @return 基本となる文字の高さ
     */
   private def calculateUnitHeight(charMatrix: Seq[Seq[RichChar]]): Double = side / charMatrix.length
 
-  /**
-    * 基本となる文字の幅を計算する。
+  /** 基本となる文字の幅を計算する。
     *
     * @param charMatrix 解析した文字
     * @param unitHeight 基本となる文字の高さ
@@ -105,8 +101,7 @@ object Text {
     if (provisionalUnitWidth <= unitHeight) provisionalUnitWidth else unitHeight
   }
 
-  /**
-    * 文字の位置を計算する。
+  /** 文字の位置を計算する。
     *
     * @param charSizeMatrix 文字ごとの大きさのマトリックス
     * @param align          文字の位置揃え
@@ -132,8 +127,7 @@ object Text {
     }
   }
 
-  /**
-    * 行の開始位置までのマージンを計算する。
+  /** 行の開始位置までのマージンを計算する。
     *
     * @param align        文字の位置揃え
     * @param charSizeList 文字ごとの大きさのリスト
@@ -170,14 +164,8 @@ object Text {
   )
 }
 
-case class RichChar(
-    char: Char,
-    divisionNumber: Int)
+case class RichChar(char: Char, divisionNumber: Int)
 
-case class CharSize(
-    width: Double,
-    height: Double)
+case class CharSize(width: Double, height: Double)
 
-case class CharPosition(
-    x: Double,
-    y: Double)
+case class CharPosition(x: Double, y: Double)
