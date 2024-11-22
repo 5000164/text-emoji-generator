@@ -104,7 +104,14 @@ object Text {
     * @param charMatrix 解析した文字
     * @return 基本となる文字の高さ
     */
-  private def calculateUnitHeight(charMatrix: Seq[Seq[RichChar]]): Double = side / charMatrix.length
+  private def calculateUnitHeight(charMatrix: Seq[Seq[RichChar]]): Double = {
+    def calc: (Int, Int) => Int = {
+      case (result, n) if n == 0 => result
+      case (result, n)           => calc(Math.floor(result / 2).toInt, n - 1)
+    }
+
+    (side / charMatrix.length) + calc(12, charMatrix.length - 1)
+  }
 
   /** 基本となる文字の幅を計算する。
     *
@@ -113,8 +120,13 @@ object Text {
     * @return 基本となる文字の幅
     */
   private def calculateUnitWidth(charMatrix: Seq[Seq[RichChar]], unitHeight: Double): Double = {
+    def calc: (Int, Int) => Int = {
+      case (result, n) if n == 0 => result
+      case (result, n)           => calc(Math.floor(result / 2).toInt, n - 1)
+    }
+
     val maxLength = charMatrix.map(_.map(1.0 / _.divisionNumber).sum).max
-    val provisionalUnitWidth = side / maxLength
+    val provisionalUnitWidth = (side / maxLength) + calc(12, maxLength.toInt - 1)
 
     // 文字の幅は文字の高さを超えて指定することはできない
     if (provisionalUnitWidth <= unitHeight) provisionalUnitWidth else unitHeight
@@ -127,17 +139,25 @@ object Text {
     * @return 文字ごとの位置のマトリックス
     */
   private def calculateCharPosition(charSizeMatrix: Seq[Seq[CharSize]], align: Align): Seq[Seq[CharPosition]] = {
+    def calc: (Int, Int) => Int = {
+      case (result, n) if n == 0 => result
+      case (result, n)           => calc(Math.floor(result / 2).toInt, n - 1)
+    }
+
     var endX = 0.0
     var endY = 0.0
 
+    val maxLength = charSizeMatrix.map(_.length).max
+    val overWidth = if (maxLength > charSizeMatrix.length) calc(12, maxLength - 1) else calc(12, charSizeMatrix.length - 1)
+
     for (charSizeList <- charSizeMatrix) yield {
-      endX = 0.0
-      val height = charSizeList.head.height
+      endX = overWidth / 2
+      val height = charSizeList.head.height - calc(12, charSizeMatrix.length - 1)
       endY = endY + height
-      val margin = calculateMargin(align, charSizeList)
+      val margin = calculateMargin(align, charSizeList, overWidth)
       for (charSize <- charSizeList) yield {
         val width = charSize.width
-        endX = endX + width
+        endX = endX + width - overWidth
         CharPosition(
           x = margin + endX - (width / 2),
           y = endY - (height / 2)
@@ -152,11 +172,15 @@ object Text {
     * @param charSizeList 文字ごとの大きさのリスト
     * @return 行の開始位置までのマージン
     */
-  private def calculateMargin(align: Align, charSizeList: Seq[CharSize]): Double = align match {
+  private def calculateMargin(align: Align, charSizeList: Seq[CharSize], overWidth: Int): Double = align match {
     case Left => 0
     case Center =>
-      val totalWidth = charSizeList.map(_.width).sum
+      val totalWidth = charSizeList.map(_.width - overWidth).sum
       (side - totalWidth) / 2
+    case Right =>
+      val totalWidth = charSizeList.map(_.width - overWidth).sum
+      side - totalWidth
+    case Justify => 0
   }
 
   val colorList = List(
@@ -173,7 +197,11 @@ object Text {
     ("Pink", "ff2d55"),
     ("Brown", "a2845e"),
     ("Gray", "8e8e93"),
-    ("Black", "000000")
+    ("Black", "000000"),
+    ("Red A700", "D50000"),
+    ("Pink 200", "F48FB1"),
+    ("Gray 400", "BDBDBD"),
+    ("Blue Gray 400", "78909C")
   )
 }
 

@@ -5,6 +5,21 @@ import org.scalatest.featurespec.AnyFeatureSpec
 
 class CanvasSpec extends AnyFeatureSpec {
   feature("左寄せの位置が計算できる") {
+    scenario("test") {
+      def calc: (Int, Int) => Int = {
+        case (result, n) if n == 0 => result
+        case (result, n)           => calc(Math.floor(result / 2).toInt, n - 1)
+      }
+
+      println(calc(8, 0))
+      println(calc(8, 1))
+      println(calc(8, 2))
+      println(calc(8, 3))
+      println(calc(8, 4))
+      println(calc(8, 5))
+      println(calc(8, 6))
+    }
+
     scenario("1 行目と 2 行目が同じ文字数") {
       val text = """12
                    |34""".stripMargin

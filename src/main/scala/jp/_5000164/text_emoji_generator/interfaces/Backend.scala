@@ -10,7 +10,7 @@ import scalacss.ScalaCssReact._
 import scala.scalajs.js
 import scala.util.Random
 
-class Backend($: BackendScope[Unit, State]) {
+class Backend($ : BackendScope[Unit, State]) {
   def render(state: State): VdomElement = {
     val f = $.zoomState(_.color)(value => _.copy(color = value))
     <.div(
@@ -42,8 +42,8 @@ class Backend($: BackendScope[Unit, State]) {
         ),
         <.ul(
           colorListStyle,
-          colorList.toVdomArray({
-            case (key, value) => <.li(
+          colorList.toVdomArray({ case (key, value) =>
+            <.li(
               ^.key := key,
               ^.onClick --> onClickColor(state, value, f),
               ^.style := js.Dictionary("backgroundColor" -> s"#$value").asInstanceOf[js.Object],
@@ -83,6 +83,20 @@ class Backend($: BackendScope[Unit, State]) {
             <.label(
               <.input.radio(^.name := "align", ^.value := Center.toString, ^.checked := state.align == Center, ^.onChange ==> onClickAlign(state)),
               "中央寄せ",
+              Styles.alignButton
+            )
+          ),
+          <.div(
+            <.label(
+              <.input.radio(^.name := "align", ^.value := Right.toString, ^.checked := state.align == Right, ^.onChange ==> onClickAlign(state)),
+              "右寄せ",
+              Styles.alignButton
+            )
+          ),
+          <.div(
+            <.label(
+              <.input.radio(^.name := "align", ^.value := Justify.toString, ^.checked := state.align == Justify, ^.onChange ==> onClickAlign(state)),
+              "両端揃え",
               Styles.alignButton
             )
           )
@@ -134,7 +148,13 @@ class Backend($: BackendScope[Unit, State]) {
   }
 
   def onClickAlign(state: State)(e: ReactEventFromInput): Callback = {
-    val align = if (e.target.value == Left.toString) Left else Center
+    val align = e.target.value match {
+      case "Left"    => Left
+      case "Center"  => Center
+      case "Right"   => Right
+      case "Justify" => Justify
+      case _         => Left
+    }
     Canvas.generate(State(state.text, state.color, state.fontFace, align)) >> $.modState(_.copy(align = align))
   }
 }

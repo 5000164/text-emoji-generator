@@ -1,7 +1,7 @@
 package jp._5000164.text_emoji_generator.interfaces
 
 import japgolly.scalajs.react.Callback
-import jp._5000164.text_emoji_generator.domain.{Align, CharPosition, CharSize, Gothic, RichChar, State, Text => DomainText}
+import jp._5000164.text_emoji_generator.domain.{Align, CharPosition, CharSize, Gothic, Justify, RichChar, State, Text => DomainText}
 import org.scalajs.dom
 import org.scalajs.dom.document
 import org.scalajs.dom.html.Canvas
@@ -74,16 +74,34 @@ object Canvas {
       else "Hiragino Mincho ProN"
 
     ctx.fillStyle = s"#${state.color}"
-    charList.foreach(char => {
-      val fontSize = char.height
-      ctx.font = s"bold ${fontSize}px '$selectedFontFace'"
-      ctx.fillText(
-        Character.toChars(char.codePoint).mkString(""),
-        char.x,
-        char.y,
-        char.width
-      )
-    })
+
+    state.align match {
+      case Justify =>
+        charList
+          .groupBy(_.y)
+          .foreach(grouped => {
+            val (y, line) = grouped
+            val fontSize = line.head.height
+            ctx.font = s"bold ${fontSize}px '$selectedFontFace'"
+            ctx.fillText(
+              line.map(c => Character.toChars(c.codePoint).mkString("")).mkString(""),
+              64,
+              y,
+              128
+            )
+          })
+      case _ =>
+        charList.foreach(char => {
+          val fontSize = char.height
+          ctx.font = s"bold ${fontSize}px '$selectedFontFace'"
+          ctx.fillText(
+            Character.toChars(char.codePoint).mkString(""),
+            char.x,
+            char.y,
+            char.width
+          )
+        })
+    }
   }
 
   def save(text: String): Callback = Callback {
